@@ -5,42 +5,42 @@
 
 ---
 
-## 01 — UV (ambiente e dependências)
+## UV
 
-### Objetivos
-- Entender o que é um ambiente virtual
-- Usar o UV para criar projeto, instalar dependências e executar scripts
+!!! info "Objetivos"
+    - Entender o que é um ambiente virtual
+    - Usar o UV para criar projeto, instalar dependências e executar scripts
 
-### Conceitos-chave
-- **Ambiente virtual**: isola pacotes por projeto
-- **uv init**: cria o projeto base
-- **uv add**: adiciona dependências no `pyproject.toml`
-- **uv run**: executa comandos dentro do ambiente sem ativar
+!!! abstract "Conceitos-chave"
+    - **Ambiente virtual**: isola pacotes por projeto
+    - **uv init**: cria o projeto base
+    - **uv add**: adiciona dependências no `pyproject.toml`
+    - **uv run**: executa comandos dentro do ambiente sem ativar
 
-### Passo a passo (exemplo)
+> **Passo a passo (exemplo)**
 ```bash
 uv init
 uv add flask
 uv run python -V
 ```
 
-### Boas práticas
+> **Boas práticas**
 - Versione `pyproject.toml` e `uv.lock`
 - Use `uv run` para evitar ativação manual
 
 ---
 
-## 02 — Python (fundamentos)
+## Python
 
-### Objetivos
-- Reforçar funções, classes e type hints
+!!! info "Objetivos"
+    - Reforçar funções, classes e type hints
 
-### Conteúdo trabalhado
-- Funções simples
-- Tipagem básica com `type hints`
-- Classes e métodos
+!!! abstract "Conteúdo trabalhado"
+    - Funções simples
+    - Tipagem básica com `type hints`
+    - Classes e métodos
 
-### Exemplo curto (type hints)
+> **Exemplo curto (type hints)**
 ```python
 def adicionar_item(carrinho: dict[str, float], item: str, preco: float) -> None:
     carrinho[item] = preco
@@ -48,46 +48,46 @@ def adicionar_item(carrinho: dict[str, float], item: str, preco: float) -> None:
 
 ---
 
-## 03 — Back-end API (Flask + Swagger)
+## Back-end API
 
-### Objetivos
-- Criar API simples com Flask
-- Documentar endpoints com Swagger (Flasgger)
+!!! info "Objetivos"
+    - Criar API simples com Flask
+    - Documentar endpoints com Swagger (Flasgger)
 
-### Endpoints básicos
-- `GET /items`
-- `POST /items`
-- `DELETE /items/<id>`
+!!! abstract "Endpoints básicos"
+    - `GET /items`
+    - `POST /items`
+    - `DELETE /items/<id>`
 
-### Exemplo de execução
+> **Exemplo de execução**
 ```bash
 uv run python app.py
 ```
 
-### Swagger UI
+> **Swagger UI**
 - URL: `http://127.0.0.1:5000/apidocs/`
 
 ---
 
-## 04 — Front-end (Flet e Jinja2)
+## Front-end
 
-### Flet
-- Interface declarativa com componentes
-- Exemplo de formulário com botão
+!!! abstract "Flet"
+    - Interface declarativa com componentes
+    - Exemplo de formulário com botão
 
-### Jinja2
-- Renderização server-side
-- Templates com variáveis, loops e condicionais
+!!! abstract "Jinja2"
+    - Renderização server-side
+    - Templates com variáveis, loops e condicionais
 
 ---
 
-## 05 — Banco de dados (PostgreSQL + Docker)
+## Banco de dados
 
-### Objetivos
-- Subir PostgreSQL com Docker
-- Entender variáveis de ambiente de conexão
+!!! info "Objetivos"
+    - Subir PostgreSQL com Docker
+    - Entender variáveis de ambiente de conexão
 
-### Comandos básicos
+> **Comandos básicos**
 ```bash
 docker compose up --build
 docker compose down
@@ -95,13 +95,13 @@ docker compose down
 
 ---
 
-## 06 — Ambiente (Docker Compose completo)
+## Ambiente
 
-### Objetivos
-- Subir backend + frontend + PostgreSQL + Redis
-- Padronizar execução
+!!! info "Objetivos"
+    - Subir backend + frontend + PostgreSQL + Redis
+    - Padronizar execução
 
-### Comandos
+> **Comandos**
 ```bash
 docker compose up --build
 docker compose down

@@ -1,17 +1,23 @@
-# Welcome to MkDocs
+# Conteúdo FATEC 2026-01
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Documentação de aula em **MkDocs**.
 
-## Commands
+## 🛠 Pré-requisitos
+- [uv](https://github.com/astral-sh/uv) instalado.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## 🚀 Como Rodar
 
-## Project layout
+1. **Instalar dependências**:
+   ```bash
+   uv sync
+   ```
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+2. **Visualizar documentação**:
+   ```bash
+   uv run mkdocs serve
+   ```
+   Acesse em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+## 📂 Estrutura
+- `docs/`: Conteúdos (Markdown).
+- `mkdocs.yml`: Configuração.

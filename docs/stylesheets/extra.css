@@ -1,0 +1,28 @@
+/* Custom Grid Cards CSS */
+.cards > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.cards > ul > li {
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.2rem;
+    padding: 1.2rem;
+    transition: all 0.2s ease-in-out;
+    background-color: var(--md-default-bg-color);
+}
+
+.cards > ul > li:hover {
+    border-color: var(--md-primary-fg-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.cards hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
