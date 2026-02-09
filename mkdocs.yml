@@ -1,1 +1,8 @@
-site_name: My Docs
+site_name: Conteudo Fatec 2026-01
+theme:
+  name: material
+  language: pt-BR
+plugins:
+  - mkdocs_quiz:
+      auto_number: true
+      shuffle_answers: true
