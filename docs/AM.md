@@ -93,7 +93,7 @@ Para que um sistema seja considerado Aprendizado de Máquina, ele deve ser decom
 
 ---
 
-# Exercícios de fixação
+## Exercícios de fixação
 
 > Responda às questões abaixo para consolidar os conceitos introduzidos nesta aula.
 

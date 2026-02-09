@@ -5,6 +5,17 @@
 
 ---
 
+## Slides
+
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAHAgYe3_Pw/GUjG7sWT4fzWrU9WREEokA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAHAgYe3_Pw&#x2F;GUjG7sWT4fzWrU9WREEokA&#x2F;view?utm_content=DAHAgYe3_Pw&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">01</a> de Icaro Davies
+
 ## UV
 
 !!! info "Objetivos"
@@ -109,7 +120,7 @@ docker compose down
 
 ---
 
-# Exercícios de fixação
+## Exercícios de fixação
 
 > Responda às questões abaixo para consolidar os conceitos aprendidos nos módulos anteriores.
 
@@ -156,3 +167,8 @@ No Flet, o que faz `page.update()`?
 </quiz>
 
 <!-- mkdocs-quiz results -->
+
+
+## Prática
+
+Crie um projeto com UV + Flask e Swagger + Jinja2 ou Flet
