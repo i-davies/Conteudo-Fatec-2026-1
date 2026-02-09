@@ -9,12 +9,20 @@
 
 <div class="grid cards" markdown>
 
--   __Linguagem de Programação Web (LDW)__
+-   __Laboratório de Desenvolvimento Web (LDW)__
 
     ---
     Aprenda sobre desenvolvimento web moderno com Python, Flask e integrações.
 
     [:arrow_right: Acessar Material](LDW.md)
+
+-   __Aprendizagem de Máquina (AM)__
+
+    ---
+    Aprenda sobre aprendizado de máquina com Python, FastAPI e integrações.
+
+    [:arrow_right: Acessar Material](AM.md)
+    
 
 -   __Outras Disciplinas__ (Em breve)
 

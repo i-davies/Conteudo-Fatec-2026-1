@@ -26,3 +26,9 @@
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
+/* Quiz Reset Link Fix */
+.quiz-reset-all-link, 
+.quiz-reset-all-link:visited {
+    color: var(--md-typeset-a-color) !important;
+}
