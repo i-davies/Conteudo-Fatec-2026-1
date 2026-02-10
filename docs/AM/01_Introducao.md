@@ -1,4 +1,4 @@
-# AM
+# Introdução
 
 > Material didático para a aula introdutória de Aprendizagem de Máquina.
 > Referência principal: *Mãos à obra: Aprendizado de Máquina com Scikit-Learn & TensorFlow* (Aurélien Géron).

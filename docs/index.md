@@ -21,7 +21,7 @@
     ---
     Aprenda sobre aprendizado de máquina com Python, FastAPI e integrações.
 
-    [:arrow_right: Acessar Material](AM.md)
+    [:arrow_right: Acessar Material](AM/01_Introducao.md)
     
 
 -   __Outras Disciplinas__ (Em breve)
