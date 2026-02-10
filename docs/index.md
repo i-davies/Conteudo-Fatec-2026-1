@@ -57,6 +57,9 @@
 - [PostgreSQL](https://www.postgresql.org/)
 - [Redis](https://redis.io/)
 
+### Notebooks Online
+- [Google Colab](https://colab.research.google.com/)
+
 ---
 
 !!! tip "Dica"
