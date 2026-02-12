@@ -14,10 +14,12 @@ Documentação de aula em **MkDocs**.
 
 2. **Visualizar documentação**:
    ```bash
-   uv run mkdocs serve
+   uv run mkdocs serve --livereload
    ```
    Acesse em: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## 📂 Estrutura
-- `docs/`: Conteúdos (Markdown).
+- `docs/AM/`: Aprendizado de Máquina.
+- `docs/LDW/`: Laboratório de Desenvolvimento Web.
+- `docs/LDDM/`: Laboratório de Desenvolvimento Mobile.
 - `mkdocs.yml`: Configuração.
