@@ -40,7 +40,7 @@ expect fun serverHost(): String
 **Android (Implementação)**
 `shared/src/androidMain/kotlin/com/example/kmp_intro/Platform.android.kt`
 ```kotlin
-actual fun serverHost(): String = "10.0.2.2"
+actual fun serverHost(): String = "10.0.2.2"  // Substituir pelo IP do notebook
 ```
 
 **JVM/Desktop (Implementação)**
