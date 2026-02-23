@@ -21,7 +21,7 @@
     ---
     Aprenda sobre aprendizado de máquina com Python, FastAPI e integrações.
 
-    [:arrow_right: Acessar Material](AM/01_Introducao.md)
+    [:arrow_right: Acessar Material](AM/01_Introducao/01_Teoria.md)
 
 -   __Laboratório de Desenvolvimento Mobile (LDDM)__
 
