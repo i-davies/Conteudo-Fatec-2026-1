@@ -8,7 +8,7 @@
 
 ### Inicialização
 
-Você tem duas opções. Escolha **UMA**.
+Você tem duas opções.
 
 === "Opção A: Do Zero"
 
@@ -95,8 +95,8 @@ Implemente a classe que processa a lógica de decisão.
 ```python
 class Perceptron:
     def __init__(self, weights=None, bias=0.1):
-        self.default_weights = {'energy': 0.8, 'loudness': 0.2}
-        self.weights = weights if weights else self.default_weights
+        default_weights = {'energy': 0.8, 'loudness': 0.2}
+        self.weights = weights if weights is not None else default_weights
         self.bias = bias
 
     def predict(self, energy, loudness):
@@ -143,12 +143,29 @@ print(cerebro.predict(0.2, -15.0))
 # Esperado: prediction=0
 ```
 
-### Desafio
-Teste com músicas reais para ver se o modelo acerta:
+### Desafio Testando com Músicas Reais
 
-*   **The Killers - Mr. Brightside**: (Energy: 0.93, Loudness: -3.76) -> ?
-*   **Boyce Avenue - Chasing Cars**: (Energy: 0.33, Loudness: -8.9) -> ?
-*   **Para Reiki**: (Energy: 0.92, Loudness: -32.8) -> ?
+Agora que o perceptron funciona, tente ver como ele classifica algumas músicas reais do nosso dataset!
+Você pode buscar essas músicas pelo ID no dataset ou usar os valores abaixo:
+
+1.  **"Mr. Brightside" - The Killers** (Clássico de festa)
+    *   ID: `23PvWFdi76vER4p1e2Xroj`
+    *   Energy: 0.93 -> **Alta**
+    *   Loudness: -3.76 dB -> **Alto**
+    *   *O que seu modelo deve prever?*
+
+2.  **"Chasing Cars" - Boyce Avenue** (Versão acústica/calma)
+    *   ID: `3JKLrIrHpbHtDU1oeYtbYD`
+    *   Energy: 0.33 (Média, mas acústica)
+    *   Loudness: -8.9 dB (Mais baixo)
+    *   *O que seu modelo deve prever?*
+
+3.  **"Para Reiki: Gotas de Agua"** (A "Pegadinha")
+    *   ID: `2N18pBnfGpmBhd4GlKudDN`
+    *   Energy: **0.92** (Altíssima! Quase 1.0)
+    *   Loudness: **-32.79 dB** (Muito baixo, som ambiente)
+    *   *Intuição*: Energia alta = Festa?
+    *   *Realidade*: O volume muito baixo penaliza a equação. Teste e veja se o modelo é inteligente o suficiente para chamar de "Relax".
 
 ---
 
