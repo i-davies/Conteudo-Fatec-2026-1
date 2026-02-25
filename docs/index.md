@@ -14,21 +14,21 @@
     ---
     Aprenda sobre desenvolvimento web moderno com Python, Flask e integrações.
 
-    [:arrow_right: Acessar Material](LDW.md)
+    [:arrow_right: Acessar Material](LDW/01_Introducao/01_Introducao/)
 
 -   __Aprendizagem de Máquina (AM)__
 
     ---
     Aprenda sobre aprendizado de máquina com Python, FastAPI e integrações.
 
-    [:arrow_right: Acessar Material](AM/01_Introducao/01_Teoria.md)
+    [:arrow_right: Acessar Material](AM/01_Introducao/01_Teoria/)
 
 -   __Laboratório de Desenvolvimento Mobile (LDDM)__
 
     ---
     Desenvolvimento multiplataforma com Kotlin, Compose e Supabase.
 
-    [:arrow_right: Acessar Material](LDDM/01_Introducao.md)
+    [:arrow_right: Acessar Material](LDDM/01_Introducao/01_Introducao/)
     
 
 -   __Outras Disciplinas__ (Em breve)
