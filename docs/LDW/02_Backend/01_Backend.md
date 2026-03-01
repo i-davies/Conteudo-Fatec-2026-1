@@ -1,6 +1,7 @@
 # Flask e Documentação
 
 > Guia prático: Estruturar uma API profissional utilizando Flask, organizando o código em Blueprints, simulando armazenamento de dados e documentando endpoints automaticamente com OpenAPI (Swagger).
+> Projeto utilizado : [ldw-merge-skills-aula](https://github.com/i-davies/ldw-merge-skills-aula).
 
 ---
 
