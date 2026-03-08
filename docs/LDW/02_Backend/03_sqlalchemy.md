@@ -620,43 +620,7 @@ Execute:
 uv run python src/scripts/seed.py
 ```
 
-### Seed SQL (alternativa para Supabase)
-
-Para quem preferir usar o SQL Editor do Supabase, criamos `apps/backend/seed.sql`:
-
-```sql
--- Limpar dados existentes
-DELETE FROM questions;
-DELETE FROM lessons;
-DELETE FROM courses;
-
--- Cursos
-INSERT INTO courses (id, title, description, icon, color, total_lessons) VALUES
-    (1, 'Python Fundamentos', 'Aprenda o básico de Python', 'python', '#306998', 2),
-    (2, 'Flask API Masterclass', 'Crie APIs profissionais', 'flask', '#FF5722', 2);
-
--- Lições
-INSERT INTO lessons (id, course_id, title, description, "order") VALUES
-    (1, 1, 'Introdução ao Python', 'Primeiros passos com Python', 1),
-    (2, 1, 'Variáveis e Tipos', 'Tipos de dados em Python', 2),
-    (3, 2, 'Setup do Ambiente Flask', 'Configurando o Flask', 1),
-    (4, 2, 'Blueprints', 'Organizando rotas com Blueprints', 2);
-
--- Perguntas
-INSERT INTO questions (id, lesson_id, question, code, options, correct_answer, "order") VALUES
-    (1, 1, 'O que é Python?', NULL,
-        '["Um réptil", "Uma linguagem de programação", "Um editor de texto"]', 1, 1),
-    (2, 1, 'Qual comando imprime textos?',
-        E'# Para imprimir ''Olá mundo'':\n[BLANK](''Olá mundo'')',
-        '["echo()", "console.log()", "print()"]', 2, 2);
-```
-
-!!! note "Palavras Reservadas"
-    Note que `"order"` está entre aspas duplas no SQL porque `order` é uma palavra reservada do PostgreSQL.
-
----
-
-## Prática: Integrando no Flask e Refatorando as Rotas
+## Integrando no Flask e Refatorando as Rotas
 
 ### Atualizando `app.py`
 
@@ -695,8 +659,45 @@ def create_app():
 ```
 
 **O que mudou:**
+
 - `from database import init_db` + `init_db(app)` configura a conexão
 - O Swagger agora mostra se está conectado ao banco Local ou Supabase
+
+### Seed SQL (alternativa para Supabase)
+
+Para quem preferir usar o SQL Editor do Supabase, criamos `apps/backend/seed.sql`:
+
+```sql
+-- Limpar dados existentes
+DELETE FROM questions;
+DELETE FROM lessons;
+DELETE FROM courses;
+
+-- Cursos
+INSERT INTO courses (id, title, description, icon, color, total_lessons) VALUES
+    (1, 'Python Fundamentos', 'Aprenda o básico de Python', 'python', '#306998', 2),
+    (2, 'Flask API Masterclass', 'Crie APIs profissionais', 'flask', '#FF5722', 2);
+
+-- Lições
+INSERT INTO lessons (id, course_id, title, description, "order") VALUES
+    (1, 1, 'Introdução ao Python', 'Primeiros passos com Python', 1),
+    (2, 1, 'Variáveis e Tipos', 'Tipos de dados em Python', 2),
+    (3, 2, 'Setup do Ambiente Flask', 'Configurando o Flask', 1),
+    (4, 2, 'Blueprints', 'Organizando rotas com Blueprints', 2);
+
+-- Perguntas
+INSERT INTO questions (id, lesson_id, question, code, options, correct_answer, "order") VALUES
+    (1, 1, 'O que é Python?', NULL,
+        '["Um réptil", "Uma linguagem de programação", "Um editor de texto"]', 1, 1),
+    (2, 1, 'Qual comando imprime textos?',
+        E'# Para imprimir ''Olá mundo'':\n[BLANK](''Olá mundo'')',
+        '["echo()", "console.log()", "print()"]', 2, 2);
+```
+
+!!! note "Palavras Reservadas"
+    Note que `"order"` está entre aspas duplas no SQL porque `order` é uma palavra reservada do PostgreSQL.
+
+---
 
 ### Refatorando as Rotas
 
@@ -895,36 +896,6 @@ O Swagger deve mostrar: `MergeSkills API — Supabase`
 !!! tip "Voltando ao Local"
     Para **voltar ao banco local**, basta trocar a `DATABASE_URL` no `.env` de volta para a versão Docker. O código não muda — **só a conexão muda**.
 
----
-
-## Resumo: Estrutura Final
-
-```plaintext
-apps/backend/
-├── .env                      # DATABASE_URL (local ou Supabase)
-├── .env.example              # Template para outros devs
-├── alembic.ini               # Config do Alembic
-├── pyproject.toml            # Dependências (flask-sqlalchemy, alembic, etc.)
-├── seed.sql                  # Seed SQL para Supabase (alternativo)
-├── migrations/
-│   ├── env.py                # Conecta Alembic ao SQLAlchemy
-│   ├── script.py.mako        # Template de migrations
-│   └── versions/
-│       └── 001_criar_tabelas.py  # Migration inicial
-└── src/
-    ├── app.py                # create_app() com init_db()
-    ├── database.py           # SQLAlchemy instance + init_db()
-    ├── models.py             # Course, Lesson, Question
-    ├── routes/
-    │   ├── courses.py        # [REFATORADO] usa Course.query
-    │   ├── lessons.py        # [REFATORADO] usa Lesson.query
-    │   ├── questions.py      # [REFATORADO] usa Question.query
-    │   ├── progress.py       # [REFATORADO] usa Question.query
-    │   └── health.py
-    ├── schemas/              # Pydantic (sem mudanças significativas)
-    └── scripts/
-        └── seed.py           # Seed via Python/SQLAlchemy
-```
 
 ---
 
@@ -939,9 +910,3 @@ apps/backend/
     3. **Discussão:** Compare a experiência de desenvolvimento com banco local (Docker) vs Supabase. Quais as vantagens de cada abordagem?
 
 ---
-
-## Próximos Passos (Semana 5)
-
-- Persistir o progresso do aluno (`USER_PROGRESS`) no banco de dados
-- Criar tabelas `users`, `question_attempts` e `lesson_progress`
-- Implementar lógica de validação de respostas com histórico
