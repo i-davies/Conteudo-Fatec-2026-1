@@ -5,7 +5,7 @@
 
 ---
 
-## Teoria
+## Conceitos Iniciais
 
 ### Estrutura e Modularização
 Em vez de um único arquivo gigante, adotaremos uma arquitetura profissional baseada em **Blueprints**.
@@ -54,7 +54,7 @@ O Flutter/Next.js costuma usar arquivos separados para documentação. No Python
 
 ---
 
-## Prática: Setup
+## Setup
 
 1.  Crie a pasta do projeto:
     ```bash
@@ -90,7 +90,7 @@ O Flutter/Next.js costuma usar arquivos separados para documentação. No Python
 
 ---
 
-## Prática: Implementação
+## Implementação
 
 ### Criando a Base (`app.py`)
 

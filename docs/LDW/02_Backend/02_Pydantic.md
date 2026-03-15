@@ -116,7 +116,7 @@ uv run flask --app src/app run
 
 ---
 
-## Prática: Adicionando Schemas com Pydantic
+## Adicionando Schemas com Pydantic
 
 Agora que todos os endpoints estão funcionando, vamos adicionar uma **camada de validação e serialização** usando Pydantic.
 
@@ -246,7 +246,7 @@ class ProgressResponseSchema(BaseModel):
 
 ---
 
-## Prática: Refatorando as Rotas para Usar Schemas
+## Refatorando as Rotas para Usar Schemas
 
 Vamos substituir o `jsonify` direto pelo `model_dump` do Pydantic e usar `$ref` no Swagger para evitar repetição.
 
@@ -333,7 +333,7 @@ def submit_answer():
 
 ---
 
-## Prática: Refatorando as Rotas
+## Refatorando as Rotas
 
 Agora que temos as definitions registradas, podemos trocar as docstrings verbosas por `$ref` limpos.
 

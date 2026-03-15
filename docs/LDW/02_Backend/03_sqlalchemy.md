@@ -281,7 +281,7 @@ class Question(db.Model):
 
 ---
 
-## Prática: Configurando o Alembic (Migrations)
+## Configurando o Alembic (Migrations)
 
 ### Estrutura das Migrations
 
@@ -507,7 +507,7 @@ INFO  [alembic.runtime.migration] Running upgrade  -> 001, Criar tabelas courses
 
 ---
 
-## Prática: Populando o Banco (Seed)
+## Populando o Banco (Seed)
 
 ### Script de Seed com Python
 
