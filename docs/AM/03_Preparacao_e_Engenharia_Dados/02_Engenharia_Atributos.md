@@ -2,18 +2,7 @@
 
 Na semana anterior, limpamos o dataset do Spotify com o `DataCleaner`: removemos nulos, tratamos outliers e até normalizamos o `loudness` manualmente. O resultado foi um `dataset_clean.csv` confiável.
 
-Agora damos o próximo passo: **preparar esses dados para que um modelo de Machine Learning possa consumi-los**. Máquinas não leem texto como "Rock" ou "Pop" — elas leem números. E não basta qualquer número: as escalas precisam ser consistentes e reproduzíveis. É aqui que entra o **Scikit-Learn**.
-
----
-
-## Sugestão de Ordem para a Aula
-
-1. **Conceitos**: Discuta por que a normalização manual não escala e o problema de codificar categorias como `1, 2, 3`.
-2. **Dependências**: Instale `scikit-learn` e `joblib`, apresentando as ferramentas.
-3. **Serviço (`FeatureEngineer`)**: Implemente a classe em etapas, explicando cada bloco.
-4. **Endpoint e Registro**: Crie a rota `/preprocess` e registre no router.
-5. **Laboratório**: Testes progressivos no Swagger UI — do básico ao limite.
-6. **Script de Treino Real**: Execute com o `dataset_clean.csv` e compare o resultado com o dummy.
+Agora damos o próximo passo: **preparar esses dados para que um modelo de Machine Learning possa consumi-los**. Máquinas não leem texto como "Rock" ou "Pop", elas leem números. E não basta qualquer número: as escalas precisam ser consistentes e reproduzíveis. É aqui que entra o **Scikit-Learn**.
 
 ---
 
@@ -63,8 +52,6 @@ Se a palavra "Tensor" parece assustadora, pense nela como uma **planilha**:
 - **Vetor (1D):** Uma única linha — os dados de uma música.
 - **Matriz (2D):** A planilha inteira — **linhas** são músicas e **colunas** são atributos.
 
-Quando o endpoint retorna `transformed_shape: [1, 6]`, significa: **1 música** com **6 atributos numéricos**. Se você enviar 10 músicas, o shape será `[10, 6]`. Modelos de ML esperam exatamente esse formato.
-
 ---
 
 ## Fit vs. Transform: O Segredo da Consistência
@@ -89,7 +76,7 @@ Quando o endpoint retorna `transformed_shape: [1, 6]`, significa: **1 música** 
 
 Após o `fit()`, os parâmetros aprendidos são salvos em `models/transformers.joblib`.
 
-Pense nele como um **save de jogo**: o estado do transformador (limites, categorias) é congelado naquele momento. Quando a API sobe, ela carrega esse save com `load()` e garante que toda nova música seja vista **sob a mesma ótica** dos dados de treino — mesmo que o servidor tenha sido reiniciado.
+Pense nele como um **save de jogo**: o estado do transformador (limites, categorias) é congelado naquele momento. Quando a API sobe, ela carrega esse save com `load()` e garante que toda nova música seja vista **sob a mesma ótica** dos dados de treino.
 
 ??? tip "Treinamento vs. Produção: onde o dado vai parar?"
     - **No treinamento:** O `dataset_clean.csv` passa pelo `fit_transform()` e gera o `dataset_features.csv`. O modelo de ML estudará apenas esse arquivo numérico.
@@ -106,17 +93,11 @@ uv add scikit-learn joblib
 - **scikit-learn**: Biblioteca padrão da indústria para pipelines e algoritmos de ML.
 - **joblib**: Serializa objetos Python (como o pipeline treinado) em arquivos binários.
 
-Verifique a instalação antes de continuar:
-
-```bash
-uv run python -c "import sklearn, joblib; print(sklearn.__version__, joblib.__version__)"
-```
-
 ---
 
 ## Criando o Serviço `FeatureEngineer`
 
-Crie o arquivo `src/services/feature_engineer.py`. Vamos construí-lo em partes.
+Crie o arquivo `src/services/feature_engineer.py`.
 
 ### Importações e estrutura da classe
 
@@ -215,7 +196,7 @@ O `.joblib` é o "save de jogo" do pipeline. `save()` congela o estado atual; `l
 
 ## Criando o Endpoint `/preprocess`
 
-Crie o arquivo `src/api/v1/feature_engineering.py`. Vamos construí-lo em partes.
+Crie o arquivo `src/api/v1/feature_engineering.py`.
 
 ### Os schemas de entrada
 
@@ -567,3 +548,5 @@ O que representa o `transformed_shape: [3, 6]` no retorno do endpoint `/preproce
 * [ ] 3 colunas categóricas e 6 colunas numéricas.
 * [x] 3 músicas enviadas, cada uma com 6 atributos numéricos após a transformação.
 </quiz>
+
+<!-- mkdocs-quiz results -->
