@@ -1,5 +1,9 @@
 site_name: Conteudo Fatec 2026-01
 
+# Oculta temporariamente a prática de MLP até validação final.
+exclude_docs: |
+  AM/04_Redes_Neurais_Mlp/02_Pratica.md
+
 theme:
   name: material
   
