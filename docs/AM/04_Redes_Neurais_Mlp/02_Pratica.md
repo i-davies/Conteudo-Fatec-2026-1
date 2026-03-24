@@ -1,6 +1,4 @@
-﻿# MLP — Prática Guiada
-
-> Semana 06 de AM — Prática (3 aulas de 50 min). Você vai construir o serviço de rede neural passo a passo, testar cada bloco antes de avançar, treinar o modelo e integrá-lo à API.
+﻿# MLP — Prática
 
 !!! important "Pré-requisito obrigatório"
     Antes de começar, confirme que você rodou o script da Semana 05:
@@ -15,11 +13,11 @@
 
 ---
 
-## Aula — Construindo o Serviço MLP
+## Construindo o Serviço MLP
 
 > **Objetivo:** Criar a classe `MusicMLPClassifier` método a método, entendendo cada componente antes de adicionar o próximo.
 
-### Contexto: o que vamos construir
+### O que vamos construir
 
 O serviço MLP é o **cérebro** do sistema. Ele encapsula toda a lógica da rede neural em uma classe reutilizável, com cinco responsabilidades claras:
 
@@ -32,15 +30,13 @@ O serviço MLP é o **cérebro** do sistema. Ele encapsula toda a lógica da red
 | `save()` / `load()` | Persiste o modelo treinado em disco para uso na API |
 
 !!! info "Por que separar em métodos?"
-    Em sistemas reais, treino e predição acontecem em momentos diferentes. O treino ocorre **uma vez** (ou periodicamente), gera um arquivo `.joblib` e termina. A API depois **carrega** esse arquivo e usa apenas `predict()` — sem nunca re-treinar. Essa separação é o que torna o sistema viável em produção.
+    Em sistemas reais, treino e predição acontecem em momentos diferentes. O treino ocorre **uma vez** (ou periodicamente), gera um arquivo `.joblib` e termina. A API depois **carrega** esse arquivo e usa apenas `predict()`, sem nunca re-treinar. Essa separação é o que torna o sistema viável em produção.
 
 ---
 
-### O MLPClassifier e seus Concorrentes
+### O MLPClassifier (scikit-learn)
 
-Antes de implementar, vamos entender o algoritmo que estamos usando e por que escolhemos ele.
-
-#### O MLPClassifier (scikit-learn)
+Antes de implementar, vamos entender rapidamente o algoritmo que será usado.
 
 O `MLPClassifier` é a implementação de rede neural multicamada do scikit-learn. Ele usa:
 
@@ -60,67 +56,6 @@ Os parâmetros mais importantes são:
 | `validation_fraction` | `0.1` | Fração dos dados de treino usada para validação interna |
 | `random_state` | `None` | Semente para reprodutibilidade |
 
-#### Outros Algoritmos de Classificação Populares
-
-O `MLPClassifier` não é o único caminho. Conheça os alternativos mais usados na indústria:
-
-=== "Random Forest"
-
-    **Tipo:** Ensemble de árvores de decisão.
-
-    ```python
-    from sklearn.ensemble import RandomForestClassifier
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    ```
-
-    - Robusto com poucos dados.
-    - Ótimo para dados tabulares.
-    - Fácil de interpretar (*feature importance*).
-    - **Quando usar:** Quando você precisa explicar quais features são mais importantes.
-
-=== "Gradient Boosting (XGBoost)"
-
-    **Tipo:** Ensemble sequencial de árvores.
-
-    ```python
-    from sklearn.ensemble import GradientBoostingClassifier
-    model = GradientBoostingClassifier(n_estimators=100, random_state=42)
-    ```
-
-    - Geralmente o mais acurado em dados tabulares.
-    - Mais lento para treinar que Random Forest.
-    - **Quando usar:** Competições de dados (Kaggle) e produção com dados tabulares de alta dimensão.
-
-=== "SVM"
-
-    **Tipo:** Máquina de vetores de suporte.
-
-    ```python
-    from sklearn.svm import SVC
-    model = SVC(probability=True, kernel='rbf', random_state=42)
-    ```
-
-    - Excelente para dados com muitas features e poucas amostras.
-    - Lento para datasets grandes (> 50k linhas).
-    - **Quando usar:** Classificação de texto ou imagens pequenas.
-
-=== "Logistic Regression"
-
-    **Tipo:** Modelo linear probabilístico.
-
-    ```python
-    from sklearn.linear_model import LogisticRegression
-    model = LogisticRegression(max_iter=300, random_state=42)
-    ```
-
-    - Muito rápido e interpretável.
-    - Funciona bem quando as features já estão bem engenheiradas.
-    - **Quando usar:** Baseline inicial antes de testar modelos mais complexos.
-
-!!! tip "Qual escolher?"
-    No nosso projeto, escolhemos o `MLPClassifier` por **propósito didático** — queremos aprender sobre redes neurais. Em produção com dados tabulares do Spotify, o **Gradient Boosting** provavelmente atingiria acurácia equivalente mais rapidamente. A MLP brilha em dados não estruturados (imagens, áudio, texto).
-
----
 
 ### Estrutura do Arquivo
 
@@ -163,7 +98,7 @@ Antes de continuar, confirme que não há erros de importação.
 
 ---
 
-### Bloco — `train()`
+### Train
 
 Adicione o método `train()` à classe:
 
@@ -190,27 +125,20 @@ Adicione o método `train()` à classe:
             verbose=False,
         )
         self.model.fit(X_train, y_train)
+        self.save()
         print(f"[MLP] Treinamento concluído em {self.model.n_iter_} épocas.")
         return self
 ```
 
 !!! info "O que `early_stopping=True` faz internamente?"
-    O scikit-learn separa automaticamente `validation_fraction` (10%) dos dados de treino como um mini conjunto de validação. A cada época, ele mede a acurácia nesse subconjunto. Se a acurácia **não melhorar** por 10 épocas consecutivas (`n_iter_no_change=10`), o treino para — evitando que a rede continue ajustando pesos para dados que já "decorou".
+    O scikit-learn separa automaticamente `validation_fraction` (10%) dos dados de treino como um mini conjunto de validação. A cada época, ele mede a acurácia nesse subconjunto. Se a acurácia **não melhorar** por 10 épocas consecutivas (`n_iter_no_change=10`), o treino para, evitando que a rede continue ajustando pesos para dados que já "decorou".
 
 !!! info "O que `self.model.n_iter_` contém?"
     Após o `fit()`, o atributo `n_iter_` registra em quantas épocas o treinamento realmente terminou. Se `early_stopping=True` for ativado, esse número será menor que `max_iter`.
 
-**Checkpoint — não rode o treino completo ainda, só verifique a assinatura:**
-
-```python
-import inspect
-from src.services.mlp_classifier import MusicMLPClassifier
-print(inspect.signature(MusicMLPClassifier.train))
-```
-
 ---
 
-### Bloco — `save()` e `load()`
+### Save e load
 
 Adicione os dois métodos de persistência **logo após o `train()`:**
 
@@ -231,24 +159,13 @@ Adicione os dois métodos de persistência **logo após o `train()`:**
         print(f"[MLP] Modelo carregado de: {self.model_path}")
 ```
 
-!!! info "Por que joblib e não pickle?"
-    O `pickle` é o formato padrão de serialização do Python. O `joblib` é otimizado para objetos com grandes arrays NumPy (como os pesos de uma rede neural), usando compressão mais eficiente. Para o `MLPClassifier`, joblib é **3–5× mais rápido** na leitura e gera arquivos menores.
 
 !!! info "O que o save() persiste?"
     O arquivo `.joblib` contém o objeto `MLPClassifier` completo: **todos os pesos** das camadas, a arquitetura, os hiperparâmetros e os atributos aprendidos (como `n_iter_`, `classes_`). É tudo que a API precisa para fazer previsões sem re-treinar.
 
-**Checkpoint — adicione `self.save()` ao final do `train()` (antes do `return self`):**
-
-```python
-        self.model.fit(X_train, y_train)
-        self.save()   # ← adicione esta linha
-        print(f"[MLP] Treinamento concluído em {self.model.n_iter_} épocas.")
-        return self
-```
-
 ---
 
-### Bloco — `predict()`
+### Predict
 
 Adicione o método `predict()`:
 
@@ -289,7 +206,7 @@ Adicione o método `predict()`:
 
 ---
 
-### Bloco — `evaluate()`
+### Evaluate
 
 Adicione o último método:
 
@@ -323,28 +240,16 @@ Adicione o último método:
          Curtida       1.00      1.00      1.00      8916
     ```
 
-**Checkpoint — verifique que a classe completa tem todos os métodos:**
-
-```python
-from src.services.mlp_classifier import MusicMLPClassifier
-methods = [m for m in dir(MusicMLPClassifier) if not m.startswith('_')]
-print(methods)
-# esperado: ['evaluate', 'load', 'predict', 'save', 'train']
-```
-
 ---
 
-### Tempo Livre — Exploração
-
-Antes de encerrar a aula, discuta com a turma:
+### Exploração
 
 1. O que aconteceria se `early_stopping=False` e `max_iter=300`? A rede treinaria por exatamente 300 épocas.
 2. Se você mudar `hidden_layers` de `(64, 32)` para `(128, 64, 32)`, o que muda na arquitetura?
-3. Por que a API deve chamar apenas `load()` + `predict()` e **nunca** `train()`?
 
 ---
 
-## Aula — Treinando a Rede Neural
+## Treinando a Rede Neural
 
 > **Objetivo:** Criar o script de treinamento bloco a bloco, entender cada decisão e interpretar os resultados.
 
@@ -368,7 +273,7 @@ Crie o arquivo `scripts/train_mlp.py` **vazio** e vá adicionando cada bloco a s
 
 ---
 
-### Bloco — Cabeçalho e Verificação de Pré-requisitos
+### Cabeçalho e verificação de pré-requisitos
 
 ```python
 # scripts/train_mlp.py
@@ -389,7 +294,7 @@ def main():
     clean_path    = project_root / "data" / "processed" / "dataset_clean.csv"
 
     print("=" * 60)
-    print("  [MLP] Treinamento da Rede Neural (Semana 06)")
+    print("  [MLP] Treinamento da Rede Neural")
     print("=" * 60)
 
     if not features_path.exists():
@@ -414,7 +319,7 @@ Você deve ver `[OK] Pré-requisitos verificados.` Se aparecer `[ERRO]`, volte �
 
 ---
 
-### Bloco — Carregando os Dados
+### Carregando os dados
 
 Adicione **dentro da função `main()`**, após a verificação:
 
@@ -439,7 +344,7 @@ Adicione **dentro da função `main()`**, após a verificação:
 
 ---
 
-### Bloco — Criando o Label
+### Criando o label
 
 O label `liked` é o que a rede vai aprender a prever. Adicione:
 
@@ -460,9 +365,11 @@ O label `liked` é o que a rede vai aprender a prever. Adicione:
     y = y.iloc[:min_len]
 ```
 
-**Execute e veja a distribuição dos labels.** A saída deve mostrar uma divisão próxima de 50/50 (porque usamos a mediana como threshold).
+**Execute e veja a distribuição dos labels.** A saída deve mostrar uma divisão próxima de 50/50 (porque usamos a mediana como corte).
 
-!!! info "Por que usar a mediana como threshold?"
+Aqui, **threshold** significa apenas **valor de corte**: acima da mediana vira 1, abaixo ou igual vira 0.
+
+!!! info "Por que usar a mediana como corte?"
     A mediana divide o dataset exatamente ao meio: metade das músicas terá `popularity` acima dela (label 1) e metade abaixo (label 0). Isso gera um dataset **balanceado**, o que facilita o aprendizado da MLP. Se usássemos um valor fixo (ex: `popularity > 70`), provavelmente teríamos muito menos músicas "curtidas" que "não curtidas".
 
 !!! warning "Por que isso é uma simplificação?"
@@ -470,7 +377,7 @@ O label `liked` é o que a rede vai aprender a prever. Adicione:
 
 ---
 
-### Bloco — Divisão Treino / Teste
+### Divisão treino e teste
 
 ```python
     # --- 3. Divisão Treino / Teste ---
@@ -492,7 +399,7 @@ O label `liked` é o que a rede vai aprender a prever. Adicione:
 
 ---
 
-### Bloco — Treino, Avaliação e Finalização (`if __name__`)
+### Treino, avaliação e finalização
 
 Adicione o treino e a avaliação. Depois, adicione o bloco `if __name__` no final do arquivo:
 
@@ -524,129 +431,35 @@ if __name__ == "__main__":
 uv run python scripts/train_mlp.py
 ```
 
-A saída esperada é:
-
-```
-============================================================
-  [MLP] Treinamento da Rede Neural (Semana 06)
-============================================================
-
-[1/5] Carregando dataset de features...
-       Shape: (89740, 117)
-
-[2/5] Criando label 'liked'...
-       Mediana de popularity: 33.0
-       Curtidas (1): 44581 | Não Curtidas (0): 45159
-
-[3/5] Dividindo em Treino (80%) e Teste (20%)...
-       Treino: 71792 amostras
-       Teste:  17948 amostras
-
-[4/5] Treinando a Rede Neural MLP...
-[MLP] Treinando rede neural com arquitetura (64, 32)...
-[MLP] Modelo salvo em: models/mlp_model.joblib
-[MLP] Treinamento concluído em 31 épocas.
-
-[5/5] Avaliando no conjunto de teste...
-
-============================================================
-  RESULTADO FINAL
-============================================================
-  Acurácia: 99.79%
-
-              precision    recall  f1-score   support
- Não Curtida       1.00      1.00      1.00      9032
-     Curtida       1.00      1.00      1.00      8916
-```
-
 !!! important "Por que 99.79% de acurácia?"
     A acurácia é alta porque o label `liked` foi criado **a partir de** `popularity`, que já está nas features. A MLP basicamente aprendeu a regra que nós mesmos criamos. Em produção, com labels vindos de comportamento real do usuário, a acurácia seria menor (70–90%).
 
     Isso **não invalida o exercício** — o objetivo é aprender o **fluxo completo** do pipeline de ML: engenharia de features → label → treino → avaliação → API.
 
-### Conceitos de Qualidade do Modelo (durante a prática)
+---
 
-Agora que o treino foi executado, este é o melhor momento para discutir qualidade do modelo com os dados reais da turma.
+### Exploração
 
-#### Divisão treino/teste
-
-Testar com os mesmos dados do treino seria como fazer prova com gabarito. Por isso usamos:
-
-- **Treino (80%)**: onde o modelo aprende os padrões.
-- **Teste (20%)**: onde verificamos se ele realmente generaliza.
-
-#### Métricas que aparecem no relatório
-
-**Acurácia** — porcentagem de acertos totais:
-
-$$\text{Acurácia} = \frac{\text{Previsões Corretas}}{\text{Total de Previsões}}$$
-
-| Métrica | Pergunta prática |
-|---------|------------------|
-| **Precision** | Das músicas que o modelo chamou de "Curtida", quantas eram mesmo? |
-| **Recall** | De todas as músicas realmente "Curtidas", quantas o modelo encontrou? |
-| **F1-Score** | Equilíbrio entre Precision e Recall |
-
-#### Overfitting e Underfitting
-
-| Situação | Treino | Teste | Leitura rápida |
-|----------|--------|-------|----------------|
-| Underfitting | Baixo | Baixo | Modelo simples demais |
-| Ideal | Alto | Alto | Generalizou bem |
-| Overfitting | Muito alto | Baixo | Decorou o treino |
-
-O `early_stopping=True` ajuda a evitar overfitting, porque interrompe o treino quando o modelo para de melhorar na validação.
-
-#### Resumo visual do fluxo que acabou de ser executado
-
-```mermaid
-flowchart TD
-    a[Dados brutos] --> b[FeatureEngineer]
-    b --> c[Features numericas]
-    c --> d[Treino da MLP]
-    d --> e[Avaliacao no teste]
-    e --> f[Acuracia e classification report]
-    d --> g[mlp_model.joblib]
-```
+1. Teste arquitetura menor: no `scripts/train_mlp.py`, troque `hidden_layers=(64, 32)` por `hidden_layers=(10,)`, rode `uv run python scripts/train_mlp.py` e compare a acurácia final.
+2. Teste poucas épocas: no mesmo trecho, troque `max_iter=300` por `max_iter=5`, rode novamente e observe `n_iter_` e a acurácia.
+3. Teste outro valor de corte do label:
+    No bloco de criação do `y`, troque
+    `y = (df_clean["popularity"] > mediana).astype(int)`
+    por
+    `y = (df_clean["popularity"] > 70).astype(int)`.
+    Depois rode `uv run python scripts/train_mlp.py` e compare a linha `Curtidas (1) | Não Curtidas (0)` com a versão anterior.
 
 ---
 
-### Tempo Livre — Exploração
-
-Explore as variações abaixo **sem alterar o arquivo principal**. Use uma cópia ou diretamente no terminal:
-
-1. Mude `hidden_layers` para `(10,)` e re-treine. A acurácia muda?
-2. Defina `max_iter=5` e veja o que acontece com poucas épocas.
-3. Mude o threshold do label de `mediana` para `70`. Qual o novo balanço de classes?
-
----
-
-## Aula — Integração com a API
+## Integração com a API
 
 > **Objetivo:** Expor a MLP como endpoint HTTP e testá-la no Swagger UI.
-
-### Revisão do Fluxo
-
-```
-Usuário (JSON)
-    │
-    ▼
-POST /api/v1/model/mlp/predict
-    │
-    ├─► FeatureEngineer.transform()   ← carregado de transformers.joblib
-    │            │
-    │       tensor numérico
-    │            │
-    └─► MusicMLPClassifier.predict()  ← carregado de mlp_model.joblib
-                 │
-             resposta JSON
-```
 
 A API não faz nada novo: apenas orquestra as peças que você já construiu nas semanas anteriores.
 
 ---
 
-### Bloco — Os Schemas de Entrada e Saída
+### Schemas de entrada e saída
 
 Crie o arquivo `src/api/v1/mlp.py`. Comece **apenas com os schemas**:
 
@@ -693,14 +506,9 @@ class MLPPredictResponse(BaseModel):
     summary: dict
 ```
 
-**Antes de continuar:** leia os schemas e responda mentalmente:
-
-- Qual o campo obrigatório que não tem valor padrão em `MLPTrackInput`?
-- Se eu enviar uma lista com 3 músicas, o campo `total` na resposta deverá ser...?
-
 ---
 
-### Bloco — As Dependências
+### Dependências
 
 Adicione as funções de dependência **abaixo dos schemas**. Elas carregam os modelos do disco quando a API começa:
 
@@ -734,7 +542,7 @@ def get_mlp_model() -> MusicMLPClassifier:
 
 ---
 
-### Bloco — O Endpoint
+### Endpoint
 
 Adicione o endpoint **após as dependências**:
 
@@ -789,7 +597,7 @@ def mlp_predict(
 
 ---
 
-### Bloco — Registrando no Router
+### Registro no router
 
 Abra `src/api/v1/router.py` e adicione as duas linhas indicadas:
 
@@ -886,23 +694,10 @@ Observe o campo `summary` na resposta: ele mostra o total de curtidas e não cur
 
 ---
 
-### Tempo Livre — Desafios de Exploração
+### Desafios de Exploração
 
 1. **O ponto de virada:** Envie a mesma música com `popularity` crescendo de 10 em 10 (10, 20, 30...). Em qual valor a predição muda de "Não Curtida" para "Curtida"? Esse valor se aproxima da mediana usada no treino?
 
 2. **Gênero importa?** Envie a mesma música (mesmo `tempo`, `popularity`, `danceability` e `energy`) mas com `track_genre` diferentes. A predição muda? Isso faz sentido dado como o label foi criado?
 
-3. **Sem o modelo:** Tente fazer uma requisição antes de rodar o `train_mlp.py`. Qual erro HTTP você recebe? O código `503` aparece?
-
----
-
-## Exercícios de Fixação
-
-1. **O Engenheiro de Redes:** Altere `hidden_layers` para `(10,)` (uma camada, 10 neurônios) e re-treine. A acurácia muda? Por quê?
-
-2. **O Crítico de Dados:** Remova a coluna `popularity` do `dataset_features.csv` antes de treinar. Use `X = X.drop(columns=['popularity'])`. O que acontece com a acurácia? Isso confirma a hipótese do "label vazado"?
-
-3. **O Explorador de Algoritmos:** Substitua o `MLPClassifier` por um `RandomForestClassifier` com `n_estimators=100`. O tempo de treino e a acurácia mudam? (Dica: a interface `fit` / `predict` é idêntica no scikit-learn.)
-
-4. **Reflexão:** Qual a diferença fundamental entre chamar `train()` e `predict()` no mesmo objeto versus carregar o modelo com `load()` antes de chamar `predict()`? Qual abordagem a API usa e por quê?
-
+3. **O Engenheiro de Redes:** Altere `hidden_layers` para `(10,)` (uma camada, 10 neurônios) e re-treine. A acurácia muda? Por quê?
