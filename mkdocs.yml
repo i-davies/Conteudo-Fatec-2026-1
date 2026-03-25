@@ -2,7 +2,7 @@ site_name: Conteudo Fatec 2026-01
 
 # Oculta temporariamente a prática de MLP até validação final.
 exclude_docs: |
-  
+  LDDM/04_Ui_Declarativa/02_Ui_Dashboard_Inicial.md
 
 theme:
   name: material
