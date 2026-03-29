@@ -269,7 +269,7 @@ def main(page: ft.Page):
     # Inicialização
     show_courses()
 
-ft.app(target=main)
+ft.run(main)
 ```
 
 ---
@@ -293,7 +293,7 @@ def build_courses_view(courses, on_course_click):
                     subtitle=ft.Text(c['description']),
                     on_click=lambda e, course=c: on_course_click(course)
                 ),
-                border=ft.border.all(1, ft.colors.OUTLINE_VARIANT),
+                border=ft.border.all(1, ft.Colors.OUTLINE_VARIANT),
                 border_radius=10
             )
         )
