@@ -668,3 +668,87 @@ Fluxo sugerido:
 | Lição | IA pode memorizar regra | IA tem limites com dados incompletos |
 
 ---
+
+## Quiz de Revisão Geral de AM
+
+<quiz>
+No contexto da disciplina, qual frase descreve melhor a mudança de paradigma do ML em relação à programação tradicional?
+
+* [ ] O desenvolvedor escreve todas as regras de decisão e o modelo apenas executa.
+* [x] O modelo aprende as regras a partir de dados rotulados, em vez de receber todas as regras prontas.
+* [ ] O modelo elimina a necessidade de dados, desde que a arquitetura seja profunda.
+</quiz>
+
+<quiz>
+No Perceptron, qual é o papel do bias?
+
+* [ ] Definir os valores de entrada do dataset.
+* [x] Deslocar a fronteira de decisão, facilitando ou dificultando o disparo do neurônio.
+* [ ] Eliminar a necessidade de pesos.
+</quiz>
+
+<quiz>
+Por que one-hot encoding é usado para variáveis categóricas como gênero musical?
+
+* [ ] Para reduzir o número de linhas do dataset.
+* [x] Para evitar que o modelo interprete uma ordem numérica inexistente entre categorias.
+* [ ] Para transformar toda coluna categórica em texto.
+</quiz>
+
+<quiz>
+Qual prática evita vazamento de dados no pipeline de ML?
+
+* [ ] Rodar `fit()` no treinamento e também em toda requisição da API.
+* [x] Rodar `fit()` apenas no treino e usar somente `transform()` em produção.
+* [ ] Remover totalmente o processo de normalização.
+</quiz>
+
+<quiz>
+Qual limitação do Perceptron simples motivou o uso de MLP?
+
+* [ ] Ele não aceita entradas numéricas.
+* [x] Ele aprende apenas fronteiras lineares e não resolve problemas como XOR.
+* [ ] Ele não possui processo de treinamento.
+</quiz>
+
+<quiz>
+No treinamento de redes neurais, o que acontece no backpropagation?
+
+* [ ] O modelo transforma variáveis categóricas em numéricas.
+* [x] O erro é propagado para trás para ajustar pesos e reduzir a perda.
+* [ ] O dataset é dividido em treino e teste.
+</quiz>
+
+<quiz>
+Na Semana 07, qual é a principal diferença entre classificação e regressão?
+
+* [ ] Classificação e regressão sempre produzem valores de 0 a 1.
+* [x] Classificação prevê classes; regressão prevê valores contínuos.
+* [ ] Regressão não usa rede neural.
+</quiz>
+
+<quiz>
+Qual métrica de regressão é mais direta para explicar erro médio em pontos de popularidade?
+
+* [ ] R2
+* [x] MAE
+* [ ] Accuracy
+</quiz>
+
+<quiz>
+Como interpretar R2 em um modelo de regressão de popularidade musical?
+
+* [ ] É a porcentagem de classes corretas, igual ao conceito de accuracy.
+* [x] É a proporção da variação dos dados reais que o modelo consegue explicar.
+* [ ] É o número de épocas necessárias para convergir.
+</quiz>
+
+<quiz>
+Mesmo com modelo correto, por que prever popularidade musical continua difícil?
+
+* [ ] Porque features técnicas sempre garantem previsão perfeita.
+* [x] Porque fatores externos, como marketing e viralização, não estão totalmente nas features do dataset.
+* [ ] Porque regressão não funciona para música.
+</quiz>
+
+<!-- mkdocs-quiz results -->
