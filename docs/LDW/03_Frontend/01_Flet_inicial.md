@@ -321,5 +321,3 @@ Agora que você tem a estrutura base, o professor guiará a implementação da `
 # No terminal do frontend
 uv run flet run --web main.py
 ```
-
----
