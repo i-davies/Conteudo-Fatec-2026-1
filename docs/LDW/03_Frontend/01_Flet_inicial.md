@@ -306,14 +306,6 @@ def build_courses_view(courses, on_course_click):
 
 ---
 
-## Desafio em Aula: O Motor de Perguntas
-
-Agora que você tem a estrutura base, o professor guiará a implementação da `views/questions.py`. O objetivo é:
-1. Buscar o ID das perguntas via `api.get_lesson_question_ids`.
-2. Mostrar uma pergunta por vez.
-3. Ao clicar em "Enviar", chamar `api.submit_answer` e mostrar se o aluno acertou ou errou usando um `ft.AlertDialog`.
-
----
 
 ## Execução e Validação
 
