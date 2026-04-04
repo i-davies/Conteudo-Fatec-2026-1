@@ -313,5 +313,3 @@ def build_courses_view(courses, on_course_click):
 # No terminal do frontend
 uv run flet run --web main.py
 ```
-
----
