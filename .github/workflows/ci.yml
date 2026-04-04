@@ -1,5 +1,7 @@
 name: Publish to GitHub Pages
 
+run-name: "Pages - ${{ github.ref_name }}"
+
 on:
   push:
     branches:
@@ -59,3 +61,33 @@ jobs:
           publish_dir: ./site
           destination_dir: ${{ steps.preview_dir.outputs.value }}
           keep_files: true
+
+      - name: Publish deployment summary
+        shell: bash
+        run: |
+          OWNER="${GITHUB_REPOSITORY_OWNER}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+
+          if [ "$REPO" = "${OWNER}.github.io" ]; then
+            BASE_URL="https://${OWNER}.github.io/"
+          else
+            BASE_URL="https://${OWNER}.github.io/${REPO}/"
+          fi
+
+          if [ "${GITHUB_REF}" = "refs/heads/main" ]; then
+            FINAL_URL="$BASE_URL"
+            LABEL="Producao"
+          else
+            FINAL_URL="${BASE_URL}${{ steps.preview_dir.outputs.value }}/"
+            LABEL="Preview"
+          fi
+
+          {
+            echo "## Deployment publicado"
+            echo ""
+            echo "- Tipo: ${LABEL}"
+            echo "- Branch: ${GITHUB_REF_NAME}"
+            echo "- URL: ${FINAL_URL}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          echo "Deployment URL: ${FINAL_URL}"
