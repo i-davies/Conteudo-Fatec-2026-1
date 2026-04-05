@@ -2235,80 +2235,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bonus-ajuste-fino-de-ux-hover-clique-e-loading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bônus: ajuste fino de UX (hover, clique e loading)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Bônus: ajuste fino de UX (hover, clique e loading)">
+    <nav class="md-nav" aria-label="Roteiro de validação">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objetivo
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#etapa-cards-com-hover-e-ripple" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapa: cards com hover e ripple
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#etapa-alternativas-com-feedback-de-mouse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapa: alternativas com feedback de mouse
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#etapa-loading-global-no-mainpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapa: loading global no main.py
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#ponto-de-teste-do-bonus" class="md-nav__link">
     <span class="md-ellipsis">
       
         Ponto de teste do bônus
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#resultado-didatico-esperado" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resultado didático esperado
       
     </span>
   </a>
@@ -2579,80 +2513,14 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bonus-ajuste-fino-de-ux-hover-clique-e-loading" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bônus: ajuste fino de UX (hover, clique e loading)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Bônus: ajuste fino de UX (hover, clique e loading)">
+    <nav class="md-nav" aria-label="Roteiro de validação">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#objetivo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Objetivo
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#etapa-cards-com-hover-e-ripple" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapa: cards com hover e ripple
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#etapa-alternativas-com-feedback-de-mouse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapa: alternativas com feedback de mouse
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#etapa-loading-global-no-mainpy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Etapa: loading global no main.py
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#ponto-de-teste-do-bonus" class="md-nav__link">
     <span class="md-ellipsis">
       
         Ponto de teste do bônus
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#resultado-didatico-esperado" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Resultado didático esperado
       
     </span>
   </a>
@@ -2798,7 +2666,7 @@
 </blockquote>
 <hr />
 <h2 id="o-que-vamos-construir-nesta-etapa">O que vamos construir nesta etapa</h2>
-<p>Ao final deste documento, o app do aluno será capaz de:</p>
+<p>Ao final deste documento, o app será capaz de:</p>
 <ul>
 <li>Exibir os cursos em uma interface mais organizada.</li>
 <li>Navegar da lista de cursos para a lista de lições.</li>
@@ -3021,68 +2889,81 @@ Como o app depende de chamadas curtas, faz sentido falhar rápido e avisar o usu
     <span class="p">)</span>
 </code></pre></div>
 <h3 id="cards-de-curso-licao-e-alternativa">Cards de curso, lição e alternativa</h3>
-<p>Crie <code>apps/frontend/src/components/cards.py</code>:</p>
+<p>Crie <code>apps/frontend/src/components/cards.py</code> com os helpers de hover e os três builders:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">flet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ft</span>
 
 
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_hovered</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">data</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_set_option_hover_state</span><span class="p">(</span><span class="n">option_tile</span><span class="p">:</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">selected_option</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">is_hovered</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">option_index</span> <span class="o">=</span> <span class="n">option_tile</span><span class="o">.</span><span class="n">data</span>
+    <span class="k">if</span> <span class="n">selected_option</span> <span class="o">==</span> <span class="n">option_index</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">option_tile</span><span class="o">.</span><span class="n">bgcolor</span> <span class="o">=</span> <span class="s2">&quot;#F9FAFB&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#FFFFFF&quot;</span>
+    <span class="n">option_tile</span><span class="o">.</span><span class="n">border</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#D4D4D8&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">)</span>
+    <span class="n">option_tile</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_set_list_card_hover_state</span><span class="p">(</span><span class="n">card</span><span class="p">:</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span> <span class="n">is_hovered</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">card</span><span class="o">.</span><span class="n">bgcolor</span> <span class="o">=</span> <span class="s2">&quot;#FAFAFA&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#FFFFFF&quot;</span>
+    <span class="n">card</span><span class="o">.</span><span class="n">border</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#D4D4D8&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">)</span>
+    <span class="n">card</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+
 <span class="k">def</span><span class="w"> </span><span class="nf">build_course_card</span><span class="p">(</span><span class="n">course</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">on_click</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ft</span><span class="o">.</span><span class="n">Control</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-        <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="n">controls</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">ft</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
-                    <span class="n">controls</span><span class="o">=</span><span class="p">[</span>
-                        <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">course</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_600</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">),</span>
-                        <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Sem descrição.&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">),</span>
-                    <span class="p">],</span>
-                    <span class="n">spacing</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                    <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="p">),</span>
-                <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;total_lessons&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> aulas&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">),</span>
-            <span class="p">],</span>
-            <span class="n">alignment</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">MainAxisAlignment</span><span class="o">.</span><span class="n">SPACE_BETWEEN</span><span class="p">,</span>
-            <span class="n">vertical_alignment</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">CrossAxisAlignment</span><span class="o">.</span><span class="n">CENTER</span><span class="p">,</span>
-        <span class="p">),</span>
+    <span class="n">card</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
         <span class="n">bgcolor</span><span class="o">=</span><span class="s2">&quot;#FFFFFF&quot;</span><span class="p">,</span>
         <span class="n">border</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">),</span>
         <span class="n">border_radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">course</span><span class="p">,</span>
-        <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">on_click</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+        <span class="n">clip_behavior</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">ClipBehavior</span><span class="o">.</span><span class="n">ANTI_ALIAS</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">ListTile</span><span class="p">(</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">course</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_600</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">),</span>
+            <span class="n">subtitle</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Sem descrição.&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">),</span>
+            <span class="n">trailing</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">course</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;total_lessons&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2"> aulas&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">),</span>
+            <span class="n">content_padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
+            <span class="n">hover_color</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Colors</span><span class="o">.</span><span class="n">TRANSPARENT</span><span class="p">,</span>
+            <span class="n">splash_color</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Colors</span><span class="o">.</span><span class="n">TRANSPARENT</span><span class="p">,</span>
+            <span class="n">mouse_cursor</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">MouseCursor</span><span class="o">.</span><span class="n">CLICK</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">course</span><span class="p">,</span>
+            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">on_click</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+        <span class="p">),</span>
     <span class="p">)</span>
+    <span class="n">card</span><span class="o">.</span><span class="n">on_hover</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">card</span><span class="p">:</span> <span class="n">_set_list_card_hover_state</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">_is_hovered</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">card</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">build_lesson_card</span><span class="p">(</span><span class="n">lesson</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">on_click</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ft</span><span class="o">.</span><span class="n">Control</span><span class="p">:</span>
     <span class="n">order</span> <span class="o">=</span> <span class="n">lesson</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-        <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="n">controls</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-                    <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_700</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">),</span>
-                    <span class="n">bgcolor</span><span class="o">=</span><span class="s2">&quot;#F4F4F5&quot;</span><span class="p">,</span>
-                    <span class="n">border_radius</span><span class="o">=</span><span class="mi">99</span><span class="p">,</span>
-                    <span class="n">padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
-                <span class="p">),</span>
-                <span class="n">ft</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span>
-                    <span class="n">controls</span><span class="o">=</span><span class="p">[</span>
-                        <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">lesson</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_600</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">),</span>
-                        <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">lesson</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Sem descrição.&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">),</span>
-                    <span class="p">],</span>
-                    <span class="n">spacing</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                    <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                <span class="p">),</span>
-                <span class="n">ft</span><span class="o">.</span><span class="n">Icon</span><span class="p">(</span><span class="n">ft</span><span class="o">.</span><span class="n">Icons</span><span class="o">.</span><span class="n">CHEVRON_RIGHT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">),</span>
-            <span class="p">],</span>
-            <span class="n">alignment</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">MainAxisAlignment</span><span class="o">.</span><span class="n">START</span><span class="p">,</span>
-            <span class="n">vertical_alignment</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">CrossAxisAlignment</span><span class="o">.</span><span class="n">CENTER</span><span class="p">,</span>
-            <span class="n">spacing</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-        <span class="p">),</span>
+    <span class="n">card</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
         <span class="n">bgcolor</span><span class="o">=</span><span class="s2">&quot;#FFFFFF&quot;</span><span class="p">,</span>
         <span class="n">border</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">),</span>
         <span class="n">border_radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
-        <span class="n">data</span><span class="o">=</span><span class="n">lesson</span><span class="p">,</span>
-        <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">on_click</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+        <span class="n">clip_behavior</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">ClipBehavior</span><span class="o">.</span><span class="n">ANTI_ALIAS</span><span class="p">,</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">ListTile</span><span class="p">(</span>
+            <span class="n">leading</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+                <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_700</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">),</span>
+                <span class="n">bgcolor</span><span class="o">=</span><span class="s2">&quot;#F4F4F5&quot;</span><span class="p">,</span>
+                <span class="n">border_radius</span><span class="o">=</span><span class="mi">99</span><span class="p">,</span>
+                <span class="n">padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">title</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">lesson</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_600</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">),</span>
+            <span class="n">subtitle</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">lesson</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Sem descrição.&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">),</span>
+            <span class="n">trailing</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Icon</span><span class="p">(</span><span class="n">ft</span><span class="o">.</span><span class="n">Icons</span><span class="o">.</span><span class="n">CHEVRON_RIGHT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#71717A&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">),</span>
+            <span class="n">content_padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
+            <span class="n">hover_color</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Colors</span><span class="o">.</span><span class="n">TRANSPARENT</span><span class="p">,</span>
+            <span class="n">splash_color</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Colors</span><span class="o">.</span><span class="n">TRANSPARENT</span><span class="p">,</span>
+            <span class="n">mouse_cursor</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">MouseCursor</span><span class="o">.</span><span class="n">CLICK</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">lesson</span><span class="p">,</span>
+            <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">on_click</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+        <span class="p">),</span>
     <span class="p">)</span>
+    <span class="n">card</span><span class="o">.</span><span class="n">on_hover</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">card</span><span class="p">:</span> <span class="n">_set_list_card_hover_state</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">_is_hovered</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">card</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">build_option_tile</span><span class="p">(</span>
@@ -3093,7 +2974,7 @@ Como o app depende de chamadas curtas, faz sentido falhar rápido e avisar o usu
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ft</span><span class="o">.</span><span class="n">Control</span><span class="p">:</span>
     <span class="n">is_selected</span> <span class="o">=</span> <span class="n">selected_option</span> <span class="o">==</span> <span class="n">index</span>
 
-    <span class="k">return</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="n">option_tile</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
         <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
             <span class="n">controls</span><span class="o">=</span><span class="p">[</span>
                 <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -3103,7 +2984,7 @@ Como o app depende de chamadas curtas, faz sentido falhar rápido e avisar o usu
                                 <span class="nb">chr</span><span class="p">(</span><span class="mi">65</span> <span class="o">+</span> <span class="n">index</span><span class="p">),</span>
                                 <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
                                 <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_700</span><span class="p">,</span>
-                                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">,</span>
+                                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span> <span class="k">if</span> <span class="n">is_selected</span> <span class="k">else</span> <span class="s2">&quot;#111111&quot;</span><span class="p">,</span>
                             <span class="p">)</span>
                         <span class="p">],</span>
                         <span class="n">alignment</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">MainAxisAlignment</span><span class="o">.</span><span class="n">CENTER</span><span class="p">,</span>
@@ -3128,9 +3009,13 @@ Como o app depende de chamadas curtas, faz sentido falhar rápido e avisar o usu
         <span class="n">border</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#111111&quot;</span> <span class="k">if</span> <span class="n">is_selected</span> <span class="k">else</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">),</span>
         <span class="n">border_radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span>
+        <span class="n">animate</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Animation</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="n">ft</span><span class="o">.</span><span class="n">AnimationCurve</span><span class="o">.</span><span class="n">EASE_OUT</span><span class="p">),</span>
+        <span class="n">ink</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="n">data</span><span class="o">=</span><span class="n">index</span><span class="p">,</span>
         <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">on_select</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
     <span class="p">)</span>
+    <span class="n">option_tile</span><span class="o">.</span><span class="n">on_hover</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">option_tile</span><span class="p">:</span> <span class="n">_set_option_hover_state</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">selected_option</span><span class="p">,</span> <span class="n">_is_hovered</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">option_tile</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">O papel do atributo data</p>
@@ -3396,11 +3281,11 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
     <span class="n">get_question_details</span><span class="p">,</span>
     <span class="n">submit_answer</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.components.dialogs</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_error</span><span class="p">,</span> <span class="n">show_feedback_dialog</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">src.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">state</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.components.dialogs</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_error</span><span class="p">,</span> <span class="n">show_feedback_dialog</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">src.views.courses</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_courses_view</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">src.views.lessons</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_lessons_view</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.views.questions</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_completion_view</span><span class="p">,</span> <span class="n">build_question_view</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.views.questions</span><span class="w"> </span><span class="kn">import</span> <span class="n">build_question_view</span><span class="p">,</span> <span class="n">build_completion_view</span>
 
 <span class="n">SERVER_UNAVAILABLE_MSG</span> <span class="o">=</span> <span class="s2">&quot;Não foi possível recuperar dados do servidor.&quot;</span>
 <span class="n">ANSWER_SUBMIT_ERROR_MSG</span> <span class="o">=</span> <span class="s2">&quot;Não foi possível enviar a resposta.&quot;</span>
@@ -3417,6 +3302,42 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
     <span class="n">page</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">min_width</span> <span class="o">=</span> <span class="mi">360</span>
     <span class="n">page</span><span class="o">.</span><span class="n">window</span><span class="o">.</span><span class="n">min_height</span> <span class="o">=</span> <span class="mi">640</span>
 
+    <span class="n">loading_title</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Carregando...&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">W_600</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#111111&quot;</span><span class="p">)</span>
+    <span class="n">loading_subtitle</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Aguarde um instante&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#52525B&quot;</span><span class="p">)</span>
+    <span class="n">loading_overlay</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+        <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">bgcolor</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Colors</span><span class="o">.</span><span class="n">with_opacity</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="s2">&quot;#FFFFFF&quot;</span><span class="p">),</span>
+        <span class="n">alignment</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Alignment</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="n">bgcolor</span><span class="o">=</span><span class="s2">&quot;#FFFFFF&quot;</span><span class="p">,</span>
+            <span class="n">border</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">),</span>
+            <span class="n">border_radius</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+            <span class="n">padding</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Padding</span><span class="o">.</span><span class="n">symmetric</span><span class="p">(</span><span class="n">horizontal</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="mi">14</span><span class="p">),</span>
+            <span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                <span class="n">controls</span><span class="o">=</span><span class="p">[</span>
+                    <span class="n">ft</span><span class="o">.</span><span class="n">ProgressRing</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                    <span class="n">ft</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">controls</span><span class="o">=</span><span class="p">[</span><span class="n">loading_title</span><span class="p">,</span> <span class="n">loading_subtitle</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">tight</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                <span class="p">],</span>
+                <span class="n">spacing</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                <span class="n">vertical_alignment</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">CrossAxisAlignment</span><span class="o">.</span><span class="n">CENTER</span><span class="p">,</span>
+                <span class="n">tight</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">overlay</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loading_overlay</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_loading</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subtitle</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Aguarde um instante&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">loading_title</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="n">loading_subtitle</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">subtitle</span>
+        <span class="n">loading_overlay</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">page</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">hide_loading</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">loading_overlay</span><span class="o">.</span><span class="n">visible</span><span class="p">:</span>
+            <span class="n">loading_overlay</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
     <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">ft</span><span class="o">.</span><span class="n">Control</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">page</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
@@ -3424,29 +3345,35 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
 
     <span class="k">def</span><span class="w"> </span><span class="nf">back_to_courses</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">state</span><span class="o">.</span><span class="n">reset_course_state</span><span class="p">()</span>
+        <span class="n">show_loading</span><span class="p">(</span><span class="s2">&quot;Carregando cursos&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">state</span><span class="o">.</span><span class="n">courses</span> <span class="o">=</span> <span class="n">get_courses</span><span class="p">()</span>
             <span class="n">render</span><span class="p">(</span><span class="n">build_courses_view</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">courses</span><span class="p">,</span> <span class="n">on_course_click</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">show_error</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">SERVER_UNAVAILABLE_MSG</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">hide_loading</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">back_to_lessons</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">current_course</span><span class="p">:</span>
             <span class="n">back_to_courses</span><span class="p">()</span>
             <span class="k">return</span>
-
         <span class="n">state</span><span class="o">.</span><span class="n">reset_lesson_state</span><span class="p">()</span>
-
+        <span class="n">show_loading</span><span class="p">(</span><span class="s2">&quot;Carregando lições&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">state</span><span class="o">.</span><span class="n">lessons</span> <span class="o">=</span> <span class="n">get_lessons</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">current_course</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
             <span class="n">render</span><span class="p">(</span><span class="n">build_lessons_view</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">current_course</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">lessons</span><span class="p">,</span> <span class="n">back_to_courses</span><span class="p">,</span> <span class="n">on_lesson_click</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">show_error</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">SERVER_UNAVAILABLE_MSG</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">hide_loading</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">go_to_next_question</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">current_question_ids</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Navegando: questão </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">current_question_index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> de </span><span class="si">{</span><span class="n">total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">current_question_index</span> <span class="o">&gt;=</span> <span class="n">total</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[DEBUG] Lição concluída&quot;</span><span class="p">)</span>
             <span class="n">render</span><span class="p">(</span><span class="n">build_completion_view</span><span class="p">(</span><span class="n">back_to_lessons</span><span class="p">))</span>
             <span class="k">return</span>
 
@@ -3454,12 +3381,19 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
 
         <span class="n">question</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">current_questions_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">current_question_id</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">question</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">show_loading</span><span class="p">(</span><span class="s2">&quot;Carregando pergunta&quot;</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Buscando detalhes da questão: </span><span class="si">{</span><span class="n">current_question_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">question</span> <span class="o">=</span> <span class="n">get_question_details</span><span class="p">(</span><span class="n">current_question_id</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Erro ao buscar questão: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
                 <span class="n">show_error</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">SERVER_UNAVAILABLE_MSG</span><span class="p">)</span>
                 <span class="k">return</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">hide_loading</span><span class="p">()</span>
             <span class="n">state</span><span class="o">.</span><span class="n">current_questions_map</span><span class="p">[</span><span class="n">current_question_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">question</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Renderizando questão: </span><span class="si">{</span><span class="n">question</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;question&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;...&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">30</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
 
         <span class="n">render</span><span class="p">(</span>
             <span class="n">build_question_view</span><span class="p">(</span>
@@ -3477,23 +3411,34 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
 
     <span class="k">def</span><span class="w"> </span><span class="nf">on_course_click</span><span class="p">(</span><span class="n">course</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">state</span><span class="o">.</span><span class="n">current_course</span> <span class="o">=</span> <span class="n">course</span>
+        <span class="n">show_loading</span><span class="p">(</span><span class="s2">&quot;Carregando lições&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">state</span><span class="o">.</span><span class="n">lessons</span> <span class="o">=</span> <span class="n">get_lessons</span><span class="p">(</span><span class="n">course</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
             <span class="n">render</span><span class="p">(</span><span class="n">build_lessons_view</span><span class="p">(</span><span class="n">course</span><span class="p">,</span> <span class="n">state</span><span class="o">.</span><span class="n">lessons</span><span class="p">,</span> <span class="n">back_to_courses</span><span class="p">,</span> <span class="n">on_lesson_click</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">show_error</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">SERVER_UNAVAILABLE_MSG</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">hide_loading</span><span class="p">()</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">on_lesson_click</span><span class="p">(</span><span class="n">lesson</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Entrando na lição ID: </span><span class="si">{</span><span class="n">lesson</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">lesson</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">state</span><span class="o">.</span><span class="n">reset_lesson_state</span><span class="p">()</span>
         <span class="n">state</span><span class="o">.</span><span class="n">current_lesson</span> <span class="o">=</span> <span class="n">lesson</span>
 
+        <span class="n">show_loading</span><span class="p">(</span><span class="s2">&quot;Carregando perguntas&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Buscando IDs de questões para lição: </span><span class="si">{</span><span class="n">lesson</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">state</span><span class="o">.</span><span class="n">current_question_ids</span> <span class="o">=</span> <span class="n">get_lesson_question_ids</span><span class="p">(</span><span class="n">lesson</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] IDs recebidos: </span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">current_question_ids</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Erro ao buscar IDs: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">show_error</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">SERVER_UNAVAILABLE_MSG</span><span class="p">)</span>
             <span class="k">return</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">hide_loading</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">current_question_ids</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[DEBUG] Nenhum ID de questão encontrado na lição.&quot;</span><span class="p">)</span>
             <span class="n">show_error</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="s2">&quot;Essa lição ainda não possui perguntas.&quot;</span><span class="p">)</span>
             <span class="k">return</span>
 
@@ -3509,7 +3454,9 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
             <span class="k">return</span>
 
         <span class="n">question_id</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">current_question_ids</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">current_question_index</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Enviando resposta: questão=</span><span class="si">{</span><span class="n">question_id</span><span class="si">}</span><span class="s2">, opção=</span><span class="si">{</span><span class="n">state</span><span class="o">.</span><span class="n">selected_option</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
+        <span class="n">show_loading</span><span class="p">(</span><span class="s2">&quot;Enviando resposta&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="n">submit_answer</span><span class="p">(</span>
                 <span class="n">user_id</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">user_id</span><span class="p">,</span>
@@ -3517,9 +3464,13 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
                 <span class="n">selected_option</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">selected_option</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">is_correct</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;is_correct&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Resultado: is_correct=</span><span class="si">{</span><span class="n">is_correct</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[DEBUG] Erro ao enviar: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="n">show_error</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">ANSWER_SUBMIT_ERROR_MSG</span><span class="p">)</span>
             <span class="k">return</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">hide_loading</span><span class="p">()</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">continue_flow</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">state</span><span class="o">.</span><span class="n">current_question_index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -3547,6 +3498,7 @@ Isso permite recuperar o curso ou a lição clicada sem depender de variáveis e
 <summary>Por que guardar só os IDs primeiro?</summary>
 <p>Buscar primeiro a lista de IDs e carregar o detalhe apenas da pergunta atual reduz tráfego e permite usar cache.
 Isso deixa a navegação mais eficiente, principalmente quando a lição tem várias questões.</p>
+<p>O loading overlay também está integrado nas chamadas de API para manter feedback visual consistente.</p>
 </details>
 <hr />
 <h2 id="roteiro-de-validacao">Roteiro de validação</h2>
@@ -3573,108 +3525,10 @@ uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span
 A maior parte dos erros nesta etapa vem de API indisponível, banco sem seed ou rota diferente do esperado.</p>
 </div>
 <hr />
-<h2 id="bonus-ajuste-fino-de-ux-hover-clique-e-loading">Bônus: ajuste fino de UX (hover, clique e loading)</h2>
-<div class="admonition note">
-<p class="admonition-title">Quando aplicar este bônus</p>
-<p>Este bloco funciona melhor depois da implementação principal.
-Ele mostra aos alunos como transformar um app funcional em uma experiência mais fluida e responsiva.</p>
-</div>
-<h3 id="objetivo">Objetivo</h3>
-<p>Adicionar melhorias de usabilidade sem mudar a arquitetura:</p>
-<ul>
-<li>Feedback ao passar o mouse em cards.</li>
-<li>Feedback visual de clique com ripple, cursor e animação.</li>
-<li>Overlay de loading em chamadas de API.</li>
-</ul>
-<hr />
-<h3 id="etapa-cards-com-hover-e-ripple">Etapa: cards com hover e ripple</h3>
-<p>Arquivo: <code>src/components/cards.py</code></p>
-<p>Crie helpers de hover para alterar <code>bgcolor</code>, <code>border</code> e <code>scale</code>.</p>
-<p>Nos cards de curso e lição, adicione:</p>
-<ul>
-<li><code>mouse_cursor=ft.MouseCursor.CLICK</code></li>
-<li><code>ink=True</code></li>
-<li><code>animate</code> e <code>animate_scale</code></li>
-<li><code>on_hover=_apply_card_hover</code></li>
-</ul>
-<p>Trecho-chave:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_apply_card_hover</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">ft</span><span class="o">.</span><span class="n">ControlEvent</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">is_hovered</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
-    <span class="n">control</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">control</span>
-    <span class="n">control</span><span class="o">.</span><span class="n">bgcolor</span> <span class="o">=</span> <span class="s2">&quot;#FAFAFA&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#FFFFFF&quot;</span>
-    <span class="n">control</span><span class="o">.</span><span class="n">border</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#D4D4D8&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">)</span>
-    <span class="n">control</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="mf">1.01</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="mf">1.0</span>
-    <span class="n">control</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Sutileza no hover</p>
-<p>Ajustes pequenos, como escala de 1%, já comunicam interatividade sem poluir a interface.</p>
-</div>
-<hr />
-<h3 id="etapa-alternativas-com-feedback-de-mouse">Etapa: alternativas com feedback de mouse</h3>
-<p>Ainda em <code>src/components/cards.py</code>, aplique hover nos tiles de alternativa apenas quando a opção não estiver selecionada.</p>
-<p>Trecho-chave:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_apply_option_hover</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">ft</span><span class="o">.</span><span class="n">ControlEvent</span><span class="p">,</span> <span class="n">selected_option</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">option_index</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">data</span>
-    <span class="k">if</span> <span class="n">selected_option</span> <span class="o">==</span> <span class="n">option_index</span><span class="p">:</span>
-        <span class="k">return</span>
-
-    <span class="n">is_hovered</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">data</span> <span class="o">==</span> <span class="s2">&quot;true&quot;</span>
-    <span class="n">control</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">control</span>
-    <span class="n">control</span><span class="o">.</span><span class="n">bgcolor</span> <span class="o">=</span> <span class="s2">&quot;#F9FAFB&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#FFFFFF&quot;</span>
-    <span class="n">control</span><span class="o">.</span><span class="n">border</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Border</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;#D4D4D8&quot;</span> <span class="k">if</span> <span class="n">is_hovered</span> <span class="k">else</span> <span class="s2">&quot;#E4E4E7&quot;</span><span class="p">)</span>
-    <span class="n">control</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</code></pre></div>
-<p>No <code>build_option_tile</code>, adicione:</p>
-<div class="highlight"><pre><span></span><code><span class="n">animate</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Animation</span><span class="p">(</span><span class="mi">110</span><span class="p">,</span> <span class="n">ft</span><span class="o">.</span><span class="n">AnimationCurve</span><span class="o">.</span><span class="n">EASE_OUT</span><span class="p">),</span>
-<span class="n">ink</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="n">mouse_cursor</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">MouseCursor</span><span class="o">.</span><span class="n">CLICK</span><span class="p">,</span>
-<span class="n">on_hover</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">_apply_option_hover</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">selected_option</span><span class="p">),</span>
-</code></pre></div>
-<hr />
-<h3 id="etapa-loading-global-no-mainpy">Etapa: loading global no <code>main.py</code></h3>
-<p>Arquivo: <code>main.py</code></p>
-<p>Crie um overlay reutilizável com <code>ProgressRing</code> e duas funções utilitárias:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">show_loading</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">subtitle</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Aguarde um instante&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">loading_title</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">title</span>
-    <span class="n">loading_subtitle</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">subtitle</span>
-    <span class="n">loading_overlay</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">page</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">hide_loading</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">loading_overlay</span><span class="o">.</span><span class="n">visible</span><span class="p">:</span>
-        <span class="n">loading_overlay</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">page</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-</code></pre></div>
-<p>Depois, envolva as chamadas de API com <code>show_loading(...)</code> e <code>finally: hide_loading()</code> nas funções:</p>
-<ul>
-<li><code>back_to_courses</code></li>
-<li><code>back_to_lessons</code></li>
-<li><code>on_course_click</code></li>
-<li><code>on_lesson_click</code></li>
-<li><code>go_to_next_question</code> (quando buscar pergunta fora do cache)</li>
-<li><code>on_submit_answer</code></li>
-</ul>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>O loading precisa ser fechado no <code>finally</code>, inclusive quando houver erro, para evitar a sensação de travamento.</p>
-</div>
-<hr />
 <h3 id="ponto-de-teste-do-bonus">Ponto de teste do bônus</h3>
 <p>Execute novamente:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span>run<span class="w"> </span>main.py
-</code></pre></div>
-<p>Valide com os alunos:</p>
-<ul>
-<li>[ ] Ao passar o mouse em curso e lição, o card muda levemente de fundo, borda e escala.</li>
-<li>[ ] Ao clicar, há ripple visual e cursor de mão (<code>click</code>).</li>
-<li>[ ] Ao abrir curso, lição e pergunta, e ao enviar resposta, aparece loading com mensagem contextual.</li>
-<li>[ ] Em erro de API, o loading some e o <code>SnackBar</code> de erro aparece.</li>
-</ul>
-<hr />
-<h3 id="resultado-didatico-esperado">Resultado didático esperado</h3>
-<p>Com esse bônus, o aluno percebe uma diferença importante de produto: não basta funcionar, a interface também precisa comunicar estado e responder visualmente às ações do usuário.</p><style type="text/css">.quiz {
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>flet<span class="w"> </span>run<span class="w"> </span>--web<span class="w"> </span>-r<span class="w"> </span>main.py
+</code></pre></div><style type="text/css">.quiz {
   border: 1px solid black;
   padding: 1rem;
   margin: 1rem 0;
