@@ -176,7 +176,6 @@ class MusicKNNClassifier:
 Crie o arquivo `scripts/train_knn.py`:
 
 ```python
-# -*- coding: utf-8 -*-
 """
 Treina o classificador KNN para prever genero musical
 com base nas features numericas.
