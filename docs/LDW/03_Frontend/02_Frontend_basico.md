@@ -6,7 +6,7 @@
 
 ## O que vamos construir nesta etapa
 
-Ao final deste documento, o app do aluno será capaz de:
+Ao final deste documento, o app será capaz de:
 
 - Exibir os cursos em uma interface mais organizada.
 - Navegar da lista de cursos para a lista de lições.
@@ -256,70 +256,83 @@ def build_app_bar(
 
 ### Cards de curso, lição e alternativa
 
-Crie `apps/frontend/src/components/cards.py`:
+Crie `apps/frontend/src/components/cards.py` com os helpers de hover e os três builders:
 
 ```python
 import flet as ft
 
 
+def _is_hovered(data) -> bool:
+    if isinstance(data, bool):
+        return data
+    return str(data).lower() == "true"
+
+
+def _set_option_hover_state(option_tile: ft.Container, selected_option: int | None, is_hovered: bool) -> None:
+    option_index = option_tile.data
+    if selected_option == option_index:
+        return
+
+    option_tile.bgcolor = "#F9FAFB" if is_hovered else "#FFFFFF"
+    option_tile.border = ft.Border.all(1, "#D4D4D8" if is_hovered else "#E4E4E7")
+    option_tile.update()
+
+
+def _set_list_card_hover_state(card: ft.Container, is_hovered: bool) -> None:
+    card.bgcolor = "#FAFAFA" if is_hovered else "#FFFFFF"
+    card.border = ft.Border.all(1, "#D4D4D8" if is_hovered else "#E4E4E7")
+    card.update()
+
+
 def build_course_card(course: dict, on_click) -> ft.Control:
-    return ft.Container(
-        content=ft.Row(
-            controls=[
-                ft.Column(
-                    controls=[
-                        ft.Text(course["title"], size=16, weight=ft.FontWeight.W_600, color="#111111"),
-                        ft.Text(course.get("description") or "Sem descrição.", size=12, color="#71717A"),
-                    ],
-                    spacing=4,
-                    expand=True,
-                ),
-                ft.Text(f"{course.get('total_lessons', 0)} aulas", size=12, color="#71717A"),
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-            vertical_alignment=ft.CrossAxisAlignment.CENTER,
-        ),
+    card = ft.Container(
         bgcolor="#FFFFFF",
         border=ft.Border.all(1, "#E4E4E7"),
         border_radius=10,
-        padding=ft.Padding.symmetric(horizontal=14, vertical=14),
-        data=course,
-        on_click=lambda e: on_click(e.control.data),
+        clip_behavior=ft.ClipBehavior.ANTI_ALIAS,
+        content=ft.ListTile(
+            title=ft.Text(course["title"], size=16, weight=ft.FontWeight.W_600, color="#111111"),
+            subtitle=ft.Text(course.get("description") or "Sem descrição.", size=12, color="#71717A"),
+            trailing=ft.Text(f"{course.get('total_lessons', 0)} aulas", size=12, color="#71717A"),
+            content_padding=ft.Padding.symmetric(horizontal=14, vertical=14),
+            hover_color=ft.Colors.TRANSPARENT,
+            splash_color=ft.Colors.TRANSPARENT,
+            mouse_cursor=ft.MouseCursor.CLICK,
+            data=course,
+            on_click=lambda e: on_click(e.control.data),
+        ),
     )
+    card.on_hover = lambda e, c=card: _set_list_card_hover_state(c, _is_hovered(e.data))
+    return card
 
 
 def build_lesson_card(lesson: dict, on_click) -> ft.Control:
     order = lesson.get("order", "-")
-    return ft.Container(
-        content=ft.Row(
-            controls=[
-                ft.Container(
-                    content=ft.Text(str(order), size=13, weight=ft.FontWeight.W_700, color="#111111"),
-                    bgcolor="#F4F4F5",
-                    border_radius=99,
-                    padding=ft.Padding.symmetric(horizontal=10, vertical=6),
-                ),
-                ft.Column(
-                    controls=[
-                        ft.Text(lesson["title"], size=15, weight=ft.FontWeight.W_600, color="#111111"),
-                        ft.Text(lesson.get("description") or "Sem descrição.", size=12, color="#71717A"),
-                    ],
-                    spacing=4,
-                    expand=True,
-                ),
-                ft.Icon(ft.Icons.CHEVRON_RIGHT, color="#71717A", size=18),
-            ],
-            alignment=ft.MainAxisAlignment.START,
-            vertical_alignment=ft.CrossAxisAlignment.CENTER,
-            spacing=12,
-        ),
+    card = ft.Container(
         bgcolor="#FFFFFF",
         border=ft.Border.all(1, "#E4E4E7"),
         border_radius=10,
-        padding=ft.Padding.symmetric(horizontal=14, vertical=14),
-        data=lesson,
-        on_click=lambda e: on_click(e.control.data),
+        clip_behavior=ft.ClipBehavior.ANTI_ALIAS,
+        content=ft.ListTile(
+            leading=ft.Container(
+                content=ft.Text(str(order), size=13, weight=ft.FontWeight.W_700, color="#111111"),
+                bgcolor="#F4F4F5",
+                border_radius=99,
+                padding=ft.Padding.symmetric(horizontal=10, vertical=6),
+            ),
+            title=ft.Text(lesson["title"], size=15, weight=ft.FontWeight.W_600, color="#111111"),
+            subtitle=ft.Text(lesson.get("description") or "Sem descrição.", size=12, color="#71717A"),
+            trailing=ft.Icon(ft.Icons.CHEVRON_RIGHT, color="#71717A", size=18),
+            content_padding=ft.Padding.symmetric(horizontal=14, vertical=14),
+            hover_color=ft.Colors.TRANSPARENT,
+            splash_color=ft.Colors.TRANSPARENT,
+            mouse_cursor=ft.MouseCursor.CLICK,
+            data=lesson,
+            on_click=lambda e: on_click(e.control.data),
+        ),
     )
+    card.on_hover = lambda e, c=card: _set_list_card_hover_state(c, _is_hovered(e.data))
+    return card
 
 
 def build_option_tile(
@@ -330,7 +343,7 @@ def build_option_tile(
 ) -> ft.Control:
     is_selected = selected_option == index
 
-    return ft.Container(
+    option_tile = ft.Container(
         content=ft.Row(
             controls=[
                 ft.Container(
@@ -340,7 +353,7 @@ def build_option_tile(
                                 chr(65 + index),
                                 size=12,
                                 weight=ft.FontWeight.W_700,
-                                color="#111111",
+                                color="#111111" if is_selected else "#111111",
                             )
                         ],
                         alignment=ft.MainAxisAlignment.CENTER,
@@ -365,9 +378,13 @@ def build_option_tile(
         border=ft.Border.all(1, "#111111" if is_selected else "#E4E4E7"),
         border_radius=10,
         padding=ft.Padding.symmetric(horizontal=12, vertical=12),
+        animate=ft.Animation(110, ft.AnimationCurve.EASE_OUT),
+        ink=False,
         data=index,
         on_click=lambda e: on_select(e.control.data),
     )
+    option_tile.on_hover = lambda e, t=option_tile: _set_option_hover_state(t, selected_option, _is_hovered(e.data))
+    return option_tile
 ```
 
 !!! tip "O papel do atributo data"
@@ -661,11 +678,11 @@ from src.api import (
     get_question_details,
     submit_answer,
 )
-from src.components.dialogs import show_error, show_feedback_dialog
 from src.state import state
+from src.components.dialogs import show_error, show_feedback_dialog
 from src.views.courses import build_courses_view
 from src.views.lessons import build_lessons_view
-from src.views.questions import build_completion_view, build_question_view
+from src.views.questions import build_question_view, build_completion_view
 
 SERVER_UNAVAILABLE_MSG = "Não foi possível recuperar dados do servidor."
 ANSWER_SUBMIT_ERROR_MSG = "Não foi possível enviar a resposta."
@@ -682,6 +699,42 @@ def main(page: ft.Page) -> None:
     page.window.min_width = 360
     page.window.min_height = 640
 
+    loading_title = ft.Text("Carregando...", size=16, weight=ft.FontWeight.W_600, color="#111111")
+    loading_subtitle = ft.Text("Aguarde um instante", size=12, color="#52525B")
+    loading_overlay = ft.Container(
+        visible=False,
+        expand=True,
+        bgcolor=ft.Colors.with_opacity(0.25, "#FFFFFF"),
+        alignment=ft.Alignment(0, 0),
+        content=ft.Container(
+            bgcolor="#FFFFFF",
+            border=ft.Border.all(1, "#E4E4E7"),
+            border_radius=12,
+            padding=ft.Padding.symmetric(horizontal=18, vertical=14),
+            content=ft.Row(
+                controls=[
+                    ft.ProgressRing(width=20, height=20, stroke_width=2),
+                    ft.Column(controls=[loading_title, loading_subtitle], spacing=2, tight=True),
+                ],
+                spacing=12,
+                vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                tight=True,
+            ),
+        ),
+    )
+    page.overlay.append(loading_overlay)
+
+    def show_loading(title: str, subtitle: str = "Aguarde um instante") -> None:
+        loading_title.value = title
+        loading_subtitle.value = subtitle
+        loading_overlay.visible = True
+        page.update()
+
+    def hide_loading() -> None:
+        if loading_overlay.visible:
+            loading_overlay.visible = False
+            page.update()
+
     def render(view: ft.Control) -> None:
         page.controls.clear()
         page.add(view)
@@ -689,29 +742,35 @@ def main(page: ft.Page) -> None:
 
     def back_to_courses(e=None) -> None:
         state.reset_course_state()
+        show_loading("Carregando cursos")
         try:
             state.courses = get_courses()
             render(build_courses_view(state.courses, on_course_click))
         except Exception:
             show_error(page, SERVER_UNAVAILABLE_MSG)
+        finally:
+            hide_loading()
 
     def back_to_lessons(e=None) -> None:
         if not state.current_course:
             back_to_courses()
             return
-
         state.reset_lesson_state()
-
+        show_loading("Carregando lições")
         try:
             state.lessons = get_lessons(state.current_course["id"])
             render(build_lessons_view(state.current_course, state.lessons, back_to_courses, on_lesson_click))
         except Exception:
             show_error(page, SERVER_UNAVAILABLE_MSG)
+        finally:
+            hide_loading()
 
     def go_to_next_question() -> None:
         total = len(state.current_question_ids)
+        print(f"[DEBUG] Navegando: questão {state.current_question_index + 1} de {total}")
 
         if state.current_question_index >= total:
+            print("[DEBUG] Lição concluída")
             render(build_completion_view(back_to_lessons))
             return
 
@@ -719,12 +778,19 @@ def main(page: ft.Page) -> None:
 
         question = state.current_questions_map.get(current_question_id)
         if question is None:
+            show_loading("Carregando pergunta")
             try:
+                print(f"[DEBUG] Buscando detalhes da questão: {current_question_id}")
                 question = get_question_details(current_question_id)
-            except Exception:
+            except Exception as e:
+                print(f"[DEBUG] Erro ao buscar questão: {e}")
                 show_error(page, SERVER_UNAVAILABLE_MSG)
                 return
+            finally:
+                hide_loading()
             state.current_questions_map[current_question_id] = question
+
+        print(f"[DEBUG] Renderizando questão: {question.get('question', '...')[0:30]}...")
 
         render(
             build_question_view(
@@ -742,23 +808,34 @@ def main(page: ft.Page) -> None:
 
     def on_course_click(course: dict) -> None:
         state.current_course = course
+        show_loading("Carregando lições")
         try:
             state.lessons = get_lessons(course["id"])
             render(build_lessons_view(course, state.lessons, back_to_courses, on_lesson_click))
         except Exception:
             show_error(page, SERVER_UNAVAILABLE_MSG)
+        finally:
+            hide_loading()
 
     def on_lesson_click(lesson: dict) -> None:
+        print(f"[DEBUG] Entrando na lição ID: {lesson['id']} - {lesson['title']}")
         state.reset_lesson_state()
         state.current_lesson = lesson
 
+        show_loading("Carregando perguntas")
         try:
+            print(f"[DEBUG] Buscando IDs de questões para lição: {lesson['id']}")
             state.current_question_ids = get_lesson_question_ids(lesson["id"])
-        except Exception:
+            print(f"[DEBUG] IDs recebidos: {state.current_question_ids}")
+        except Exception as e:
+            print(f"[DEBUG] Erro ao buscar IDs: {e}")
             show_error(page, SERVER_UNAVAILABLE_MSG)
             return
+        finally:
+            hide_loading()
 
         if not state.current_question_ids:
+            print("[DEBUG] Nenhum ID de questão encontrado na lição.")
             show_error(page, "Essa lição ainda não possui perguntas.")
             return
 
@@ -774,7 +851,9 @@ def main(page: ft.Page) -> None:
             return
 
         question_id = state.current_question_ids[state.current_question_index]
+        print(f"[DEBUG] Enviando resposta: questão={question_id}, opção={state.selected_option}")
 
+        show_loading("Enviando resposta")
         try:
             result = submit_answer(
                 user_id=state.user_id,
@@ -782,9 +861,13 @@ def main(page: ft.Page) -> None:
                 selected_option=state.selected_option,
             )
             is_correct = bool(result.get("is_correct", False))
-        except Exception:
+            print(f"[DEBUG] Resultado: is_correct={is_correct}")
+        except Exception as e:
+            print(f"[DEBUG] Erro ao enviar: {e}")
             show_error(page, ANSWER_SUBMIT_ERROR_MSG)
             return
+        finally:
+            hide_loading()
 
         def continue_flow() -> None:
             state.current_question_index += 1
@@ -812,6 +895,8 @@ if __name__ == "__main__":
 ??? tip "Por que guardar só os IDs primeiro?"
     Buscar primeiro a lista de IDs e carregar o detalhe apenas da pergunta atual reduz tráfego e permite usar cache.
     Isso deixa a navegação mais eficiente, principalmente quando a lição tem várias questões.
+
+    O loading overlay também está integrado nas chamadas de API para manter feedback visual consistente.
 
 ---
 
@@ -844,133 +929,10 @@ Valide o comportamento abaixo:
 
 ---
 
-## Bônus: ajuste fino de UX (hover, clique e loading)
-
-!!! note "Quando aplicar este bônus"
-    Este bloco funciona melhor depois da implementação principal.
-    Ele mostra aos alunos como transformar um app funcional em uma experiência mais fluida e responsiva.
-
-### Objetivo
-
-Adicionar melhorias de usabilidade sem mudar a arquitetura:
-
-- Feedback ao passar o mouse em cards.
-- Feedback visual de clique com ripple, cursor e animação.
-- Overlay de loading em chamadas de API.
-
----
-
-### Etapa: cards com hover e ripple
-
-Arquivo: `src/components/cards.py`
-
-Crie helpers de hover para alterar `bgcolor`, `border` e `scale`.
-
-Nos cards de curso e lição, adicione:
-
-- `mouse_cursor=ft.MouseCursor.CLICK`
-- `ink=True`
-- `animate` e `animate_scale`
-- `on_hover=_apply_card_hover`
-
-Trecho-chave:
-
-```python
-def _apply_card_hover(e: ft.ControlEvent) -> None:
-    is_hovered = e.data == "true"
-    control = e.control
-    control.bgcolor = "#FAFAFA" if is_hovered else "#FFFFFF"
-    control.border = ft.Border.all(1, "#D4D4D8" if is_hovered else "#E4E4E7")
-    control.scale = 1.01 if is_hovered else 1.0
-    control.update()
-```
-
-!!! tip "Sutileza no hover"
-    Ajustes pequenos, como escala de 1%, já comunicam interatividade sem poluir a interface.
-
----
-
-### Etapa: alternativas com feedback de mouse
-
-Ainda em `src/components/cards.py`, aplique hover nos tiles de alternativa apenas quando a opção não estiver selecionada.
-
-Trecho-chave:
-
-```python
-def _apply_option_hover(e: ft.ControlEvent, selected_option: int | None) -> None:
-    option_index = e.control.data
-    if selected_option == option_index:
-        return
-
-    is_hovered = e.data == "true"
-    control = e.control
-    control.bgcolor = "#F9FAFB" if is_hovered else "#FFFFFF"
-    control.border = ft.Border.all(1, "#D4D4D8" if is_hovered else "#E4E4E7")
-    control.update()
-```
-
-No `build_option_tile`, adicione:
-
-```python
-animate=ft.Animation(110, ft.AnimationCurve.EASE_OUT),
-ink=True,
-mouse_cursor=ft.MouseCursor.CLICK,
-on_hover=lambda e: _apply_option_hover(e, selected_option),
-```
-
----
-
-### Etapa: loading global no `main.py`
-
-Arquivo: `main.py`
-
-Crie um overlay reutilizável com `ProgressRing` e duas funções utilitárias:
-
-```python
-def show_loading(title: str, subtitle: str = "Aguarde um instante") -> None:
-    loading_title.value = title
-    loading_subtitle.value = subtitle
-    loading_overlay.visible = True
-    page.update()
-
-
-def hide_loading() -> None:
-    if loading_overlay.visible:
-        loading_overlay.visible = False
-        page.update()
-```
-
-Depois, envolva as chamadas de API com `show_loading(...)` e `finally: hide_loading()` nas funções:
-
-- `back_to_courses`
-- `back_to_lessons`
-- `on_course_click`
-- `on_lesson_click`
-- `go_to_next_question` (quando buscar pergunta fora do cache)
-- `on_submit_answer`
-
-!!! important
-    O loading precisa ser fechado no `finally`, inclusive quando houver erro, para evitar a sensação de travamento.
-
----
-
 ### Ponto de teste do bônus
 
 Execute novamente:
 
 ```bash
-uv run flet run main.py
+uv run flet run --web -r main.py
 ```
-
-Valide com os alunos:
-
-- [ ] Ao passar o mouse em curso e lição, o card muda levemente de fundo, borda e escala.
-- [ ] Ao clicar, há ripple visual e cursor de mão (`click`).
-- [ ] Ao abrir curso, lição e pergunta, e ao enviar resposta, aparece loading com mensagem contextual.
-- [ ] Em erro de API, o loading some e o `SnackBar` de erro aparece.
-
----
-
-### Resultado didático esperado
-
-Com esse bônus, o aluno percebe uma diferença importante de produto: não basta funcionar, a interface também precisa comunicar estado e responder visualmente às ações do usuário.

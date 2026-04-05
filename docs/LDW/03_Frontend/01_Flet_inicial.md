@@ -311,5 +311,5 @@ def build_courses_view(courses, on_course_click):
 
 ```bash
 # No terminal do frontend
-uv run flet run --web main.py
+uv run flet run --web -r main.py
 ```
