@@ -138,7 +138,7 @@ def _request_json(method: str, path: str, json_data: dict | None = None) -> dict
 
 
 def get_courses() -> list[dict]:
-    payload = _request_json("GET", "/courses")
+    payload = _request_json("GET", "/courses/")
     return payload if isinstance(payload, list) else []
 
 
@@ -162,7 +162,7 @@ def get_question_details(question_id: int) -> dict:
 def submit_answer(user_id: int, question_id: int, selected_option: int) -> dict:
     payload = _request_json(
         "POST",
-        "/progress",
+        "/progress/",
         json_data={
             "user_id": user_id,
             "question_id": question_id,
