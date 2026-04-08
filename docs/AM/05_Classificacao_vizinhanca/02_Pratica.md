@@ -579,15 +579,6 @@ Acesse:
 
 ---
 
-## Boas práticas para a turma
-
-- Teste vários valores de K e compare resultados.
-- Avalie também a métrica Manhattan, além da Euclidiana.
-- Valide se as recomendações fazem sentido com músicas reais.
-- Use o campo `debug` para explicar o comportamento do modelo.
-
----
-
 ## Exercícios de fixação
 
 1. Adicione K = 50 e K = 100 no script de treino e compare a acurácia.
