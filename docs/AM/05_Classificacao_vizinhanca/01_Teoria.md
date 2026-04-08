@@ -128,7 +128,7 @@ Valores do exemplo:
 - Euclidiana: $\sqrt{3^2 +4^2} = 5$
 - Manhattan: $|3| + |4| = 7$
 
-!!! tip "Custo de processamento (para explicar em sala)"
+!!! tip "Custo de processamento"
     No KNN, para cada música consultada, calculamos a distância para vários pontos do dataset.
     Em termos de custo computacional por par de pontos, Euclidiana e Manhattan são parecidas em ordem de grandeza.
     Porém, na prática:
