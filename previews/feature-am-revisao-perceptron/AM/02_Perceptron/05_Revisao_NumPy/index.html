@@ -877,6 +877,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#desafio-pratico-engenharia-reversa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desafio Prático: Engenharia Reversa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercicios-de-fixacao" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2376,6 +2387,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#desafio-pratico-engenharia-reversa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Desafio Prático: Engenharia Reversa
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercicios-de-fixacao" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2593,7 +2615,6 @@ Isso é fácil: nós agrupamos os perfis deles em <strong>linhas de uma Tabela (
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cliente </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> -&gt; Z=</span><span class="si">{</span><span class="n">Z_lote</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> | Veredito: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>Em vez de fazer um laço de repetição (<code>for</code>) lento no qual preveria um cliente por vez, o NumPy processa a matriz inteira de forma simultânea. Ele aplica a mesma lógica para as múltiplas linhas usando uma única operação, e então devolve todas as decisões consolidadas, demonstrando de fato como IAs conseguem ser computacionalmente velozes ao lidar com grandes lotes (batches).</p>
-<hr />
 <h2 id="empacotando-o-perceptron-em-lote-poo">Empacotando o Perceptron em Lote (POO)</h2>
 <p>Assim como fizemos na aula passada sem bibliotecas, na vida real as empresas não deixam suas variáveis de NumPy soltas pelo código procedural. Elas sempre empacotam o neurônio numa <strong>Classe</strong> muito bem dividida.</p>
 <p>Lá embaixo no seu arquivo de notebook, instancie uma Classe para representar nosso neurônio vetorizado. É essa estrutura isolada que as empresas usam em Produção.</p>
@@ -2660,6 +2681,28 @@ Isso é fácil: nós agrupamos os perfis deles em <strong>linhas de uma Tabela (
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="desafio-pratico-engenharia-reversa">Desafio Prático: Engenharia Reversa</h2>
+<p>Até agora só testamos clientes dentro do esperado. Mas a fundação de Aprendizado de Máquina não é feita apenas de acertos matemáticos da máquina, serve também para os devs entenderem os "pontos cegos" de seus próprios Pesos. </p>
+<p>No seu Jupyter, após o bloco do código do Lote (<code>clientes_lote</code>), adicione uma <strong>nova célula exclusiva para esse teste de mesa</strong>.</p>
+<p><strong>Sua Missão como Analista de Fraudes:</strong></p>
+<p>Crie um <strong>Cliente D</strong> em um pequeno lote e cruze-o com nossos pesos originais. O seu perfil será restritamente um "Perfil de Risco Crítico". </p>
+<p>As regras inquebráveis exigidas na construção dele são que você utilize:</p>
+<ul>
+<li>Histórico de pagador <strong>zerado</strong> (<code>0.0</code>), significando calotes contínuos.</li>
+<li>Sem nenhum bem de garantia (<code>0.0</code>).</li>
+<li>A "Idade Score" travada na média padronizada (<code>5.0</code>).</li>
+</ul>
+<p>Sua pergunta como auditor: <em>É possível que a nossa Inteligência tão restritiva APROVE inocentemente esse estelionatário gerando um falso positivo no status?</em> </p>
+<p><strong>O seu desafio prático e avaliativo em sala hoje é manipular livremente a única variável que restou solta (a "Renda") dentro do cliente D!</strong>
+Tente ir alterando e rodando os testes, tentando "forçar" matematicamente para que o cálculo interno vetorizado cego no terminal ultrapasse a barreira dura que criamos no Bias de <code>-9.0</code> gerando um "Veredito: Aprovado"!</p>
+<details class="example">
+<summary>Gabarito: Por qual brecha o Cliente seria aprovado?</summary>
+<p>Se você iterou valores de Renda na tentativa até quebrar as travas e passar, percebeu que precisou jogar a nota de Renda dele lá nas alturas (algo como nota financeira irreal de <code>29.0</code> ou mais, fora da realidade de uma nota usual 0 a 10).</p>
+<p><strong>Qual principal lição de arquitetos percebida?</strong>
+Como zeramos o Histórico de Pagamentos e as Garantias, o Perceptron perdeu boa parte de suas somatórias brutas. Porém, a equação linear pura (Produto Escalar) é, antes de tudo, uma máquina aritmética cega. Se você superestima desproporcionalmente uma variável (Renda vezes seu peso fraco de <code>0.3</code>), essa alta astronômica única compensará artificialmente os zeros de Histórico e o Bias impiedoso, forçando o limiar estourar em <code>Z &gt;= 0</code>!</p>
+<p>A partir de agora, aprendemos um ensinamento que vai refletir nas próximas semanas: Nunca jogue métricas cruas, e sem limites de barreiras de formato ou normalização, diretamente no Modelo, caso contrário trapaceiros manipularão a Rede para obter avaliações favoráveis extremas!</p>
+</details>
 <hr />
 <h2 id="exercicios-de-fixacao">Exercícios de Fixação</h2>
 <blockquote>
