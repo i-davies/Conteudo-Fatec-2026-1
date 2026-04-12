@@ -6,7 +6,7 @@
 
 ## O Novo Cenário do Banco
 
-No primeiro notebook, nosso código funcionou super bem para **um único** cliente, usando só **duas** informações (Renda e Histórico). 
+No primeiro notebook, nosso código funcionou com **um único** cliente, usando só **duas** informações (Renda e Histórico). 
 Mas a vida real é mais complexa: um banco avalia milhares de pessoas por segundo, usando dezenas de informações para cada uma delas.
 
 Se a gente quisesse apenas adicionar mais dois fatores (`idade_score` e `garantia`) mantendo a mesma técnica de antes, o código já começaria a ficar muito grande e repetitivo:
@@ -104,7 +104,7 @@ Em vez de fazer um laço de repetição (`for`) lento no qual preveria um client
 
 Assim como fizemos na aula passada sem bibliotecas, na vida real as empresas não deixam suas variáveis de NumPy soltas pelo código procedural. Elas sempre empacotam o neurônio numa **Classe** muito bem dividida.
 
-Adicione a célula abaixo no final do seu notebook e rode para instanciar e validar toda a estrutura profissional da nossa Inteligência vetorizada:
+Lá embaixo no seu arquivo de notebook, instancie uma Classe para representar nosso neurônio vetorizado. É essa estrutura isolada que as empresas usam em Produção.
 
 ```python
 class PerceptronNumPy:
@@ -114,12 +114,20 @@ class PerceptronNumPy:
         self.bias = bias
         
     def predict(self, matriz_clientes):
-        # Processa na velocidade da luz todos os clientes graças ao np.dot
+        # Processa todos os clientes graças ao np.dot
         z = np.dot(matriz_clientes, self.weights) + self.bias
         
-        # A função degrau agindo em grandes blocos (condicional via astype)
+        # 1. A condicional (z >= 0) testa os clientes e retorna booleanos (Ex: [True, False, True])
+        # 2. O .astype(int) "As Type Integer" força a conversão para binários (Ex: [1, 0, 1])
         return (z >= 0).astype(int)
+```
 
+??? tip "O poder enxuto do `.astype(int)` na Função Degrau"
+    Em vez de escrevermos um grande laço contendo `if / else` para avaliar se cada pessoa no dataframe passou, a simples avaliação `(z >= 0)` do NumPy cruza **todos** os clientes instantaneamente. O resultado, porém, é retornado inicialmente como respostas lógicas (`True` ou `False`). O método encadeado no final da linha, `.astype(int)`, age mapeando forçadamente os resultados booleanos para nosso tão esperado número real binário! Todo cliente `True` é convertido em `1` (Aprovado), e o `False` em `0` (Reprovado).
+
+A grande vantagem disso é que agora testar dezenas de clientes em lote vira um processo imediato, com um código muito limpo! Na célula final, acione sua Classe para observar a avaliação:
+
+```python
 # 1. Instanciando nosso cérebro artificial vazio e carregando os conhecimentos
 nosso_modelo = PerceptronNumPy(pesos=[0.3, 0.8, 0.1, 0.5], bias=-9.0)
 
@@ -137,7 +145,7 @@ print("Status Completo da Tabela Lote:", resultados)
 
 Essa mesma lógica super flexível do Lote é exatamente a que usamos no código de Backend final em Python do nosso sistema FATEC para classificar e recomendar múltiplas músicas!
 
-| Arquitetura em NumPy | Escopo do Banco | Projeto Base (`03_Vetores_Matrizes_NumPy.md`) |
+| Arquitetura em NumPy | Escopo do Banco | Projeto Base |
 | :--- | :--- | :--- |
 | **Ponto Clássico Base (Pesos)** | Atributo `self.weights = np.array([w1, w2...])` | Vetor `self.weights = np.array([0.8, 0.2])` |
 | **A Múltipla Composição Completa (Batch)** | Matriz massiva `clientes_lote` cruzada inteira | Matriz `features_matrix` iterada de centenas de `request.tracks` unidos |
@@ -151,7 +159,6 @@ Essa mesma lógica super flexível do Lote é exatamente a que usamos no código
 > Ajuste todas as aulas e valide seu discernimento nestas perguntas cegas de NumPy e ML Vetorial.
 
 <quiz>
-1. **O Propósito do Produto Escalar (`np.dot`)**
 Qual a grande justificativa em termos práticos de usarmos o `np.dot` no código base do neurônio em vez de multiplicar cada variável manualmente?
 
 * [ ] O `np.dot` funciona nivelando as notas flutuantes (floats) para garantir que apenas números inteiros entrem na rede neural, prevenindo fraudes.
@@ -160,7 +167,6 @@ Qual a grande justificativa em termos práticos de usarmos o `np.dot` no código
 </quiz>
 
 <quiz>
-2. **Processamento em Lotes (Batch Processing)**
 As Inteligências modernas jamais analisam um cliente por vez se puderem processar mil simultaneamente. O que o cálculo em Lote (Batch) permite na prática?
 
 * [ ] Ele requer que a IA realize vários loops de repetição normais (ex: laços `for`), lendo os clientes um a um na memória, mas escondendo isso do programador.
@@ -169,7 +175,6 @@ As Inteligências modernas jamais analisam um cliente por vez se puderem process
 </quiz>
 
 <quiz>
-3. **Ordem Oculta nos Vetores (Features VS Weights)**
 Montando arrays com NumPy: se a sua planilha fonte coloca a "Renda" na primeira coluna e a "Idade" na terceira, o que isso exige do nosso vetor de Pesos?
 
 * [x] Exige lealdade posicional irrestrita. O vetor de "Pesos" (Weights) deve ter exatamente a mesma ordem das colunas para que a biblioteca cruze as linhas sem misturar: a Renda bate no Peso 1, a Idade bate no Peso 3.
@@ -178,16 +183,14 @@ Montando arrays com NumPy: se a sua planilha fonte coloca a "Renda" na primeira 
 </quiz>
 
 <quiz>
-4. **O Segredo da Velocidade Incomparável do NumPy**
 Por que Python processa matrizes via NumPy de forma muito mais imediata perante aos laços normais (For-Loops clássicos)? 
 
-* [x] O pulo do gato está na sua infraestrutura interna. O NumPy é escrito na linguagem de baixo nível "C", além de usar matrizes que organizam a memória de forma contínua no computador. Isso gera a Vetorização: cálculos paralelos brutais inatingíveis rodando Python nativo puro.
+* [x] O NumPy é escrito na linguagem de baixo nível "C", além de usar matrizes que organizam a memória de forma contínua no computador. Isso gera a Vetorização: cálculos paralelos brutais inatingíveis rodando Python nativo puro.
 * [ ] O NumPy, por padrão, roda apenas em Supercomputadores do Google Cloud, eliminando os fatores e entregando a precisão pela velocidade nativa exclusiva da internet local do usuário.
 * [ ] Ao contrário de um código puro, laços limitados tradicionais no NumPy bloqueiam matematicamente clientes com notas negativas e ganham velocidade ao desprezá-los no vetor final escalonado em bloco.
 </quiz>
 
 <quiz>
-5. **Convertendo Matrizes em Categorias (o papel base do `astype(int)`)**
 Ao aplicarmos o comando limite `(Z_lote >= 0).astype(int)` em cima do saldo da rede neural em lote, o que estamos efetivamente concluindo no código base estrutural da resposta?
 
 * [ ] Tem o mero desígnio funcional inútil visando cortar limpezas de casas decimais (arredondar) para a API exibir `flutuantes` perfeitos para o painel.
