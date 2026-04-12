@@ -98,8 +98,6 @@ for i, decisao in enumerate(decisoes_lote):
 
 Em vez de fazer um laço de repetição (`for`) lento no qual preveria um cliente por vez, o NumPy processa a matriz inteira de forma simultânea. Ele aplica a mesma lógica para as múltiplas linhas usando uma única operação, e então devolve todas as decisões consolidadas, demonstrando de fato como IAs conseguem ser computacionalmente velozes ao lidar com grandes lotes (batches).
 
----
-
 ## Empacotando o Perceptron em Lote (POO)
 
 Assim como fizemos na aula passada sem bibliotecas, na vida real as empresas não deixam suas variáveis de NumPy soltas pelo código procedural. Elas sempre empacotam o neurônio numa **Classe** muito bem dividida.
@@ -151,6 +149,38 @@ Essa mesma lógica super flexível do Lote é exatamente a que usamos no código
 | **A Múltipla Composição Completa (Batch)** | Matriz massiva `clientes_lote` cruzada inteira | Matriz `features_matrix` iterada de centenas de `request.tracks` unidos |
 | **O Motor Cego do Coração Vetorial** | `Z = np.dot(clientes_lote, self.weights) + self.bias` | `Z = np.dot(X, self.weights) + self.bias` |
 | **O Corte da Decisão Coletiva** | Veredito isolado `(Z >= 0).astype(int)` | Limiar de filtragem final `(Z >= 0.5).astype(int)` |
+
+
+---
+
+## Desafio Prático: Engenharia Reversa
+
+Até agora só testamos clientes dentro do esperado. Mas a fundação de Aprendizado de Máquina não é feita apenas de acertos matemáticos da máquina, serve também para os devs entenderem os "pontos cegos" de seus próprios Pesos. 
+
+No seu Jupyter, após o bloco do código do Lote (`clientes_lote`), adicione uma **nova célula exclusiva para esse teste de mesa**.
+
+**Sua Missão como Analista de Fraudes:**
+
+Crie um **Cliente D** em um pequeno lote e cruze-o com nossos pesos originais. O seu perfil será restritamente um "Perfil de Risco Crítico". 
+
+As regras inquebráveis exigidas na construção dele são que você utilize:
+
+- Histórico de pagador **zerado** (`0.0`), significando calotes contínuos.
+- Sem nenhum bem de garantia (`0.0`).
+- A "Idade Score" travada na média padronizada (`5.0`).
+
+Sua pergunta como auditor: *É possível que a nossa Inteligência tão restritiva APROVE inocentemente esse estelionatário gerando um falso positivo no status?* 
+
+**O seu desafio prático e avaliativo em sala hoje é manipular livremente a única variável que restou solta (a "Renda") dentro do cliente D!**
+Tente ir alterando e rodando os testes, tentando "forçar" matematicamente para que o cálculo interno vetorizado cego no terminal ultrapasse a barreira dura que criamos no Bias de `-9.0` gerando um "Veredito: Aprovado"!
+
+??? example "Gabarito: Por qual brecha o Cliente seria aprovado?"
+    Se você iterou valores de Renda na tentativa até quebrar as travas e passar, percebeu que precisou jogar a nota de Renda dele lá nas alturas (algo como nota financeira irreal de `29.0` ou mais, fora da realidade de uma nota usual 0 a 10).
+    
+    **Qual principal lição de arquitetos percebida?**
+    Como zeramos o Histórico de Pagamentos e as Garantias, o Perceptron perdeu boa parte de suas somatórias brutas. Porém, a equação linear pura (Produto Escalar) é, antes de tudo, uma máquina aritmética cega. Se você superestima desproporcionalmente uma variável (Renda vezes seu peso fraco de `0.3`), essa alta astronômica única compensará artificialmente os zeros de Histórico e o Bias impiedoso, forçando o limiar estourar em `Z >= 0`!
+    
+    A partir de agora, aprendemos um ensinamento que vai refletir nas próximas semanas: Nunca jogue métricas cruas, e sem limites de barreiras de formato ou normalização, diretamente no Modelo, caso contrário trapaceiros manipularão a Rede para obter avaliações favoráveis extremas!
 
 ---
 
