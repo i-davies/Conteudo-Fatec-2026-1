@@ -22,19 +22,38 @@ Em vez de criar uma aplicação monolítica, manter a Cozinha completamente apar
 
 ## A Prática Simplificada: Enquete Tech
 
-Para isolar a lógica, elaboramos o projeto "Enquete Tech", com os arquivos disponíveis anexados junto a esta revisão. Todo o fluxo acontece entre apenas dois arquivos executáveis.
+Para isolar a lógica, vamos recriar o projeto "Enquete Tech" do zero. Todo o fluxo acontece entre apenas dois arquivos executáveis e utilizaremos o `uv` para gerenciar nosso ambiente e as dependências de forma ágil e segura.
 
-### O Cérebro: `backend.py`
+### 1. Preparando o Ambiente com UV
 
-O backend expõe duas finalidades puras: a visualização (leitura) e o processamento de incrementos (escrita), armazenando a contagem temporária numa simples matriz em sua memória local volátil.
+Abra o seu terminal e crie uma nova pasta para o projeto. Em seguida, inicialize a estrutura e instale as bibliotecas necessárias:
+
+```bash
+# Cria e acessa o diretório do projeto
+mkdir enquete_tech
+cd enquete_tech
+
+# Inicializa o projeto vazio
+uv init
+
+# Instala as dependências de Backend e Frontend
+uv add flask "flet[all]" httpx
+```
+
+??? tip "Atenção ao flet[all]"
+    Em versões recentes, a equipe do Flet otimizou a biblioteca separando seus componentes. O pacote base `flet` puro atende apenas o Desktop. Quando precisamos rodar no **Modo Web**, instalar `"flet[all]"` é obrigatório, pois garante a instalação do servidor web interno (FastAPI e Uvicorn) que o Flet utiliza para construir a ponte com o seu navegador!
+
+??? tip "Por que utilizar o UV?"
+    O `uv` gerencia o seu ambiente virtual automaticamente e é extremamente rápido na instalação de pacotes, garantindo que as dependências do projeto fiquem isoladas e não entrem em conflito com o seu Python global.
+
+### 2. O Cérebro: `backend.py`
+
+Crie um arquivo chamado `backend.py` na raiz do seu novo projeto. O backend expõe duas finalidades puras: a visualização (leitura) e o processamento de incrementos (escrita), armazenando a contagem temporária numa simples matriz em sua memória local volátil.
 
 ```python
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 
 app = Flask(__name__)
-# Essencial para permitir requisições seguras partindo do Frontend
-CORS(app)
 
 # Banco de dados simulado em memória
 PLACAR = {
@@ -65,31 +84,33 @@ if __name__ == '__main__':
     app.run(debug=True, port=5000)
 ```
 
-??? tip "Por que o CORS (Cross-Origin Resource Sharing)?"
-    Os navegadores implementam blocos nativos de segurança que evitam que uma página Web qualquer tente solicitar informações sigilosas de um Backend alocado em um "domínio" diferente sem a devida permissão formal do destino. A biblioteca `flask_cors` cria a credencial explícita na configuração permitindo que a interface se conecte e converse via HTTP.
+??? tip "Por que a nossa API não usa CORS?"
+    Se você já estudou aplicações Web tradicionais (como React ou Angular), deve conhecer os famosos bloqueios de segurança **CORS** (Same-Origin Policy) que ocorrem quando o navegador tenta enviar dados diretamente entre portas diferentes. No entanto, o **Flet atua como *Server-Driven UI***. Mesmo no Modo Web, quando um botão é clicado no navegador, ele apenas comunica o evento via *WebSocket*. Quem de fato formata a requisição e executa o `httpx.post` para a API Flask é o servidor Python (do Flet) rodando no fundo (uma conexão *Server-to-Server*). Dessa forma, a nossa API permanece segura, minimalista e 100% livre da dor de cabeça do `flask-cors`!
 
-### A Apresentação: `frontend.py`
+### 3. A Apresentação: `frontend.py`
 
-O script de UI não é capaz de modificar o placar sozinho, nem guarda os resultados de fato. O Flet simplesmente lê o resultado do Backend e constrói o cenário final.
+Crie o arquivo `frontend.py` na mesma pasta do seu projeto. O script da Interface de Usuário (UI) não é capaz de modificar o placar sozinho, nem guarda os resultados de fato. O Flet simplesmente lê os dados remotos do Backend e constrói o cenário final na tela.
 
 ```python
+# pylint: disable=no-member,unexpected-keyword-arg,too-many-function-args
 import flet as ft
 import httpx
 
 API_URL = "http://localhost:5000/api"
 
-def main(page: ft.Page):
+async def main(page: ft.Page):
     page.title = "Enquete Tech"
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
     page.padding = 50
 
-    texto_titulo = ft.Text("Qual a sua tecnologia favorita?", size=24, weight="bold")
+    texto_titulo = ft.Text("Qual a sua tecnologia favorita?", size=24, weight=ft.FontWeight.BOLD)
     coluna_placar = ft.Column(spacing=15)
 
-    def carregar_placar():
-        """Busca os votos originais consolidados que residem unicamente no Backend (Comunicação de Rede)"""
+    async def carregar_placar():
+        """Busca assíncrona para não travar a tela (UI Thread) durante a Comunicação de Rede"""
         try:
-            resposta = httpx.get(f"{API_URL}/votos")
+            async with httpx.AsyncClient() as client:
+                resposta = await client.get(f"{API_URL}/votos")
             dados = resposta.json()
             
             # Resetamos a tela de matriz visual atual para preencher a tabela realçada
@@ -98,7 +119,8 @@ def main(page: ft.Page):
             for tecnologia, votos in dados.items():
                 linha = ft.Row([
                     ft.Text(f"{tecnologia}: {votos} votos", size=18, expand=True),
-                    ft.ElevatedButton("Votar", on_click=lambda e, t=tecnologia: registrar_voto(t))
+                    # A injeção em "data" evita os alertas pesados do Pylint sobre variáveis de laços no Lambda
+                    ft.Button(content="Votar", data=tecnologia, on_click=registrar_voto)
                 ])
                 coluna_placar.controls.append(linha)
                 
@@ -108,30 +130,51 @@ def main(page: ft.Page):
             coluna_placar.controls.append(ft.Text("Erro ao conectar no banco/backend.", color="red"))
             page.update()
 
-    def registrar_voto(tecnologia):
-        """Solicita a mudança estrutural delegando todo o serviço e carga técnica via POST"""
+    async def registrar_voto(e):
+        """Solicita a mudança estrutural de forma assíncrona garantindo total fluidez do click"""
+        tecnologia = e.control.data
         try:
-            httpx.post(f"{API_URL}/votar", json={"tecnologia": tecnologia})
-            # A base de Reatividade: Os dados foram alterados no roteador do Backend. Logo, exigimos que a tela reflita isso:
-            carregar_placar()
+            async with httpx.AsyncClient() as client:
+                resposta = await client.post(f"{API_URL}/votar", json={"tecnologia": tecnologia})
+            dados = resposta.json()
+
+            if dados.get("sucesso"):
+                # Atualiza o placar somente se o voto foi aceito pelo servidor
+                await carregar_placar()
+            else:
+                # Exibe a mensagem de erro retornada pela API
+                page.show_dialog(ft.SnackBar(content=ft.Text(dados.get("mensagem", "Erro desconhecido"))))
         except Exception:
-            page.snack_bar = ft.SnackBar(ft.Text(f"Falha ao votar em {tecnologia}"))
-            page.snack_bar.open = True
-            page.update()
+            page.show_dialog(ft.SnackBar(content=ft.Text(f"Falha de conexão ao votar em {tecnologia}")))
 
     # Layout estrutural primário
     page.add(texto_titulo, ft.Divider(), coluna_placar)
     
     # Renderizamos com a primeira carga efetiva
-    carregar_placar()
+    await carregar_placar()
 
-ft.app(target=main)
+# Forçamos a interface a ser renderizada estritamente no Navegador (Web Mode)
+ft.run(main, view=ft.AppView.WEB_BROWSER)
 ```
 
-O isolamento é evidente: A nossa "Enquete Tech" poderia rodar um aplicativo Web com Flet, mas amanhã uma equipe poderia lançar um sistema em Android utilizando Kotlin e consumir o exato mesmo endpoint na porta `5000`, e o `backend.py` nem sequer perceberia a mudança de dispositivos.
+### 4. Executando a Aplicação
+
+Como possuímos uma arquitetura separada, precisamos rodar a "Cozinha" e o "Cardápio" independentemente, abrindo **dois terminais distintos** na mesma pasta do projeto.
+
+**Terminal 1 (Ligando o Backend):**
+```bash
+uv run backend.py
+```
+*(Opcional: você pode deixar este terminal minimizado, pois ele apenas registrará as requisições em texto)*
+
+**Terminal 2 (Iniciando o Frontend):**
+```bash
+uv run frontend.py
+```
+
+Ao executar, o Flet será forçado a abrir estritamente no seu Navegador Web. O isolamento em duas vias fica evidente: como a nossa "Enquete Tech" se comunica por WebSockets debaixo dos panos com seu próprio servidor para blindar a API de banco de dados, caso a equipe crie o sistema Mobile amanhã para consumir a porta `5000`, o nosso `backend.py` não tomará conhecimento da mudança.
 
 ---
-
 ## De/Para: A Enquete vs Plataforma MergeSkills
 
 Para solidificar o raciocínio, preste atenção em como essa estrutura compacta representa as engrenagens principais adotadas em nossa solução robusta do MergeSkills.
@@ -147,53 +190,3 @@ Para solidificar o raciocínio, preste atenção em como essa estrutura compacta
 Note que a lógica raiz e central da comunicação não muda em absoluto. O que se expande dramaticamente é a segmentação modular (separar funções em vários arquivos organizando cada pedaço) e a introdução de camadas de persistência avançada (usando bancos via SQLAlchemy ao invés de variáveis isoladas de memória).
 
 ---
-
-## Exercícios de Fixação
-
-> Valide o seu entendimento abordando o processo lógico de separação das responsabilidades.
-
-??? example "Verificando o Entendimento"
-    **Os questionários não avaliam a escrita pura do código, mas os conceitos arquiteturais fundamentais suportados pelo modelo de desenvolvimento explorado.**
-
-    <quiz>
-    A analogia do "Restaurante" aborda as camadas focadas do ambiente Fullstack. O que aconteceria conceitualmente num projeto web tradicional caso tentássemos unir a Cozinha junto à Mesa (Processamento de Banco atrelado à Interface Gráfica no mesmo código fonte) no caso do MergeSkills?
-
-    * [ ] A arquitetura base aumentaria severamente sua performance final de repasse nas nuvens de matrizes JSON interligadas por Blueprints.
-    * [x] Perderíamos a escalabilidade técnica e flexibilidade multiplataforma. Ao compilar a interface de um aparelho atrelada totalmente aos acessos críticos e lógicas locais de persistência de dados, quebraríamos a capacidade de fornecer aqueles dados para outros frontends isolados, gerando grandes conflitos diretos nos registros do sistema.
-    * [ ] O ambiente seria isolado e o CORS modular fecharia as portas, obrigando a equipe central a estruturar inteiramente os blocos REST e as renderizações de imagens pelo HTTP GET sem nenhuma alteração profunda na estrutura original dos arquivos Flet.
-    </quiz>
-
-    <quiz>
-    Quando o Flet inicia em tela e precisa mostrar aos alunos o total do placar de enquetes (ou uma listagem ativa complexa de novos Cursos disponíveis na plataforma), qual tipo de método HTTP e padrão informacional o Flet usaria prioritariamente em uma comunicação profissional restrita?
-
-    * [x] Ele formula e despacha amplamente uma solicitação central com o método `GET` na URL do Flask, aguardando que o Backend responda adequadamente com um Payload contendo todos os dados já enpacotados e definidos no padrão limpo de entrega em `JSON`.
-    * [ ] Ele formula diretamente um registro `POST` no endpoint HTTP enviando comandos puros em SQL (estruturados via Dicionários Voláteis do próprio Numpy embutido) garantindo assim alterações definitivas automáticas rápidas da memória original do Flask.
-    * [ ] O Frontend não utiliza as chamadas do método convencional HTTP para apresentar dados na inicialização de sessão. Ele requer essencialmente uma requisição assíncrona bruta interligada puramente por comandos do Alembic que renderizam a lista visual e formatam as colunas Flet com suporte de CORS ativado.
-    </quiz>
-
-    <quiz>
-    A principal utilidade de se adotar a formatação de pacotes do modelo `JSON` na transferência de requisições HTTP entre o `backend.py` e o `frontend.py` é essencialmente:
-
-    * [ ] Bloquear invasões estruturadas que simulam acessos nativos, mantendo arquivos Python fortemente compactados baseados exclusivamente em modelos encapsulados restritos nativos da camada base do Postgres.
-    * [ ] Forçar a conversão obrigatória das imagens locais do Frontend e traduzi-las instantaneamente para strings hexadecimais legíveis mantendo suporte nativo fixo com os dicionários clássicos nativos originais fechados em redes e sessões no Flet.
-    * [x] Atuar com um formato comum e agnóstico como padrão internacional. Ele garante que qualquer elemento e estrutura local da origem (como a lista isolada de dicionários do Python e variáveis primitivas int/float) sejam legíveis do outro lado exato na base do Destino mantendo a fidelidade das informações trocadas.
-    </quiz>
-
-    <quiz>
-    Na "Enquete Tech" ou mesmo durante as validações ativas de progresso da API no MergeSkills, nós delegamos as solicitações via funções Httpx ativando a reatividade forçada nas telas locais das máquinas locais (ex: `page.update()`). Por que isso é determinante para gerar interações fluidas do aluno com o sistema no Flet?
-
-    * [ ] Porque as bibliotecas Flet interligam automaticamente todas as memórias primárias cruas remotas de qualquer serviço Flask rodando localmente no banco, desativando o botão temporariamente sempre que os acessos puramente restritos são rejeitados de imediato por erros clássicos originais no sistema sem qualquer uso manual de UI puro.
-    * [x] Porque sem a ordem ativa de reestruturar visualmente e atualizar formalmente a tela no Flet e nas views após a busca bem-sucedida de rede remota os valores seriam efetivamente processados na nuvem e salvos no servidor remoto mas a UI se manteria fixa em seu estado original anterior, deixando o usuário cego na aplicação sem respostas sensoriais e validações ativas.
-    * [ ] Pelo fato isolado central de que toda conexão limpa do método POST HTTP do Frontend atua de maneira assíncrona forçando um redirecionamento forçado fechado e absoluto para Blueprints e endpoints da web centralizados recarregando inteiramente todo o app nativo inicial do zero novamente bloqueando acessos originais clássicos de toda rede em ambientes multiplataformas locais curtos nativos.
-    </quiz>
-
-    <quiz>
-    Durante nossos testes da plataforma nativa, percebemos que o sistema não guardava os placares se ocorresse o simples reiniciar estrito do terminal do nosso arquivo puramente isolado `backend.py`. Qual das explicações detalha fundamentalmente essa situação estrita do projeto do laboratório básico?
-
-    * [ ] A rota `POST` que processa a contagem de votos da votação possuía erros clássicos lógicos nativos e rejeitava nativamente sempre os arquivos JSON contendo valores inválidos soltos fechados fixos.
-    * [x] As modificações dos contadores efetuadas pelo algoritmo agiram ativamente e alteraram uma variável primitiva unificada (`PLACAR`) armazenando na matriz volátil puramente carregada da memória RAM local temporária da execução base da linguagem da aplicação Python.
-    * [ ] O frontend falhou integralmente no cruzamento da interface no momento forçado base quando as transações nativas unificadas do método httpx limitavam envios constantes contínuos ao endpoint do estado primário do Swagger e apagavam a memória nativa.
-    </quiz>
-
-<!-- mkdocs-quiz results -->
-
