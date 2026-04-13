@@ -34,7 +34,17 @@ Apos a inicializacao, precisamos ajustar dois arquivos para que o Alembic enxerg
 sqlalchemy.url = sqlite:///banco.sqlite
 ```
 
-**Arquivo `migrations/env.py`** - Importe o `db` e aponte o `target_metadata` para que o Alembic saiba quais tabelas rastrear:
+**Arquivo `migrations/env.py`** - Abra o arquivo e localize o bloco abaixo (perto da linha 22):
+
+```python
+# add your model's MetaData object here
+# for 'autogenerate' support
+# from myapp import mymodel
+# target_metadata = mymodel.Base.metadata
+target_metadata = None
+```
+
+**Substitua todo esse bloco** pelos imports do projeto e o `target_metadata` correto:
 
 ```python
 from database import db
@@ -42,6 +52,9 @@ from models import TecnologiaModel  # Necessario para o Alembic enxergar a tabel
 
 target_metadata = db.metadata
 ```
+
+??? warning "Cuidado com o target_metadata duplicado"
+    Se voce apenas adicionar as linhas novas sem remover o `target_metadata = None` original, o valor `None` vai **sobrescrever** o `db.metadata` e o Alembic vai falhar com o erro: `does not provide a MetaData object`. Certifique-se de que existe apenas **um** `target_metadata` no arquivo.
 
 ??? info "Por que importar o TecnologiaModel?"
     Mesmo sem usar a variavel diretamente, o `import` faz o Python executar a definicao da classe, registrando a tabela no `db.metadata`. Sem esse import, o Alembic nao detecta nenhuma tabela para migrar.
