@@ -12,8 +12,6 @@
         <link rel="prev" href="../03_SQLAlchemy/">
       
       
-        <link rel="next" href="../05_Docker/">
-      
       
         
       
@@ -2365,34 +2363,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05_Docker/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Revisão de Arquitetura: Containerização
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2654,12 +2624,23 @@
 <p><strong>Arquivo <code>alembic.ini</code></strong> - Atualize a linha <code>sqlalchemy.url</code> para apontar para o mesmo banco SQLite do projeto:</p>
 <div class="highlight"><pre><span></span><code><span class="na">sqlalchemy.url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">sqlite:///banco.sqlite</span>
 </code></pre></div>
-<p><strong>Arquivo <code>migrations/env.py</code></strong> - Importe o <code>db</code> e aponte o <code>target_metadata</code> para que o Alembic saiba quais tabelas rastrear:</p>
+<p><strong>Arquivo <code>migrations/env.py</code></strong> - Abra o arquivo e localize o bloco abaixo (perto da linha 22):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># add your model&#39;s MetaData object here</span>
+<span class="c1"># for &#39;autogenerate&#39; support</span>
+<span class="c1"># from myapp import mymodel</span>
+<span class="c1"># target_metadata = mymodel.Base.metadata</span>
+<span class="n">target_metadata</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<p><strong>Substitua todo esse bloco</strong> pelos imports do projeto e o <code>target_metadata</code> correto:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">database</span><span class="w"> </span><span class="kn">import</span> <span class="n">db</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">TecnologiaModel</span>  <span class="c1"># Necessario para o Alembic enxergar a tabela</span>
 
 <span class="n">target_metadata</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">metadata</span>
 </code></pre></div>
+<details class="warning">
+<summary>Cuidado com o target_metadata duplicado</summary>
+<p>Se voce apenas adicionar as linhas novas sem remover o <code>target_metadata = None</code> original, o valor <code>None</code> vai <strong>sobrescrever</strong> o <code>db.metadata</code> e o Alembic vai falhar com o erro: <code>does not provide a MetaData object</code>. Certifique-se de que existe apenas <strong>um</strong> <code>target_metadata</code> no arquivo.</p>
+</details>
 <details class="info">
 <summary>Por que importar o TecnologiaModel?</summary>
 <p>Mesmo sem usar a variavel diretamente, o <code>import</code> faz o Python executar a definicao da classe, registrando a tabela no <code>db.metadata</code>. Sem esse import, o Alembic nao detecta nenhuma tabela para migrar.</p>
