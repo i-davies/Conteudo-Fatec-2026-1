@@ -12,6 +12,8 @@
         <link rel="prev" href="../../03_Frontend/01_Flet_inicial/">
       
       
+        <link rel="next" href="../02_Pydantic/">
+      
       
         
       
@@ -2222,10 +2224,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#o-cerebro-backendpy" class="md-nav__link">
+  <a href="#1-preparando-o-ambiente-com-uv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O Cérebro: backend.py
+        1. Preparando o Ambiente com UV
       
     </span>
   </a>
@@ -2233,10 +2235,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#a-apresentacao-frontendpy" class="md-nav__link">
+  <a href="#2-o-cerebro-backendpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A Apresentação: frontend.py
+        2. O Cérebro: backend.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-a-apresentacao-frontendpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. A Apresentação: frontend.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-executando-a-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Executando a Aplicação
       
     </span>
   </a>
@@ -2259,21 +2283,122 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#exercicios-de-fixacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exercícios de Fixação
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_Pydantic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão de Arquitetura: Proteção e Pydantic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_SQLAlchemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão de Arquitetura: Camada de Informação Permanente
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Alembic_Seeds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisao de Arquitetura: Migrations e Seeds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_Docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão de Arquitetura: Containerização
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2344,10 +2469,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#o-cerebro-backendpy" class="md-nav__link">
+  <a href="#1-preparando-o-ambiente-com-uv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O Cérebro: backend.py
+        1. Preparando o Ambiente com UV
       
     </span>
   </a>
@@ -2355,10 +2480,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#a-apresentacao-frontendpy" class="md-nav__link">
+  <a href="#2-o-cerebro-backendpy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A Apresentação: frontend.py
+        2. O Cérebro: backend.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-a-apresentacao-frontendpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. A Apresentação: frontend.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-executando-a-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Executando a Aplicação
       
     </span>
   </a>
@@ -2375,17 +2522,6 @@
     <span class="md-ellipsis">
       
         De/Para: A Enquete vs Plataforma MergeSkills
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercicios-de-fixacao" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exercícios de Fixação
       
     </span>
   </a>
@@ -2537,15 +2673,32 @@
 <p>Em vez de criar uma aplicação monolítica, manter a Cozinha completamente apartada das Mesas (Arquitetura Desacoplada) confere agilidade. A nossa API pode entregar os dados para um navegador Web, para um Desktop e para um celular, simultaneamente, sem recompilar a lógica.</p>
 <hr />
 <h2 id="a-pratica-simplificada-enquete-tech">A Prática Simplificada: Enquete Tech</h2>
-<p>Para isolar a lógica, elaboramos o projeto "Enquete Tech", com os arquivos disponíveis anexados junto a esta revisão. Todo o fluxo acontece entre apenas dois arquivos executáveis.</p>
-<h3 id="o-cerebro-backendpy">O Cérebro: <code>backend.py</code></h3>
-<p>O backend expõe duas finalidades puras: a visualização (leitura) e o processamento de incrementos (escrita), armazenando a contagem temporária numa simples matriz em sua memória local volátil.</p>
+<p>Para isolar a lógica, vamos recriar o projeto "Enquete Tech" do zero. Todo o fluxo acontece entre apenas dois arquivos executáveis e utilizaremos o <code>uv</code> para gerenciar nosso ambiente e as dependências de forma ágil e segura.</p>
+<h3 id="1-preparando-o-ambiente-com-uv">1. Preparando o Ambiente com UV</h3>
+<p>Abra o seu terminal e crie uma nova pasta para o projeto. Em seguida, inicialize a estrutura e instale as bibliotecas necessárias:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Cria e acessa o diretório do projeto</span>
+mkdir<span class="w"> </span>enquete_tech
+<span class="nb">cd</span><span class="w"> </span>enquete_tech
+
+<span class="c1"># Inicializa o projeto vazio</span>
+uv<span class="w"> </span>init
+
+<span class="c1"># Instala as dependências de Backend e Frontend</span>
+uv<span class="w"> </span>add<span class="w"> </span>flask<span class="w"> </span><span class="s2">&quot;flet[all]&quot;</span><span class="w"> </span>httpx
+</code></pre></div>
+<details class="tip">
+<summary>Atenção ao flet[all]</summary>
+<p>Em versões recentes, a equipe do Flet otimizou a biblioteca separando seus componentes. O pacote base <code>flet</code> puro atende apenas o Desktop. Quando precisamos rodar no <strong>Modo Web</strong>, instalar <code>"flet[all]"</code> é obrigatório, pois garante a instalação do servidor web interno (FastAPI e Uvicorn) que o Flet utiliza para construir a ponte com o seu navegador!</p>
+</details>
+<details class="tip">
+<summary>Por que utilizar o UV?</summary>
+<p>O <code>uv</code> gerencia o seu ambiente virtual automaticamente e é extremamente rápido na instalação de pacotes, garantindo que as dependências do projeto fiquem isoladas e não entrem em conflito com o seu Python global.</p>
+</details>
+<h3 id="2-o-cerebro-backendpy">2. O Cérebro: <code>backend.py</code></h3>
+<p>Crie um arquivo chamado <code>backend.py</code> na raiz do seu novo projeto. O backend expõe duas finalidades puras: a visualização (leitura) e o processamento de incrementos (escrita), armazenando a contagem temporária numa simples matriz em sua memória local volátil.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">flask_cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORS</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="c1"># Essencial para permitir requisições seguras partindo do Frontend</span>
-<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
 <span class="c1"># Banco de dados simulado em memória</span>
 <span class="n">PLACAR</span> <span class="o">=</span> <span class="p">{</span>
@@ -2576,28 +2729,30 @@
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div>
 <details class="tip">
-<summary>Por que o CORS (Cross-Origin Resource Sharing)?</summary>
-<p>Os navegadores implementam blocos nativos de segurança que evitam que uma página Web qualquer tente solicitar informações sigilosas de um Backend alocado em um "domínio" diferente sem a devida permissão formal do destino. A biblioteca <code>flask_cors</code> cria a credencial explícita na configuração permitindo que a interface se conecte e converse via HTTP.</p>
+<summary>Por que a nossa API não usa CORS?</summary>
+<p>Se você já estudou aplicações Web tradicionais (como React ou Angular), deve conhecer os famosos bloqueios de segurança <strong>CORS</strong> (Same-Origin Policy) que ocorrem quando o navegador tenta enviar dados diretamente entre portas diferentes. No entanto, o <strong>Flet atua como <em>Server-Driven UI</em></strong>. Mesmo no Modo Web, quando um botão é clicado no navegador, ele apenas comunica o evento via <em>WebSocket</em>. Quem de fato formata a requisição e executa o <code>httpx.post</code> para a API Flask é o servidor Python (do Flet) rodando no fundo (uma conexão <em>Server-to-Server</em>). Dessa forma, a nossa API permanece segura, minimalista e 100% livre da dor de cabeça do <code>flask-cors</code>!</p>
 </details>
-<h3 id="a-apresentacao-frontendpy">A Apresentação: <code>frontend.py</code></h3>
-<p>O script de UI não é capaz de modificar o placar sozinho, nem guarda os resultados de fato. O Flet simplesmente lê o resultado do Backend e constrói o cenário final.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">flet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ft</span>
+<h3 id="3-a-apresentacao-frontendpy">3. A Apresentação: <code>frontend.py</code></h3>
+<p>Crie o arquivo <code>frontend.py</code> na mesma pasta do seu projeto. O script da Interface de Usuário (UI) não é capaz de modificar o placar sozinho, nem guarda os resultados de fato. O Flet simplesmente lê os dados remotos do Backend e constrói o cenário final na tela.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># pylint: disable=no-member,unexpected-keyword-arg,too-many-function-args</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">flet</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ft</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
 
 <span class="n">API_URL</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:5000/api&quot;</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">page</span><span class="p">:</span> <span class="n">ft</span><span class="o">.</span><span class="n">Page</span><span class="p">):</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">page</span><span class="p">:</span> <span class="n">ft</span><span class="o">.</span><span class="n">Page</span><span class="p">):</span>
     <span class="n">page</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Enquete Tech&quot;</span>
     <span class="n">page</span><span class="o">.</span><span class="n">horizontal_alignment</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">CrossAxisAlignment</span><span class="o">.</span><span class="n">CENTER</span>
     <span class="n">page</span><span class="o">.</span><span class="n">padding</span> <span class="o">=</span> <span class="mi">50</span>
 
-    <span class="n">texto_titulo</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Qual a sua tecnologia favorita?&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">)</span>
+    <span class="n">texto_titulo</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Qual a sua tecnologia favorita?&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">FontWeight</span><span class="o">.</span><span class="n">BOLD</span><span class="p">)</span>
     <span class="n">coluna_placar</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">spacing</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">carregar_placar</span><span class="p">():</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Busca os votos originais consolidados que residem unicamente no Backend (Comunicação de Rede)&quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">carregar_placar</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Busca assíncrona para não travar a tela (UI Thread) durante a Comunicação de Rede&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">resposta</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/votos&quot;</span><span class="p">)</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+                <span class="n">resposta</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/votos&quot;</span><span class="p">)</span>
             <span class="n">dados</span> <span class="o">=</span> <span class="n">resposta</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
             <span class="c1"># Resetamos a tela de matriz visual atual para preencher a tabela realçada</span>
@@ -2606,7 +2761,8 @@
             <span class="k">for</span> <span class="n">tecnologia</span><span class="p">,</span> <span class="n">votos</span> <span class="ow">in</span> <span class="n">dados</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="n">linha</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
                     <span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tecnologia</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">votos</span><span class="si">}</span><span class="s2"> votos&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-                    <span class="n">ft</span><span class="o">.</span><span class="n">ElevatedButton</span><span class="p">(</span><span class="s2">&quot;Votar&quot;</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">tecnologia</span><span class="p">:</span> <span class="n">registrar_voto</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+                    <span class="c1"># A injeção em &quot;data&quot; evita os alertas pesados do Pylint sobre variáveis de laços no Lambda</span>
+                    <span class="n">ft</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;Votar&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tecnologia</span><span class="p">,</span> <span class="n">on_click</span><span class="o">=</span><span class="n">registrar_voto</span><span class="p">)</span>
                 <span class="p">])</span>
                 <span class="n">coluna_placar</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">linha</span><span class="p">)</span>
 
@@ -2616,26 +2772,42 @@
             <span class="n">coluna_placar</span><span class="o">.</span><span class="n">controls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s2">&quot;Erro ao conectar no banco/backend.&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">))</span>
             <span class="n">page</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">registrar_voto</span><span class="p">(</span><span class="n">tecnologia</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Solicita a mudança estrutural delegando todo o serviço e carga técnica via POST&quot;&quot;&quot;</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">registrar_voto</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Solicita a mudança estrutural de forma assíncrona garantindo total fluidez do click&quot;&quot;&quot;</span>
+        <span class="n">tecnologia</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">data</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">httpx</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/votar&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;tecnologia&quot;</span><span class="p">:</span> <span class="n">tecnologia</span><span class="p">})</span>
-            <span class="c1"># A base de Reatividade: Os dados foram alterados no roteador do Backend. Logo, exigimos que a tela reflita isso:</span>
-            <span class="n">carregar_placar</span><span class="p">()</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+                <span class="n">resposta</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">API_URL</span><span class="si">}</span><span class="s2">/votar&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;tecnologia&quot;</span><span class="p">:</span> <span class="n">tecnologia</span><span class="p">})</span>
+            <span class="n">dados</span> <span class="o">=</span> <span class="n">resposta</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">dados</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sucesso&quot;</span><span class="p">):</span>
+                <span class="c1"># Atualiza o placar somente se o voto foi aceito pelo servidor</span>
+                <span class="k">await</span> <span class="n">carregar_placar</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Exibe a mensagem de erro retornada pela API</span>
+                <span class="n">page</span><span class="o">.</span><span class="n">show_dialog</span><span class="p">(</span><span class="n">ft</span><span class="o">.</span><span class="n">SnackBar</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="n">dados</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;mensagem&quot;</span><span class="p">,</span> <span class="s2">&quot;Erro desconhecido&quot;</span><span class="p">))))</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-            <span class="n">page</span><span class="o">.</span><span class="n">snack_bar</span> <span class="o">=</span> <span class="n">ft</span><span class="o">.</span><span class="n">SnackBar</span><span class="p">(</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Falha ao votar em </span><span class="si">{</span><span class="n">tecnologia</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
-            <span class="n">page</span><span class="o">.</span><span class="n">snack_bar</span><span class="o">.</span><span class="n">open</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="n">page</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">show_dialog</span><span class="p">(</span><span class="n">ft</span><span class="o">.</span><span class="n">SnackBar</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Falha de conexão ao votar em </span><span class="si">{</span><span class="n">tecnologia</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)))</span>
 
     <span class="c1"># Layout estrutural primário</span>
     <span class="n">page</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">texto_titulo</span><span class="p">,</span> <span class="n">ft</span><span class="o">.</span><span class="n">Divider</span><span class="p">(),</span> <span class="n">coluna_placar</span><span class="p">)</span>
 
     <span class="c1"># Renderizamos com a primeira carga efetiva</span>
-    <span class="n">carregar_placar</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">carregar_placar</span><span class="p">()</span>
 
-<span class="n">ft</span><span class="o">.</span><span class="n">app</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">main</span><span class="p">)</span>
+<span class="c1"># Forçamos a interface a ser renderizada estritamente no Navegador (Web Mode)</span>
+<span class="n">ft</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">view</span><span class="o">=</span><span class="n">ft</span><span class="o">.</span><span class="n">AppView</span><span class="o">.</span><span class="n">WEB_BROWSER</span><span class="p">)</span>
 </code></pre></div>
-<p>O isolamento é evidente: A nossa "Enquete Tech" poderia rodar um aplicativo Web com Flet, mas amanhã uma equipe poderia lançar um sistema em Android utilizando Kotlin e consumir o exato mesmo endpoint na porta <code>5000</code>, e o <code>backend.py</code> nem sequer perceberia a mudança de dispositivos.</p>
+<h3 id="4-executando-a-aplicacao">4. Executando a Aplicação</h3>
+<p>Como possuímos uma arquitetura separada, precisamos rodar a "Cozinha" e o "Cardápio" independentemente, abrindo <strong>dois terminais distintos</strong> na mesma pasta do projeto.</p>
+<p><strong>Terminal 1 (Ligando o Backend):</strong>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>backend.py
+</code></pre></div>
+<em>(Opcional: você pode deixar este terminal minimizado, pois ele apenas registrará as requisições em texto)</em></p>
+<p><strong>Terminal 2 (Iniciando o Frontend):</strong>
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>frontend.py
+</code></pre></div></p>
+<p>Ao executar, o Flet será forçado a abrir estritamente no seu Navegador Web. O isolamento em duas vias fica evidente: como a nossa "Enquete Tech" se comunica por WebSockets debaixo dos panos com seu próprio servidor para blindar a API de banco de dados, caso a equipe crie o sistema Mobile amanhã para consumir a porta <code>5000</code>, o nosso <code>backend.py</code> não tomará conhecimento da mudança.</p>
 <hr />
 <h2 id="depara-a-enquete-vs-plataforma-mergeskills">De/Para: A Enquete vs Plataforma MergeSkills</h2>
 <p>Para solidificar o raciocínio, preste atenção em como essa estrutura compacta representa as engrenagens principais adotadas em nossa solução robusta do MergeSkills.</p>
@@ -2676,145 +2848,7 @@
 </tbody>
 </table>
 <p>Note que a lógica raiz e central da comunicação não muda em absoluto. O que se expande dramaticamente é a segmentação modular (separar funções em vários arquivos organizando cada pedaço) e a introdução de camadas de persistência avançada (usando bancos via SQLAlchemy ao invés de variáveis isoladas de memória).</p>
-<hr />
-<h2 id="exercicios-de-fixacao">Exercícios de Fixação</h2>
-<blockquote>
-<p>Valide o seu entendimento abordando o processo lógico de separação das responsabilidades.</p>
-</blockquote>
-<details class="example">
-<summary>Verificando o Entendimento</summary>
-<p><strong>Os questionários não avaliam a escrita pura do código, mas os conceitos arquiteturais fundamentais suportados pelo modelo de desenvolvimento explorado.</strong></p>
-<!-- mkdocs-quiz-source
-<quiz>
-    A analogia do "Restaurante" aborda as camadas focadas do ambiente Fullstack. O que aconteceria conceitualmente num projeto web tradicional caso tentássemos unir a Cozinha junto à Mesa (Processamento de Banco atrelado à Interface Gráfica no mesmo código fonte) no caso do MergeSkills?
-
-    * [ ] A arquitetura base aumentaria severamente sua performance final de repasse nas nuvens de matrizes JSON interligadas por Blueprints.
-    * [x] Perderíamos a escalabilidade técnica e flexibilidade multiplataforma. Ao compilar a interface de um aparelho atrelada totalmente aos acessos críticos e lógicas locais de persistência de dados, quebraríamos a capacidade de fornecer aqueles dados para outros frontends isolados, gerando grandes conflitos diretos nos registros do sistema.
-    * [ ] O ambiente seria isolado e o CORS modular fecharia as portas, obrigando a equipe central a estruturar inteiramente os blocos REST e as renderizações de imagens pelo HTTP GET sem nenhuma alteração profunda na estrutura original dos arquivos Flet.
-    </quiz>
--->
-<div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-0">
-    <a href="#quiz-0" class="quiz-header-link">#</a>
-    <h4 class="quiz-number">Questão 1</h4>
-    <div class="quiz-question">
-        <p>A analogia do "Restaurante" aborda as camadas focadas do ambiente Fullstack. O que aconteceria conceitualmente num projeto web tradicional caso tentássemos unir a Cozinha junto à Mesa (Processamento de Banco atrelado à Interface Gráfica no mesmo código fonte) no caso do MergeSkills?</p>
-    </div>
-    <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-0-0" ><label for="quiz-0-0">A arquitetura base aumentaria severamente sua performance final de repasse nas nuvens de matrizes JSON interligadas por Blueprints.</label></div><div><input type="radio" name="answer" value="1" id="quiz-0-1" correct><label for="quiz-0-1">Perderíamos a escalabilidade técnica e flexibilidade multiplataforma. Ao compilar a interface de um aparelho atrelada totalmente aos acessos críticos e lógicas locais de persistência de dados, quebraríamos a capacidade de fornecer aqueles dados para outros frontends isolados, gerando grandes conflitos diretos nos registros do sistema.</label></div><div><input type="radio" name="answer" value="2" id="quiz-0-2" ><label for="quiz-0-2">O ambiente seria isolado e o CORS modular fecharia as portas, obrigando a equipe central a estruturar inteiramente os blocos REST e as renderizações de imagens pelo HTTP GET sem nenhuma alteração profunda na estrutura original dos arquivos Flet.</label></div></fieldset>
-        <div class="quiz-feedback hidden"></div>
-
-    </form>
-    <section class="content hidden"></section>
-</div>
-<!-- mkdocs-quiz-source
-<quiz>
-    Quando o Flet inicia em tela e precisa mostrar aos alunos o total do placar de enquetes (ou uma listagem ativa complexa de novos Cursos disponíveis na plataforma), qual tipo de método HTTP e padrão informacional o Flet usaria prioritariamente em uma comunicação profissional restrita?
-
-    * [x] Ele formula e despacha amplamente uma solicitação central com o método `GET` na URL do Flask, aguardando que o Backend responda adequadamente com um Payload contendo todos os dados já enpacotados e definidos no padrão limpo de entrega em `JSON`.
-    * [ ] Ele formula diretamente um registro `POST` no endpoint HTTP enviando comandos puros em SQL (estruturados via Dicionários Voláteis do próprio Numpy embutido) garantindo assim alterações definitivas automáticas rápidas da memória original do Flask.
-    * [ ] O Frontend não utiliza as chamadas do método convencional HTTP para apresentar dados na inicialização de sessão. Ele requer essencialmente uma requisição assíncrona bruta interligada puramente por comandos do Alembic que renderizam a lista visual e formatam as colunas Flet com suporte de CORS ativado.
-    </quiz>
--->
-<div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-1">
-    <a href="#quiz-1" class="quiz-header-link">#</a>
-    <h4 class="quiz-number">Questão 2</h4>
-    <div class="quiz-question">
-        <p>Quando o Flet inicia em tela e precisa mostrar aos alunos o total do placar de enquetes (ou uma listagem ativa complexa de novos Cursos disponíveis na plataforma), qual tipo de método HTTP e padrão informacional o Flet usaria prioritariamente em uma comunicação profissional restrita?</p>
-    </div>
-    <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-1-0" correct><label for="quiz-1-0">Ele formula e despacha amplamente uma solicitação central com o método <code>GET</code> na URL do Flask, aguardando que o Backend responda adequadamente com um Payload contendo todos os dados já enpacotados e definidos no padrão limpo de entrega em <code>JSON</code>.</label></div><div><input type="radio" name="answer" value="1" id="quiz-1-1" ><label for="quiz-1-1">Ele formula diretamente um registro <code>POST</code> no endpoint HTTP enviando comandos puros em SQL (estruturados via Dicionários Voláteis do próprio Numpy embutido) garantindo assim alterações definitivas automáticas rápidas da memória original do Flask.</label></div><div><input type="radio" name="answer" value="2" id="quiz-1-2" ><label for="quiz-1-2">O Frontend não utiliza as chamadas do método convencional HTTP para apresentar dados na inicialização de sessão. Ele requer essencialmente uma requisição assíncrona bruta interligada puramente por comandos do Alembic que renderizam a lista visual e formatam as colunas Flet com suporte de CORS ativado.</label></div></fieldset>
-        <div class="quiz-feedback hidden"></div>
-
-    </form>
-    <section class="content hidden"></section>
-</div>
-<!-- mkdocs-quiz-source
-<quiz>
-    A principal utilidade de se adotar a formatação de pacotes do modelo `JSON` na transferência de requisições HTTP entre o `backend.py` e o `frontend.py` é essencialmente:
-
-    * [ ] Bloquear invasões estruturadas que simulam acessos nativos, mantendo arquivos Python fortemente compactados baseados exclusivamente em modelos encapsulados restritos nativos da camada base do Postgres.
-    * [ ] Forçar a conversão obrigatória das imagens locais do Frontend e traduzi-las instantaneamente para strings hexadecimais legíveis mantendo suporte nativo fixo com os dicionários clássicos nativos originais fechados em redes e sessões no Flet.
-    * [x] Atuar com um formato comum e agnóstico como padrão internacional. Ele garante que qualquer elemento e estrutura local da origem (como a lista isolada de dicionários do Python e variáveis primitivas int/float) sejam legíveis do outro lado exato na base do Destino mantendo a fidelidade das informações trocadas.
-    </quiz>
--->
-<div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-2">
-    <a href="#quiz-2" class="quiz-header-link">#</a>
-    <h4 class="quiz-number">Questão 3</h4>
-    <div class="quiz-question">
-        <p>A principal utilidade de se adotar a formatação de pacotes do modelo <code>JSON</code> na transferência de requisições HTTP entre o <code>backend.py</code> e o <code>frontend.py</code> é essencialmente:</p>
-    </div>
-    <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-2-0" ><label for="quiz-2-0">Bloquear invasões estruturadas que simulam acessos nativos, mantendo arquivos Python fortemente compactados baseados exclusivamente em modelos encapsulados restritos nativos da camada base do Postgres.</label></div><div><input type="radio" name="answer" value="1" id="quiz-2-1" ><label for="quiz-2-1">Forçar a conversão obrigatória das imagens locais do Frontend e traduzi-las instantaneamente para strings hexadecimais legíveis mantendo suporte nativo fixo com os dicionários clássicos nativos originais fechados em redes e sessões no Flet.</label></div><div><input type="radio" name="answer" value="2" id="quiz-2-2" correct><label for="quiz-2-2">Atuar com um formato comum e agnóstico como padrão internacional. Ele garante que qualquer elemento e estrutura local da origem (como a lista isolada de dicionários do Python e variáveis primitivas int/float) sejam legíveis do outro lado exato na base do Destino mantendo a fidelidade das informações trocadas.</label></div></fieldset>
-        <div class="quiz-feedback hidden"></div>
-
-    </form>
-    <section class="content hidden"></section>
-</div>
-<!-- mkdocs-quiz-source
-<quiz>
-    Na "Enquete Tech" ou mesmo durante as validações ativas de progresso da API no MergeSkills, nós delegamos as solicitações via funções Httpx ativando a reatividade forçada nas telas locais das máquinas locais (ex: `page.update()`). Por que isso é determinante para gerar interações fluidas do aluno com o sistema no Flet?
-
-    * [ ] Porque as bibliotecas Flet interligam automaticamente todas as memórias primárias cruas remotas de qualquer serviço Flask rodando localmente no banco, desativando o botão temporariamente sempre que os acessos puramente restritos são rejeitados de imediato por erros clássicos originais no sistema sem qualquer uso manual de UI puro.
-    * [x] Porque sem a ordem ativa de reestruturar visualmente e atualizar formalmente a tela no Flet e nas views após a busca bem-sucedida de rede remota os valores seriam efetivamente processados na nuvem e salvos no servidor remoto mas a UI se manteria fixa em seu estado original anterior, deixando o usuário cego na aplicação sem respostas sensoriais e validações ativas.
-    * [ ] Pelo fato isolado central de que toda conexão limpa do método POST HTTP do Frontend atua de maneira assíncrona forçando um redirecionamento forçado fechado e absoluto para Blueprints e endpoints da web centralizados recarregando inteiramente todo o app nativo inicial do zero novamente bloqueando acessos originais clássicos de toda rede em ambientes multiplataformas locais curtos nativos.
-    </quiz>
--->
-<div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-3">
-    <a href="#quiz-3" class="quiz-header-link">#</a>
-    <h4 class="quiz-number">Questão 4</h4>
-    <div class="quiz-question">
-        <p>Na "Enquete Tech" ou mesmo durante as validações ativas de progresso da API no MergeSkills, nós delegamos as solicitações via funções Httpx ativando a reatividade forçada nas telas locais das máquinas locais (ex: <code>page.update()</code>). Por que isso é determinante para gerar interações fluidas do aluno com o sistema no Flet?</p>
-    </div>
-    <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-3-0" ><label for="quiz-3-0">Porque as bibliotecas Flet interligam automaticamente todas as memórias primárias cruas remotas de qualquer serviço Flask rodando localmente no banco, desativando o botão temporariamente sempre que os acessos puramente restritos são rejeitados de imediato por erros clássicos originais no sistema sem qualquer uso manual de UI puro.</label></div><div><input type="radio" name="answer" value="1" id="quiz-3-1" correct><label for="quiz-3-1">Porque sem a ordem ativa de reestruturar visualmente e atualizar formalmente a tela no Flet e nas views após a busca bem-sucedida de rede remota os valores seriam efetivamente processados na nuvem e salvos no servidor remoto mas a UI se manteria fixa em seu estado original anterior, deixando o usuário cego na aplicação sem respostas sensoriais e validações ativas.</label></div><div><input type="radio" name="answer" value="2" id="quiz-3-2" ><label for="quiz-3-2">Pelo fato isolado central de que toda conexão limpa do método POST HTTP do Frontend atua de maneira assíncrona forçando um redirecionamento forçado fechado e absoluto para Blueprints e endpoints da web centralizados recarregando inteiramente todo o app nativo inicial do zero novamente bloqueando acessos originais clássicos de toda rede em ambientes multiplataformas locais curtos nativos.</label></div></fieldset>
-        <div class="quiz-feedback hidden"></div>
-
-    </form>
-    <section class="content hidden"></section>
-</div>
-<!-- mkdocs-quiz-source
-<quiz>
-    Durante nossos testes da plataforma nativa, percebemos que o sistema não guardava os placares se ocorresse o simples reiniciar estrito do terminal do nosso arquivo puramente isolado `backend.py`. Qual das explicações detalha fundamentalmente essa situação estrita do projeto do laboratório básico?
-
-    * [ ] A rota `POST` que processa a contagem de votos da votação possuía erros clássicos lógicos nativos e rejeitava nativamente sempre os arquivos JSON contendo valores inválidos soltos fechados fixos.
-    * [x] As modificações dos contadores efetuadas pelo algoritmo agiram ativamente e alteraram uma variável primitiva unificada (`PLACAR`) armazenando na matriz volátil puramente carregada da memória RAM local temporária da execução base da linguagem da aplicação Python.
-    * [ ] O frontend falhou integralmente no cruzamento da interface no momento forçado base quando as transações nativas unificadas do método httpx limitavam envios constantes contínuos ao endpoint do estado primário do Swagger e apagavam a memória nativa.
-    </quiz>
--->
-<div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-4">
-    <a href="#quiz-4" class="quiz-header-link">#</a>
-    <h4 class="quiz-number">Questão 5</h4>
-    <div class="quiz-question">
-        <p>Durante nossos testes da plataforma nativa, percebemos que o sistema não guardava os placares se ocorresse o simples reiniciar estrito do terminal do nosso arquivo puramente isolado <code>backend.py</code>. Qual das explicações detalha fundamentalmente essa situação estrita do projeto do laboratório básico?</p>
-    </div>
-    <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-4-0" ><label for="quiz-4-0">A rota <code>POST</code> que processa a contagem de votos da votação possuía erros clássicos lógicos nativos e rejeitava nativamente sempre os arquivos JSON contendo valores inválidos soltos fechados fixos.</label></div><div><input type="radio" name="answer" value="1" id="quiz-4-1" correct><label for="quiz-4-1">As modificações dos contadores efetuadas pelo algoritmo agiram ativamente e alteraram uma variável primitiva unificada (<code>PLACAR</code>) armazenando na matriz volátil puramente carregada da memória RAM local temporária da execução base da linguagem da aplicação Python.</label></div><div><input type="radio" name="answer" value="2" id="quiz-4-2" ><label for="quiz-4-2">O frontend falhou integralmente no cruzamento da interface no momento forçado base quando as transações nativas unificadas do método httpx limitavam envios constantes contínuos ao endpoint do estado primário do Swagger e apagavam a memória nativa.</label></div></fieldset>
-        <div class="quiz-feedback hidden"></div>
-
-    </form>
-    <section class="content hidden"></section>
-</div>
-</details>
-<div id="quiz-results" class="quiz-results">
-    <div class="quiz-results-progress">
-        <h3>Progresso do quiz</h3>
-        <p class="quiz-results-stats">
-            <span class="quiz-results-answered">0</span> / <span class="quiz-results-total">0</span> questões respondidas
-            (<span class="quiz-results-percentage">0%</span>)
-        </p>
-        <p class="quiz-results-correct-stats">
-            <span class="quiz-results-correct">0</span> correto
-        </p>
-    </div>
-    <div class="quiz-results-complete hidden">
-        <h2 class="quiz-results-title">Quiz completo!</h2>
-        <div class="quiz-results-score-display">
-            <span class="quiz-results-score-value">0%</span>
-        </div>
-        <p class="quiz-results-message"></p>
-        <button type="button" class="md-button md-button--primary quiz-results-reset">Reiniciar quiz</button>
-    </div>
-</div><style type="text/css">.quiz {
+<hr /><style type="text/css">.quiz {
   border: 1px solid black;
   padding: 1rem;
   margin: 1rem 0;
