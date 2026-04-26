@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../../02_Perceptron/03_Vetores_Matrizes_NumPy/">
+        <link rel="prev" href="../../02_Perceptron/05_Revisao_NumPy/">
       
       
         <link rel="next" href="../02_Engenharia_Atributos/">
@@ -708,6 +708,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Perceptron/04_Revisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão: O Perceptron
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02_Perceptron/05_Revisao_NumPy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão: Escalando com Vetores e NumPy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -833,17 +889,6 @@
       Índice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#sugestao-de-ordem-para-a-aula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sugestão de Ordem para a Aula
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#conceitos-chave" class="md-nav__link">
@@ -1153,6 +1198,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Revisao_Pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão: Preparação de Dados com Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_Revisao_Engenharia_Atributos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão: Engenharia de Atributos com Scikit-Learn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1282,6 +1383,34 @@
     
   
     Aprendizagem Preditiva com Regressão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Redes_Neurais_Mlp/04_Revisao_Redes_Neurais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão: Redes Neurais com Scikit-Learn
   
 
     
@@ -2447,17 +2576,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sugestao-de-ordem-para-a-aula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sugestão de Ordem para a Aula
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#conceitos-chave" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2863,16 +2981,6 @@
 <li>Dois novos endpoints na API: upload de biblioteca e auditoria de dados</li>
 <li>Um dataset limpo e pronto para alimentar modelos de ML</li>
 </ul>
-<hr />
-<h2 id="sugestao-de-ordem-para-a-aula">Sugestão de Ordem para a Aula</h2>
-<p>Para ministrar este conteúdo aos alunos, a ordem didática recomendada é <strong>diferente</strong> da ordem de arquitetura de software:</p>
-<ol>
-<li><strong>Laboratório (Notebook)</strong>: Comece pelo arquivo <code>notebooks/04_pandas_etl.ipynb</code>. Mostre os dados crus, faça os gráficos e resolva os problemas de sujeira na hora. Eles precisam visualizar o "Garbage In".</li>
-<li><strong>Engenharia (<code>DataCleaner</code>)</strong>: Mostre como transformar o código de pesquisa (Notebook) em código profissional (classe Python), encapsulando tudo em <code>src/services/data_cleaner.py</code>.</li>
-<li><strong>Contratos (<code>schemas.py</code>)</strong>: Defina o que a API vai receber e responder.</li>
-<li><strong>Exposição (<code>Endpoints</code>)</strong>: Crie os endpoints (<code>library.py</code> e <code>data_audit.py</code>) para conectar o <code>DataCleaner</code> à web.</li>
-<li><strong>Teste ao Vivo</strong>: Leve-os para testar a rota <code>/api/v1/data/audit</code> pelo Swagger UI, fazendo upload de um CSV adulterado por eles mesmos.</li>
-</ol>
 <hr />
 <h2 id="conceitos-chave">Conceitos Chave</h2>
 <div class="admonition info">
