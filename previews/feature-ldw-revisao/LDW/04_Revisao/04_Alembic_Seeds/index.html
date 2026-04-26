@@ -12,6 +12,8 @@
         <link rel="prev" href="../03_SQLAlchemy/">
       
       
+        <link rel="next" href="../enquete_tech/">
+      
       
         
       
@@ -2363,6 +2365,92 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enquete tech
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enquete tech
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enquete_tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enquete Tech (Revisao 03 + 04)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2685,6 +2773,10 @@ uv<span class="w"> </span>run<span class="w"> </span>alembic<span class="w"> </s
 <p>Para rodar o seed:</p>
 <div class="highlight"><pre><span></span><code>uv<span class="w"> </span>run<span class="w"> </span>seed.py
 </code></pre></div>
+<details class="warning">
+<summary>Erro <code>no such table: tecnologia_model</code>?</summary>
+<p>Esse erro acontece quando o <code>__tablename__</code> nao esta declarado no model. Sem ele, o SQLAlchemy deriva o nome da tabela automaticamente do nome da classe (<code>TecnologiaModel</code> vira <code>tecnologia_model</code>), mas a migration pode ter criado a tabela com outro nome. A solucao e garantir que o <code>models.py</code> tenha <code>__tablename__ = "tecnologia"</code> e que a migration use o mesmo nome. Se o banco ja existir com o nome errado, remova o arquivo <code>.sqlite</code> e rode <code>alembic upgrade head</code> novamente.</p>
+</details>
 <details class="tip">
 <summary>Estrutura final do projeto</summary>
 <p>Apos adicionar Alembic e Seeds, a pasta do projeto fica assim:

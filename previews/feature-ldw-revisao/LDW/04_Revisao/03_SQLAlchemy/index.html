@@ -2365,6 +2365,92 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enquete tech
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enquete tech
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enquete_tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enquete Tech (Revisao 03 + 04)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2652,6 +2738,8 @@
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">TecnologiaModel</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;tecnologia&quot;</span>  <span class="c1"># nome real da tabela no banco</span>
+
     <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">nome</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">votos</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2663,6 +2751,10 @@
             <span class="s2">&quot;votos&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">votos</span>
         <span class="p">}</span>
 </code></pre></div>
+<details class="warning">
+<summary>Sempre declare <code>__tablename__</code> quando usar Alembic</summary>
+<p>Sem <code>__tablename__</code>, o SQLAlchemy deriva o nome da tabela automaticamente a partir do nome da classe: <code>TecnologiaModel</code> vira <code>tecnologia_model</code>. O Alembic usa esse mesmo nome ao gerar a migration. O problema aparece quando voce cria a migration com um nome e depois o model espera outro. Declarar <code>__tablename__</code> explicitamente elimina essa ambiguidade e garante que o nome da tabela no banco seja exatamente o que voce escolheu.</p>
+</details>
 <details class="info">
 <summary>O que cada coluna faz?</summary>
 <ul>

@@ -1,0 +1,14 @@
+[project]
+name = "enquete-tech-revisao"
+version = "0.1.0"
+description = "Revisao LDW com Flask, SQLAlchemy, Alembic e seed"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.16.5",
+    "flask>=3.1.2",
+    "flask-cors>=6.0.1",
+    "flask-sqlalchemy>=3.1.1",
+    "flet>=0.28.3",
+    "httpx>=0.28.1",
+    "pydantic>=2.11.9",
+]

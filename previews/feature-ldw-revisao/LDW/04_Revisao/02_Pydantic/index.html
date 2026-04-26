@@ -2289,6 +2289,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#testando-no-vs-code-com-uma-extensao-de-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testando no VS Code com uma Extensão de Request
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testando no VS Code com uma Extensão de Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-a-passo-rapido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo a Passo Rápido
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2349,6 +2377,92 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enquete tech
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enquete tech
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enquete_tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enquete Tech (Revisao 03 + 04)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2453,6 +2567,34 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testando-no-vs-code-com-uma-extensao-de-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testando no VS Code com uma Extensão de Request
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testando no VS Code com uma Extensão de Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-a-passo-rapido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passo a Passo Rápido
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2608,7 +2750,7 @@
 <p>O <strong>Pydantic</strong> é a principal biblioteca moderna do Python para a validação rigorosa de dados. Ao invés de checarmos se uma chave de dicionário existe, nós definimos a moldura exata de como a informação precisa entrar no nosso restaurante, usando classes Python com tipagem.</p>
 <h3 id="instalacao-no-ambiente">Instalação no Ambiente</h3>
 <p>Para introduzir a validação, precisamos adicionar a dependência oficial na nossa estrutura local ativada na última aula. Abra o terminal onde criamos o projeto e digite o comando de ambiente:</p>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>pydantic<span class="w"> </span>pydantic-settings
+<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>add<span class="w"> </span>pydantic
 </code></pre></div>
 <h3 id="o-molde-da-requisicao-schema">O Molde da Requisição (Schema)</h3>
 <p>A grande jogada do Pydantic é herdar funções da sua classe base nativa, o <code>BaseModel</code>. Nós iremos criar uma blindagem logo no topo do nosso <code>backend.py</code>, estipulando formalmente que a ação de votar <strong>exige</strong> a passagem do nome da tecnologia em formato de Texto Puro (<code>str</code>).</p>
@@ -2641,6 +2783,42 @@
 <details class="info">
 <summary>Por que usar os duplos asteriscos <code>**</code> no objeto de request?</summary>
 <p>A nomenclatura <code>**request.json</code> faz o desempacotamento dinâmico de dicionários do Python. Ela separa e destrincha todas as chaves JSON repassando chave por chave diretamente como parâmetros individuais na construção da classe validadora.</p>
+</details>
+<hr />
+<h2 id="testando-no-vs-code-com-uma-extensao-de-request">Testando no VS Code com uma Extensão de Request</h2>
+<p>Uma forma rápida de validar a API sem depender do frontend é usar a extensão <strong>REST Client</strong> no próprio VS Code.</p>
+<h3 id="passo-a-passo-rapido">Passo a Passo Rápido</h3>
+<ol>
+<li>Instale a extensão <code>REST Client</code> (autor: Huachao Mao).</li>
+<li>Crie um arquivo chamado <code>teste_api.http</code> na pasta do projeto.</li>
+<li>Com o backend rodando em <code>http://localhost:5000</code>, execute as requisições clicando em <strong>Send Request</strong> acima de cada bloco.</li>
+</ol>
+<p>Exemplo de arquivo <code>teste_api.http</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="err">### Buscar placar atual</span>
+<span class="err">GET http://localhost:5000/api/votos</span>
+
+<span class="err">### Voto valido</span>
+<span class="err">POST http://localhost:5000/api/votar</span>
+<span class="err">Content-Type: application/json</span>
+
+<span class="err">{</span>
+<span class="err">    &quot;tecnologia&quot;: &quot;Flask&quot;</span>
+<span class="err">}</span>
+
+<span class="err">### Voto invalido (tecnologia como numero)</span>
+<span class="err">POST http://localhost:5000/api/votar</span>
+<span class="err">Content-Type: application/json</span>
+
+<span class="err">{</span>
+<span class="err">    &quot;tecnologia&quot;: 123</span>
+<span class="err">}</span>
+</code></pre></div>
+<details class="tip">
+<summary>O que observar nos testes</summary>
+<pre><code>- No voto valido, a API deve retornar `sucesso: true`.
+- No voto invalido, o Pydantic deve bloquear e retornar `400`.
+- Isso comprova que a validacao da rota esta protegendo o backend contra payload malformado.
+</code></pre>
 </details>
 <p>Com a implantação dessa barreira restrita, o projeto "Enquete Tech" começa a ganhar traços empresariais, consolidando a ponte comunicacional bloqueando envios nulos e protegendo internamente seus processos transacionais!</p><style type="text/css">.quiz {
   border: 1px solid black;
