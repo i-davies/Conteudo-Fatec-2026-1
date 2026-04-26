@@ -23,7 +23,7 @@
     
     
       
-        <title>Revisao: Preparacao de Dados com Pandas - Conteudo Fatec 2026-01</title>
+        <title>Revisão: Preparação de Dados com Pandas - Conteudo Fatec 2026-01</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Revisao: Preparacao de Dados com Pandas
+              Revisão: Preparação de Dados com Pandas
             
           </span>
         </div>
@@ -903,7 +903,7 @@
   <span class="md-ellipsis">
     
   
-    Revisao: Preparacao de Dados com Pandas
+    Revisão: Preparação de Dados com Pandas
   
 
     
@@ -921,7 +921,7 @@
   <span class="md-ellipsis">
     
   
-    Revisao: Preparacao de Dados com Pandas
+    Revisão: Preparação de Dados com Pandas
   
 
     
@@ -950,7 +950,7 @@
   <a href="#objetivo-da-revisao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objetivo da Revisao
+        Objetivo da Revisão
       
     </span>
   </a>
@@ -983,7 +983,7 @@
   <a href="#pratica-recomendada" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pratica Recomendada
+        Prática Recomendada
       
     </span>
   </a>
@@ -994,7 +994,7 @@
   <a href="#exercicios-de-fixacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exercicios de Fixacao
+        Exercícios de Fixação
       
     </span>
   </a>
@@ -1024,7 +1024,7 @@
   <span class="md-ellipsis">
     
   
-    Revisao: Engenharia de Atributos com Scikit-Learn
+    Revisão: Engenharia de Atributos com Scikit-Learn
   
 
     
@@ -1167,6 +1167,34 @@
     
   
     Aprendizagem Preditiva com Regressão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Redes_Neurais_Mlp/04_Revisao_Redes_Neurais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão: Redes Neurais com Scikit-Learn
   
 
     
@@ -2335,7 +2363,7 @@
   <a href="#objetivo-da-revisao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objetivo da Revisao
+        Objetivo da Revisão
       
     </span>
   </a>
@@ -2368,7 +2396,7 @@
   <a href="#pratica-recomendada" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pratica Recomendada
+        Prática Recomendada
       
     </span>
   </a>
@@ -2379,7 +2407,7 @@
   <a href="#exercicios-de-fixacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exercicios de Fixacao
+        Exercícios de Fixação
       
     </span>
   </a>
@@ -2514,12 +2542,15 @@
 
 
 
-<h1 id="revisao-preparacao-de-dados-com-pandas">Revisao: Preparacao de Dados com Pandas</h1>
-<p>Esta revisao isola os conceitos da etapa de ETL em uma sequencia de notebooks pequenos.
-A ideia aqui e praticar com exemplos simples e diretos, sem sobrecarga de codigo.</p>
+<h1 id="revisao-preparacao-de-dados-com-pandas">Revisão: Preparação de Dados com Pandas</h1>
+<p>Esta revisão isola os conceitos da etapa de ETL em uma sequência de notebooks pequenos.
+A ideia aqui é praticar com exemplos simples e diretos, sem sobrecarga de código.</p>
+<blockquote>
+<p>Projeto utilizado: <a href="https://github.com/i-davies/revisao_perceptron">Revisão</a>.</p>
+</blockquote>
 <hr />
-<h2 id="objetivo-da-revisao">Objetivo da Revisao</h2>
-<p>Ao final da trilha, voce deve conseguir:</p>
+<h2 id="objetivo-da-revisao">Objetivo da Revisão</h2>
+<p>Ao final da trilha, você deve conseguir:</p>
 <ul>
 <li>identificar dados faltantes e duplicados</li>
 <li>tratar nulos com regras simples</li>
@@ -2530,22 +2561,22 @@ A ideia aqui e praticar com exemplos simples e diretos, sem sobrecarga de codigo
 <h2 id="estrutura-dos-notebooks">Estrutura dos Notebooks</h2>
 <p>Dentro da pasta <code>revisao_dados</code>, use os notebooks nesta ordem:</p>
 <ul>
-<li><code>01_revisao_ciclo_dados.ipynb</code>: ciclo completo de leitura, diagnostico e limpeza</li>
-<li><code>03_revisao_onehot_scaler.ipynb</code>: normalizacao e codificacao de categorias</li>
-<li><code>04_revisao_fit_transform.ipynb</code>: diferenca entre fit e transform com pipeline simples</li>
+<li><code>01_revisao_ciclo_dados.ipynb</code>: ciclo completo de leitura, diagnóstico e limpeza</li>
+<li><code>03_revisao_onehot_scaler.ipynb</code>: normalização e codificação de categorias</li>
+<li><code>04_revisao_fit_transform.ipynb</code>: diferença entre fit e transform com pipeline simples</li>
 </ul>
 <div class="admonition info">
 <p class="admonition-title">Dica de Aula</p>
-<p>Execute uma celula por vez e sempre observe a saida antes de continuar.
-O objetivo e entender o motivo de cada transformacao.</p>
+<p>Execute uma célula por vez e sempre observe a saída antes de continuar.
+O objetivo é entender o motivo de cada transformação.</p>
 </div>
 <hr />
 <h2 id="fluxo-simples-de-etl">Fluxo Simples de ETL</h2>
 <p>No primeiro notebook, siga este roteiro:</p>
 <ul>
 <li>carregar um DataFrame pequeno com erros propositalmente inseridos</li>
-<li>medir nulos, duplicatas e estatisticas basicas</li>
-<li>aplicar limpeza com regras didaticas</li>
+<li>medir nulos, duplicatas e estatísticas básicas</li>
+<li>aplicar limpeza com regras didáticas</li>
 <li>validar a qualidade final do DataFrame</li>
 </ul>
 <details class="tip">
@@ -2553,32 +2584,32 @@ O objetivo e entender o motivo de cada transformacao.</p>
 <p>Dados bons geram modelos melhores. Um modelo simples com base limpa costuma performar melhor do que um modelo complexo com base suja.</p>
 </details>
 <hr />
-<h2 id="pratica-recomendada">Pratica Recomendada</h2>
+<h2 id="pratica-recomendada">Prática Recomendada</h2>
 <p>Repita os passos alterando manualmente alguns valores:</p>
 <ul>
-<li>adicione um novo valor nulo e veja o impacto no relatorio</li>
+<li>adicione um novo valor nulo e veja o impacto no relatório</li>
 <li>aumente um valor extremo de <code>tempo</code> e veja se o IQR detecta</li>
 <li>troque categorias em <code>tipo_entrega</code> e observe o efeito no encoding</li>
 </ul>
 <hr />
-<h2 id="exercicios-de-fixacao">Exercicios de Fixacao</h2>
+<h2 id="exercicios-de-fixacao">Exercícios de Fixação</h2>
 <!-- mkdocs-quiz-source
 <quiz>
-Qual objetivo principal da etapa de preparacao de dados antes do modelo?
+Qual objetivo principal da etapa de preparação de dados antes do modelo?
 
-* [ ] Aumentar a quantidade de codigo no projeto.
-* [x] Garantir consistencia e qualidade dos dados de entrada.
-* [ ] Eliminar completamente a necessidade de avaliacao de resultados.
+* [ ] Aumentar a quantidade de código no projeto.
+* [x] Garantir consistência e qualidade dos dados de entrada.
+* [ ] Eliminar completamente a necessidade de avaliação de resultados.
 </quiz>
 -->
 <div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-0">
     <a href="#quiz-0" class="quiz-header-link">#</a>
     <h4 class="quiz-number">Questão 1</h4>
     <div class="quiz-question">
-        <p>Qual objetivo principal da etapa de preparacao de dados antes do modelo?</p>
+        <p>Qual objetivo principal da etapa de preparação de dados antes do modelo?</p>
     </div>
     <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-0-0" ><label for="quiz-0-0">Aumentar a quantidade de codigo no projeto.</label></div><div><input type="radio" name="answer" value="1" id="quiz-0-1" correct><label for="quiz-0-1">Garantir consistencia e qualidade dos dados de entrada.</label></div><div><input type="radio" name="answer" value="2" id="quiz-0-2" ><label for="quiz-0-2">Eliminar completamente a necessidade de avaliacao de resultados.</label></div></fieldset>
+        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-0-0" ><label for="quiz-0-0">Aumentar a quantidade de código no projeto.</label></div><div><input type="radio" name="answer" value="1" id="quiz-0-1" correct><label for="quiz-0-1">Garantir consistência e qualidade dos dados de entrada.</label></div><div><input type="radio" name="answer" value="2" id="quiz-0-2" ><label for="quiz-0-2">Eliminar completamente a necessidade de avaliação de resultados.</label></div></fieldset>
         <div class="quiz-feedback hidden"></div>
 
     </form>
@@ -2587,10 +2618,10 @@ Qual objetivo principal da etapa de preparacao de dados antes do modelo?
 
 <!-- mkdocs-quiz-source
 <quiz>
-Quando encontramos valores nulos em colunas numericas, uma estrategia simples de sala e:
+Quando encontramos valores nulos em colunas numéricas, uma estratégia simples de sala é:
 
 * [ ] Multiplicar todos os valores por zero.
-* [x] Preencher com mediana ou media, conforme o contexto.
+* [x] Preencher com mediana ou média, conforme o contexto.
 * [ ] Converter a coluna para texto e ignorar os nulos.
 </quiz>
 -->
@@ -2598,10 +2629,10 @@ Quando encontramos valores nulos em colunas numericas, uma estrategia simples de
     <a href="#quiz-1" class="quiz-header-link">#</a>
     <h4 class="quiz-number">Questão 2</h4>
     <div class="quiz-question">
-        <p>Quando encontramos valores nulos em colunas numericas, uma estrategia simples de sala e:</p>
+        <p>Quando encontramos valores nulos em colunas numéricas, uma estratégia simples de sala é:</p>
     </div>
     <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-1-0" ><label for="quiz-1-0">Multiplicar todos os valores por zero.</label></div><div><input type="radio" name="answer" value="1" id="quiz-1-1" correct><label for="quiz-1-1">Preencher com mediana ou media, conforme o contexto.</label></div><div><input type="radio" name="answer" value="2" id="quiz-1-2" ><label for="quiz-1-2">Converter a coluna para texto e ignorar os nulos.</label></div></fieldset>
+        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-1-0" ><label for="quiz-1-0">Multiplicar todos os valores por zero.</label></div><div><input type="radio" name="answer" value="1" id="quiz-1-1" correct><label for="quiz-1-1">Preencher com mediana ou média, conforme o contexto.</label></div><div><input type="radio" name="answer" value="2" id="quiz-1-2" ><label for="quiz-1-2">Converter a coluna para texto e ignorar os nulos.</label></div></fieldset>
         <div class="quiz-feedback hidden"></div>
 
     </form>
@@ -2610,7 +2641,7 @@ Quando encontramos valores nulos em colunas numericas, uma estrategia simples de
 
 <!-- mkdocs-quiz-source
 <quiz>
-No contexto desta revisao, para que usamos o IQR?
+No contexto desta revisão, para que usamos o IQR?
 
 * [ ] Para ordenar colunas alfabeticamente.
 * [ ] Para criar novos endpoints automaticamente.
@@ -2621,7 +2652,7 @@ No contexto desta revisao, para que usamos o IQR?
     <a href="#quiz-2" class="quiz-header-link">#</a>
     <h4 class="quiz-number">Questão 3</h4>
     <div class="quiz-question">
-        <p>No contexto desta revisao, para que usamos o IQR?</p>
+        <p>No contexto desta revisão, para que usamos o IQR?</p>
     </div>
     <form action="javascript:void(0);" onsubmit="return false;">
         <fieldset><div><input type="radio" name="answer" value="0" id="quiz-2-0" ><label for="quiz-2-0">Para ordenar colunas alfabeticamente.</label></div><div><input type="radio" name="answer" value="1" id="quiz-2-1" ><label for="quiz-2-1">Para criar novos endpoints automaticamente.</label></div><div><input type="radio" name="answer" value="2" id="quiz-2-2" correct><label for="quiz-2-2">Para detectar valores muito distantes do comportamento central dos dados.</label></div></fieldset>

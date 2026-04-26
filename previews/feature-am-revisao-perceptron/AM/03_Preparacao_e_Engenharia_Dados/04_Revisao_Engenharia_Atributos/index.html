@@ -23,7 +23,7 @@
     
     
       
-        <title>Revisao: Engenharia de Atributos com Scikit-Learn - Conteudo Fatec 2026-01</title>
+        <title>Revisão: Engenharia de Atributos com Scikit-Learn - Conteudo Fatec 2026-01</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Revisao: Engenharia de Atributos com Scikit-Learn
+              Revisão: Engenharia de Atributos com Scikit-Learn
             
           </span>
         </div>
@@ -894,7 +894,7 @@
   <span class="md-ellipsis">
     
   
-    Revisao: Preparacao de Dados com Pandas
+    Revisão: Preparação de Dados com Pandas
   
 
     
@@ -931,7 +931,7 @@
   <span class="md-ellipsis">
     
   
-    Revisao: Engenharia de Atributos com Scikit-Learn
+    Revisão: Engenharia de Atributos com Scikit-Learn
   
 
     
@@ -949,7 +949,7 @@
   <span class="md-ellipsis">
     
   
-    Revisao: Engenharia de Atributos com Scikit-Learn
+    Revisão: Engenharia de Atributos com Scikit-Learn
   
 
     
@@ -978,7 +978,7 @@
   <a href="#objetivo-da-revisao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objetivo da Revisao
+        Objetivo da Revisão
       
     </span>
   </a>
@@ -989,7 +989,7 @@
   <a href="#ordem-didatica" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ordem Didatica
+        Ordem Didática
       
     </span>
   </a>
@@ -1022,7 +1022,7 @@
   <a href="#exercicios-de-fixacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exercicios de Fixacao
+        Exercícios de Fixação
       
     </span>
   </a>
@@ -1167,6 +1167,34 @@
     
   
     Aprendizagem Preditiva com Regressão
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04_Redes_Neurais_Mlp/04_Revisao_Redes_Neurais/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Revisão: Redes Neurais com Scikit-Learn
   
 
     
@@ -2335,7 +2363,7 @@
   <a href="#objetivo-da-revisao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Objetivo da Revisao
+        Objetivo da Revisão
       
     </span>
   </a>
@@ -2346,7 +2374,7 @@
   <a href="#ordem-didatica" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ordem Didatica
+        Ordem Didática
       
     </span>
   </a>
@@ -2379,7 +2407,7 @@
   <a href="#exercicios-de-fixacao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Exercicios de Fixacao
+        Exercícios de Fixação
       
     </span>
   </a>
@@ -2514,29 +2542,32 @@
 
 
 
-<h1 id="revisao-engenharia-de-atributos-com-scikit-learn">Revisao: Engenharia de Atributos com Scikit-Learn</h1>
-<p>Agora que os dados estao limpos, vamos transformar tudo para um formato adequado ao modelo.
-Esta etapa foca em duas ideias centrais: escalonamento numerico e codificacao de categorias.</p>
+<h1 id="revisao-engenharia-de-atributos-com-scikit-learn">Revisão: Engenharia de Atributos com Scikit-Learn</h1>
+<p>Agora que os dados estão limpos, vamos transformar tudo para um formato adequado ao modelo.
+Esta etapa foca em duas ideias centrais: escalonamento numérico e codificação de categorias.</p>
+<blockquote>
+<p>Projeto utilizado: <a href="https://github.com/i-davies/revisao_perceptron">Revisão</a>.</p>
+</blockquote>
 <hr />
-<h2 id="objetivo-da-revisao">Objetivo da Revisao</h2>
-<p>Ao final, voce deve dominar:</p>
+<h2 id="objetivo-da-revisao">Objetivo da Revisão</h2>
+<p>Ao final, você deve dominar:</p>
 <ul>
 <li>quando usar MinMaxScaler</li>
 <li>quando usar OneHotEncoder</li>
-<li>por que fit e transform nao sao a mesma coisa</li>
-<li>como salvar e carregar o transformador para manter consistencia</li>
+<li>por que fit e transform não são a mesma coisa</li>
+<li>como salvar e carregar o transformador para manter consistência</li>
 </ul>
 <hr />
-<h2 id="ordem-didatica">Ordem Didatica</h2>
+<h2 id="ordem-didatica">Ordem Didática</h2>
 <p>Use os notebooks finais da trilha:</p>
 <ul>
 <li><code>03_revisao_onehot_scaler.ipynb</code>: aplica MinMaxScaler e OneHotEncoder em um exemplo pequeno</li>
-<li><code>04_revisao_fit_transform.ipynb</code>: mostra um mini fluxo de treino e uso em producao</li>
+<li><code>04_revisao_fit_transform.ipynb</code>: mostra um mini fluxo de treino e uso em produção</li>
 </ul>
 <div class="admonition important">
-<p class="admonition-title">Ponto Critico</p>
-<p>Em producao, a API deve reutilizar o mesmo transformador ja treinado.
-Nao devemos recalcular fit a cada requisicao.</p>
+<p class="admonition-title">Ponto Crítico</p>
+<p>Em produção, a API deve reutilizar o mesmo transformador já treinado.
+Não devemos recalcular fit a cada requisição.</p>
 </div>
 <hr />
 <h2 id="fit-e-transform-de-forma-simples">Fit e Transform de Forma Simples</h2>
@@ -2547,27 +2578,27 @@ Nao devemos recalcular fit a cada requisicao.</p>
 </ul>
 <p>Se o sistema fizer <code>fit</code> toda hora, os limites mudam e as entradas ficam inconsistentes.</p>
 <details class="tip">
-<summary>Analogia Rapida</summary>
-<p>O fit e como criar uma regua padrao.
-O transform e usar sempre essa mesma regua para medir novos itens.</p>
+<summary>Analogia Rápida</summary>
+<p>O fit é como criar uma régua padrão.
+O transform é usar sempre essa mesma régua para medir novos itens.</p>
 </details>
 <hr />
 <h2 id="resultado-esperado">Resultado Esperado</h2>
-<p>Ao terminar os notebooks, voce deve observar:</p>
+<p>Ao terminar os notebooks, você deve observar:</p>
 <ul>
-<li>colunas numericas em escala comparavel (0 a 1)</li>
-<li>colunas categoricas convertidas para formato binario</li>
-<li>matriz final pronta para alimentar um modelo de classificacao</li>
+<li>colunas numéricas em escala comparável (0 a 1)</li>
+<li>colunas categóricas convertidas para formato binário</li>
+<li>matriz final pronta para alimentar um modelo de classificação</li>
 </ul>
 <hr />
-<h2 id="exercicios-de-fixacao">Exercicios de Fixacao</h2>
+<h2 id="exercicios-de-fixacao">Exercícios de Fixação</h2>
 <!-- mkdocs-quiz-source
 <quiz>
 Qual problema o MinMaxScaler ajuda a resolver?
 
 * [ ] Criar categorias textuais automaticamente.
-* [x] Colocar variaveis numericas em escala comparavel.
-* [ ] Remover todas as colunas categoricas do dataset.
+* [x] Colocar variáveis numéricas em escala comparável.
+* [ ] Remover todas as colunas categóricas do dataset.
 </quiz>
 -->
 <div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-0">
@@ -2577,7 +2608,7 @@ Qual problema o MinMaxScaler ajuda a resolver?
         <p>Qual problema o MinMaxScaler ajuda a resolver?</p>
     </div>
     <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-0-0" ><label for="quiz-0-0">Criar categorias textuais automaticamente.</label></div><div><input type="radio" name="answer" value="1" id="quiz-0-1" correct><label for="quiz-0-1">Colocar variaveis numericas em escala comparavel.</label></div><div><input type="radio" name="answer" value="2" id="quiz-0-2" ><label for="quiz-0-2">Remover todas as colunas categoricas do dataset.</label></div></fieldset>
+        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-0-0" ><label for="quiz-0-0">Criar categorias textuais automaticamente.</label></div><div><input type="radio" name="answer" value="1" id="quiz-0-1" correct><label for="quiz-0-1">Colocar variáveis numéricas em escala comparável.</label></div><div><input type="radio" name="answer" value="2" id="quiz-0-2" ><label for="quiz-0-2">Remover todas as colunas categóricas do dataset.</label></div></fieldset>
         <div class="quiz-feedback hidden"></div>
 
     </form>
@@ -2590,7 +2621,7 @@ Por que usamos OneHotEncoder em categorias como tipo de entrega ou forma de paga
 
 * [ ] Para transformar texto em uma escala ordinal fixa.
 * [x] Para evitar ordem artificial entre categorias.
-* [ ] Para substituir todas as colunas por uma unica media.
+* [ ] Para substituir todas as colunas por uma única média.
 </quiz>
 -->
 <div class="quiz" data-show-correct="true" data-auto-submit="true" data-disable-after-submit="true" data-shuffle-answers="true" id="quiz-1">
@@ -2600,7 +2631,7 @@ Por que usamos OneHotEncoder em categorias como tipo de entrega ou forma de paga
         <p>Por que usamos OneHotEncoder em categorias como tipo de entrega ou forma de pagamento?</p>
     </div>
     <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-1-0" ><label for="quiz-1-0">Para transformar texto em uma escala ordinal fixa.</label></div><div><input type="radio" name="answer" value="1" id="quiz-1-1" correct><label for="quiz-1-1">Para evitar ordem artificial entre categorias.</label></div><div><input type="radio" name="answer" value="2" id="quiz-1-2" ><label for="quiz-1-2">Para substituir todas as colunas por uma unica media.</label></div></fieldset>
+        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-1-0" ><label for="quiz-1-0">Para transformar texto em uma escala ordinal fixa.</label></div><div><input type="radio" name="answer" value="1" id="quiz-1-1" correct><label for="quiz-1-1">Para evitar ordem artificial entre categorias.</label></div><div><input type="radio" name="answer" value="2" id="quiz-1-2" ><label for="quiz-1-2">Para substituir todas as colunas por uma única média.</label></div></fieldset>
         <div class="quiz-feedback hidden"></div>
 
     </form>
@@ -2609,9 +2640,9 @@ Por que usamos OneHotEncoder em categorias como tipo de entrega ou forma de paga
 
 <!-- mkdocs-quiz-source
 <quiz>
-Qual pratica esta correta para APIs em producao?
+Qual prática está correta para APIs em produção?
 
-* [ ] Executar fit em toda nova requisicao.
+* [ ] Executar fit em toda nova requisição.
 * [ ] Ignorar o transformador salvo para evitar I/O.
 * [x] Carregar o transformador treinado e aplicar apenas transform.
 </quiz>
@@ -2620,10 +2651,10 @@ Qual pratica esta correta para APIs em producao?
     <a href="#quiz-2" class="quiz-header-link">#</a>
     <h4 class="quiz-number">Questão 3</h4>
     <div class="quiz-question">
-        <p>Qual pratica esta correta para APIs em producao?</p>
+        <p>Qual prática está correta para APIs em produção?</p>
     </div>
     <form action="javascript:void(0);" onsubmit="return false;">
-        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-2-0" ><label for="quiz-2-0">Executar fit em toda nova requisicao.</label></div><div><input type="radio" name="answer" value="1" id="quiz-2-1" ><label for="quiz-2-1">Ignorar o transformador salvo para evitar I/O.</label></div><div><input type="radio" name="answer" value="2" id="quiz-2-2" correct><label for="quiz-2-2">Carregar o transformador treinado e aplicar apenas transform.</label></div></fieldset>
+        <fieldset><div><input type="radio" name="answer" value="0" id="quiz-2-0" ><label for="quiz-2-0">Executar fit em toda nova requisição.</label></div><div><input type="radio" name="answer" value="1" id="quiz-2-1" ><label for="quiz-2-1">Ignorar o transformador salvo para evitar I/O.</label></div><div><input type="radio" name="answer" value="2" id="quiz-2-2" correct><label for="quiz-2-2">Carregar o transformador treinado e aplicar apenas transform.</label></div></fieldset>
         <div class="quiz-feedback hidden"></div>
 
     </form>
