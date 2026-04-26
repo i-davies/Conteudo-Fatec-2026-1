@@ -1,13 +1,15 @@
-# Revisao: Preparacao de Dados com Pandas
+# Revisão: Preparação de Dados com Pandas
 
-Esta revisao isola os conceitos da etapa de ETL em uma sequencia de notebooks pequenos.
-A ideia aqui e praticar com exemplos simples e diretos, sem sobrecarga de codigo.
+Esta revisão isola os conceitos da etapa de ETL em uma sequência de notebooks pequenos.
+A ideia aqui é praticar com exemplos simples e diretos, sem sobrecarga de código.
+>
+> Projeto utilizado: [Revisão](https://github.com/i-davies/revisao_perceptron).
 
 ---
 
-## Objetivo da Revisao
+## Objetivo da Revisão
 
-Ao final da trilha, voce deve conseguir:
+Ao final da trilha, você deve conseguir:
 
 - identificar dados faltantes e duplicados
 - tratar nulos com regras simples
@@ -20,13 +22,13 @@ Ao final da trilha, voce deve conseguir:
 
 Dentro da pasta `revisao_dados`, use os notebooks nesta ordem:
 
-- `01_revisao_ciclo_dados.ipynb`: ciclo completo de leitura, diagnostico e limpeza
-- `03_revisao_onehot_scaler.ipynb`: normalizacao e codificacao de categorias
-- `04_revisao_fit_transform.ipynb`: diferenca entre fit e transform com pipeline simples
+- `01_revisao_ciclo_dados.ipynb`: ciclo completo de leitura, diagnóstico e limpeza
+- `03_revisao_onehot_scaler.ipynb`: normalização e codificação de categorias
+- `04_revisao_fit_transform.ipynb`: diferença entre fit e transform com pipeline simples
 
 !!! info "Dica de Aula"
-    Execute uma celula por vez e sempre observe a saida antes de continuar.
-    O objetivo e entender o motivo de cada transformacao.
+    Execute uma célula por vez e sempre observe a saída antes de continuar.
+    O objetivo é entender o motivo de cada transformação.
 
 ---
 
@@ -35,8 +37,8 @@ Dentro da pasta `revisao_dados`, use os notebooks nesta ordem:
 No primeiro notebook, siga este roteiro:
 
 - carregar um DataFrame pequeno com erros propositalmente inseridos
-- medir nulos, duplicatas e estatisticas basicas
-- aplicar limpeza com regras didaticas
+- medir nulos, duplicatas e estatísticas básicas
+- aplicar limpeza com regras didáticas
 - validar a qualidade final do DataFrame
 
 ??? tip "Regra de Ouro"
@@ -44,36 +46,36 @@ No primeiro notebook, siga este roteiro:
 
 ---
 
-## Pratica Recomendada
+## Prática Recomendada
 
 Repita os passos alterando manualmente alguns valores:
 
-- adicione um novo valor nulo e veja o impacto no relatorio
+- adicione um novo valor nulo e veja o impacto no relatório
 - aumente um valor extremo de `tempo` e veja se o IQR detecta
 - troque categorias em `tipo_entrega` e observe o efeito no encoding
 
 ---
 
-## Exercicios de Fixacao
+## Exercícios de Fixação
 
 <quiz>
-Qual objetivo principal da etapa de preparacao de dados antes do modelo?
+Qual objetivo principal da etapa de preparação de dados antes do modelo?
 
-* [ ] Aumentar a quantidade de codigo no projeto.
-* [x] Garantir consistencia e qualidade dos dados de entrada.
-* [ ] Eliminar completamente a necessidade de avaliacao de resultados.
+* [ ] Aumentar a quantidade de código no projeto.
+* [x] Garantir consistência e qualidade dos dados de entrada.
+* [ ] Eliminar completamente a necessidade de avaliação de resultados.
 </quiz>
 
 <quiz>
-Quando encontramos valores nulos em colunas numericas, uma estrategia simples de sala e:
+Quando encontramos valores nulos em colunas numéricas, uma estratégia simples de sala é:
 
 * [ ] Multiplicar todos os valores por zero.
-* [x] Preencher com mediana ou media, conforme o contexto.
+* [x] Preencher com mediana ou média, conforme o contexto.
 * [ ] Converter a coluna para texto e ignorar os nulos.
 </quiz>
 
 <quiz>
-No contexto desta revisao, para que usamos o IQR?
+No contexto desta revisão, para que usamos o IQR?
 
 * [ ] Para ordenar colunas alfabeticamente.
 * [ ] Para criar novos endpoints automaticamente.

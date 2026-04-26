@@ -2,6 +2,7 @@
 
 > A segunda parte do guia de revisão. Aqui, saímos das variáveis soltas e usamos o NumPy para avaliar múltiplos clientes de uma só vez, adicionando complexidade ao modelo que construímos previamente.
 
+
 ---
 
 ## O Novo Cenário do Banco

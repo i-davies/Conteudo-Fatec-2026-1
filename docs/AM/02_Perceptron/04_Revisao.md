@@ -1,6 +1,8 @@
 # Revisão: O Perceptron
 
 > Um roteiro isolado do projeto principal, focado puramente em fixar a matemática e a lógica do neurônio artificial utilizando Jupyter Notebook.
+>
+> Projeto utilizado: [Revisão](https://github.com/i-davies/revisao_perceptron).
 
 ---
 
@@ -124,9 +126,6 @@ Analise o comportamento do Perceptron para os seguintes perfis:
    * Renda Mensal: `2.0`
    * Histórico Pagador: `10.0`
    * *Resultado esperado: Qual vai ser o veredito?*
-
-??? tip "Como as máquinas aprendem?"
-    Neste exemplo de revisão, **nós** atuamos como o banco e escolhemos manualmente os melhores números para os Pesos e Bias. Quando começarmos a estudar modelos de regressão, você perceberá que o verdadeiro "Aprendizado de Máquina" ocorre quando fornecemos mil casos de clientes passados para o computador e pedimos para que o próprio algoritmo faça tentativas cegas até "descobrir" sozinho que o peso ideal do histórico é `0.8` e o Bias ideal é `-7.0`.
 
 ---
 
