@@ -8,18 +8,6 @@ Este guia detalha como construímos o pipeline de ETL (Extract, Transform, Load)
 
 ---
 
-## Sugestão de Ordem para a Aula
-
-Para ministrar este conteúdo aos alunos, a ordem didática recomendada é **diferente** da ordem de arquitetura de software:
-
-1. **Laboratório (Notebook)**: Comece pelo arquivo `notebooks/04_pandas_etl.ipynb`. Mostre os dados crus, faça os gráficos e resolva os problemas de sujeira na hora. Eles precisam visualizar o "Garbage In".
-2. **Engenharia (`DataCleaner`)**: Mostre como transformar o código de pesquisa (Notebook) em código profissional (classe Python), encapsulando tudo em `src/services/data_cleaner.py`.
-3. **Contratos (`schemas.py`)**: Defina o que a API vai receber e responder.
-4. **Exposição (`Endpoints`)**: Crie os endpoints (`library.py` e `data_audit.py`) para conectar o `DataCleaner` à web.
-5. **Teste ao Vivo**: Leve-os para testar a rota `/api/v1/data/audit` pelo Swagger UI, fazendo upload de um CSV adulterado por eles mesmos.
-
----
-
 ## Conceitos Chave
 
 !!! info "Objetivos"
