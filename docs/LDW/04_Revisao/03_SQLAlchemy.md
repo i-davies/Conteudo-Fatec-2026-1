@@ -62,6 +62,8 @@ from database import db
 
 
 class TecnologiaModel(db.Model):
+    __tablename__ = "tecnologia"  # nome real da tabela no banco
+
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50), unique=True, nullable=False)
     votos = db.Column(db.Integer, default=0)
@@ -73,6 +75,9 @@ class TecnologiaModel(db.Model):
             "votos": self.votos
         }
 ```
+
+??? warning "Sempre declare `__tablename__` quando usar Alembic"
+    Sem `__tablename__`, o SQLAlchemy deriva o nome da tabela automaticamente a partir do nome da classe: `TecnologiaModel` vira `tecnologia_model`. O Alembic usa esse mesmo nome ao gerar a migration. O problema aparece quando voce cria a migration com um nome e depois o model espera outro. Declarar `__tablename__` explicitamente elimina essa ambiguidade e garante que o nome da tabela no banco seja exatamente o que voce escolheu.
 
 
 ??? info "O que cada coluna faz?"

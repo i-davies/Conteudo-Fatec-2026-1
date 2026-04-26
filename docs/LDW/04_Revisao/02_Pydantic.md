@@ -35,7 +35,7 @@ O **Pydantic** é a principal biblioteca moderna do Python para a validação ri
 Para introduzir a validação, precisamos adicionar a dependência oficial na nossa estrutura local ativada na última aula. Abra o terminal onde criamos o projeto e digite o comando de ambiente:
 
 ```bash
-uv add pydantic pydantic-settings
+uv add pydantic
 ```
 
 ### O Molde da Requisição (Schema)
@@ -78,5 +78,45 @@ def registrar_voto():
 
 ??? info "Por que usar os duplos asteriscos `**` no objeto de request?"
     A nomenclatura `**request.json` faz o desempacotamento dinâmico de dicionários do Python. Ela separa e destrincha todas as chaves JSON repassando chave por chave diretamente como parâmetros individuais na construção da classe validadora.
+
+---
+
+## Testando no VS Code com uma Extensão de Request
+
+Uma forma rápida de validar a API sem depender do frontend é usar a extensão **REST Client** no próprio VS Code.
+
+### Passo a Passo Rápido
+
+1. Instale a extensão `REST Client` (autor: Huachao Mao).
+2. Crie um arquivo chamado `teste_api.http` na pasta do projeto.
+3. Com o backend rodando em `http://localhost:5000`, execute as requisições clicando em **Send Request** acima de cada bloco.
+
+Exemplo de arquivo `teste_api.http`:
+
+```http
+### Buscar placar atual
+GET http://localhost:5000/api/votos
+
+### Voto valido
+POST http://localhost:5000/api/votar
+Content-Type: application/json
+
+{
+    "tecnologia": "Flask"
+}
+
+### Voto invalido (tecnologia como numero)
+POST http://localhost:5000/api/votar
+Content-Type: application/json
+
+{
+    "tecnologia": 123
+}
+```
+
+??? tip "O que observar nos testes"
+        - No voto valido, a API deve retornar `sucesso: true`.
+        - No voto invalido, o Pydantic deve bloquear e retornar `400`.
+        - Isso comprova que a validacao da rota esta protegendo o backend contra payload malformado.
 
 Com a implantação dessa barreira restrita, o projeto "Enquete Tech" começa a ganhar traços empresariais, consolidando a ponte comunicacional bloqueando envios nulos e protegendo internamente seus processos transacionais!

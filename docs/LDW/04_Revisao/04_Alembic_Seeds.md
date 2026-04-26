@@ -112,6 +112,9 @@ Para rodar o seed:
 uv run seed.py
 ```
 
+??? warning "Erro `no such table: tecnologia_model`?"
+    Esse erro acontece quando o `__tablename__` nao esta declarado no model. Sem ele, o SQLAlchemy deriva o nome da tabela automaticamente do nome da classe (`TecnologiaModel` vira `tecnologia_model`), mas a migration pode ter criado a tabela com outro nome. A solucao e garantir que o `models.py` tenha `__tablename__ = "tecnologia"` e que a migration use o mesmo nome. Se o banco ja existir com o nome errado, remova o arquivo `.sqlite` e rode `alembic upgrade head` novamente.
+
 ??? tip "Estrutura final do projeto"
     Apos adicionar Alembic e Seeds, a pasta do projeto fica assim:
     ```
